@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GRAD 5900: Applied Generative AI — Spring 2026</title>
+    <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      :root{--bg:#0e1117;--surface:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#4da3ff;--accent-hover:#79bbff;--green:#7cf29c;--orange:#ffb86b;--purple:#c4a1ff;--red:#ff7b72}
+      body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:2rem 1rem}
+      .container{max-width:800px;margin:0 auto}
+      .eyebrow{font-size:.6875rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:.375rem}
+      h1{font-size:1.75rem;font-weight:700;margin-bottom:.25rem}
+      .subtitle{font-size:.9375rem;color:var(--muted);margin-bottom:2.5rem;font-style:italic}
+      .phase{margin-bottom:2rem}
+      .phase-header{display:flex;align-items:baseline;gap:.75rem;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+      .phase-title{font-size:1rem;font-weight:600}
+      .phase-goal{font-size:.8125rem;color:var(--muted);font-style:italic}
+      .phase-1 .phase-title{color:var(--accent)}
+      .phase-2 .phase-title{color:var(--green)}
+      .phase-3 .phase-title{color:var(--orange)}
+      .phase-4 .phase-title{color:var(--purple)}
+      .phase-5 .phase-title{color:var(--red)}
+      .lectures{display:flex;flex-direction:column;gap:.625rem}
+      .lecture-card{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);transition:border-color .15s,transform .15s}
+      .lecture-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+      .week-num{font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);min-width:3.5rem}
+      .lecture-info{flex:1;min-width:0}
+      .lecture-info h3{font-size:.9375rem;font-weight:600;margin-bottom:.125rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .lecture-info p{font-size:.8125rem;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .lecture-meta{display:flex;gap:.5rem;align-items:center;flex-shrink:0}
+      .badge{font-size:.625rem;text-transform:uppercase;letter-spacing:.04em;padding:.125rem .4375rem;border-radius:999px;background:var(--border);color:var(--muted)}
+      .badge-online{background:#1a2332;color:var(--accent)}
+      .badge-inperson{background:#122117;color:var(--green)}
+      @media(max-width:600px){
+        .lecture-card{flex-wrap:wrap;gap:.5rem}
+        .week-num{min-width:auto}
+        .lecture-info h3,.lecture-info p{white-space:normal}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p class="eyebrow">GRAD 5900 — Spring 2026</p>
+      <h1>Applied Generative AI</h1>
+      <p class="subtitle">From Prompting to Autonomous Agentic Systems</p>
+
+      <div class="phase phase-1">
+        <div class="phase-header">
+          <span class="phase-title">Phase 1: Foundations & Reasoning</span>
+          <span class="phase-goal">Move from "stochastic parrots" to systematic reasoning</span>
+        </div>
+        <div class="lectures">
+          <a class="lecture-card" href="/week01-landscape.html">
+            <span class="week-num">Week 1</span>
+            <div class="lecture-info">
+              <h3>The 2026 Landscape</h3>
+              <p>Evolution from GPT-4 to inference-time scaling. Understanding "System 2" thinking.</p>
+            </div>
+            <span class="badge badge-inperson">In-Person</span>
+          </a>
+          <a class="lecture-card" href="/week02-prompting.html">
+            <span class="week-num">Week 2</span>
+            <div class="lecture-info">
+              <h3>Advanced Prompt Engineering</h3>
+              <p>Prompting as logic: Chain-of-Thought, Analogical Prompting, and ReAct patterns.</p>
+            </div>
+            <span class="badge badge-inperson">In-Person</span>
+          </a>
+          <a class="lecture-card" href="/week03-dev-stack.html">
+            <span class="week-num">Week 3</span>
+            <div class="lecture-info">
+              <h3>The Developer Stack</h3>
+              <p>LangGraph vs PydanticAI. Architectural design for production AI applications.</p>
+            </div>
+            <span class="badge badge-inperson">In-Person</span>
+          </a>
+          <a class="lecture-card" href="/week04-knowledge-rep.html">
+            <span class="week-num">Week 4</span>
+            <div class="lecture-info">
+              <h3>Knowledge Representation</h3>
+              <p>Embeddings, Vector DBs, and the transition to "Context Management."</p>
+            </div>
+            <span class="badge badge-online">Online</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="phase phase-2">
+        <div class="phase-header">
+          <span class="phase-title">Phase 2: Knowledge Augmentation</span>
+          <span class="phase-goal">Grounding agents in private, structured, and unstructured data</span>
+        </div>
+        <div class="lectures">
+          <a class="lecture-card" href="/week05-rag.html">
+            <span class="week-num">Week 5</span>
+            <div class="lecture-info">
+              <h3>RAG 2.0</h3>
+              <p>Self-correcting retrieval loops and hybrid search (Vector + Keyword).</p>
+            </div>
+            <span class="badge badge-inperson">In-Person</span>
+          </a>
+          <a class="lecture-card" href="/graphrag.html">
+            <span class="week-num">Week 6</span>
+            <div class="lecture-info">
+              <h3>GraphRAG & Global Context</h3>
+              <p>Knowledge graphs meet retrieval-augmented generation — when structure beats similarity.</p>
+            </div>
+            <span class="badge badge-online">Online</span>
+          </a>
+          <a class="lecture-card" href="/week07-evaluation.html">
+            <span class="week-num">Week 7</span>
+            <div class="lecture-info">
+              <h3>Evaluation & LLM-as-a-Judge</h3>
+              <p>Using RAGAS to scientifically score performance before deployment.</p>
+            </div>
+            <span class="badge badge-online">Online</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="phase phase-3">
+        <div class="phase-header">
+          <span class="phase-title">Phase 3: The Agentic Shift & MCP</span>
+          <span class="phase-goal">Building systems that take action via standardized protocols</span>
+        </div>
+        <div class="lectures">
+          <a class="lecture-card" href="/mcp.html">
+            <span class="week-num">Week 8</span>
+            <div class="lecture-info">
+              <h3>Model Context Protocol (MCP)</h3>
+              <p>The runtime layer for agent systems — from isolated LLMs to connected agents.</p>
+            </div>
+            <span class="badge badge-inperson">In-Person</span>
+          </a>
+          <a class="lecture-card" href="/week09-mcp-servers.html">
+            <span class="week-num">Week 9</span>
+            <div class="lecture-info">
+              <h3>Building MCP Servers</h3>
+              <p>Lab: Build a custom MCP server for SQL, Jira, or Slack.</p>
+            </div>
+            <span class="badge badge-online">Online</span>
+          </a>
+          <a class="lecture-card" href="/week10-multi-agent.html">
+            <span class="week-num">Week 10</span>
+            <div class="lecture-info">
+              <h3>Multi-Agent Workflows</h3>
+              <p>Hierarchical teams (Manager vs. Worker) and collaborative patterns.</p>
+            </div>
+            <span class="badge badge-inperson">In-Person</span>
+          </a>
+          <a class="lecture-card" href="/week11-hitl-memory.html">
+            <span class="week-num">Week 11</span>
+            <div class="lecture-info">
+              <h3>Human-in-the-Loop & Memory</h3>
+              <p>Designing "pause points" for safety and long-term state persistence.</p>
+            </div>
+            <span class="badge badge-inperson">In-Person</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="phase phase-4">
+        <div class="phase-header">
+          <span class="phase-title">Phase 4: Efficiency, Scale & Governance</span>
+          <span class="phase-goal">Making it fast, cheap, and secure</span>
+        </div>
+        <div class="lectures">
+          <a class="lecture-card" href="/week12-small-models.html">
+            <span class="week-num">Week 12</span>
+            <div class="lecture-info">
+              <h3>The Small Model Strategy</h3>
+              <p>Benchmarking SLMs. When to swap a $20/M token model for $0.10/M.</p>
+            </div>
+            <span class="badge badge-inperson">In-Person</span>
+          </a>
+          <a class="lecture-card" href="/week13-distillation.html">
+            <span class="week-num">Week 13</span>
+            <div class="lecture-info">
+              <h3>Knowledge Distillation & Fine-Tuning</h3>
+              <p>Teacher models, synthetic data, and hands-on LoRA fine-tuning.</p>
+            </div>
+            <span class="badge badge-inperson">In-Person</span>
+          </a>
+          <a class="lecture-card" href="/week14-safety.html">
+            <span class="week-num">Week 14</span>
+            <div class="lecture-info">
+              <h3>Safety & Red-Teaming</h3>
+              <p>LlamaGuard, guardrails, prompt injection defense, and agent hijacking.</p>
+            </div>
+            <span class="badge badge-online">Online</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="phase phase-5">
+        <div class="phase-header">
+          <span class="phase-title">Phase 5: Conclusion</span>
+          <span class="phase-goal">Capstone showcase</span>
+        </div>
+        <div class="lectures">
+          <a class="lecture-card" href="/week15-capstone.html">
+            <span class="week-num">Week 15</span>
+            <div class="lecture-info">
+              <h3>Capstone Showcase</h3>
+              <p>Final presentation: a functional, MCP-powered, distilled agentic system.</p>
+            </div>
+            <span class="badge badge-inperson">In-Person</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+.slide--standard,
+.slide--diagram,
+.slide--flow {
+  --slide-content-width: 70rem;
+}
+
+.slide--center {
+  --slide-content-width: 58rem;
+  justify-content: center;
+}
+
+.slide--standard > *,
+.slide--center > *,
+.slide--diagram > *,
+.slide--flow > * {
+  inline-size: min(100%, var(--slide-content-width));
+}
+
+.slide--center h1 {
+  font-size: clamp(2.9rem, 5.4vw, 5rem);
+}
+
+.slide--diagram h1,
+.slide--flow h1 {
+  font-size: clamp(2rem, 3.2vw, 3.15rem);
+  max-inline-size: 18ch;
+}
+
+.slide--diagram .diagram,
+.slide--flow .diagram {
+  margin-top: 0.35rem;
+}
+
+.slide-grid {
+  display: grid;
+  gap: 1rem;
+  inline-size: 100%;
+}
+
+.slide-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+  inline-size: 100%;
+}
+
+.section-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-block-size: 0;
+  padding: 1.2rem 1.25rem;
+  border-radius: 1.35rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primary) 8%, transparent), color-mix(in srgb, var(--accent) 4%, transparent)),
+    var(--surface-soft);
+  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+.section-card h2 {
+  max-inline-size: 16ch;
+}
+
+.section-card p,
+.section-card li {
+  font-size: clamp(0.92rem, 1.02vw, 1.04rem);
+}
+
+.slide--flow ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+}
+
+.slide--flow ol li {
+  min-block-size: 100%;
+  padding: 0.95rem;
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 16%, transparent);
+}
+
+.slide--flow > code,
+.slide--flow > p:last-child {
+  color: var(--text-muted);
+}

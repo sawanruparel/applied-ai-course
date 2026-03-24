@@ -1,0 +1,69 @@
+@media (max-width: 1180px) {
+  .stage-frame {
+    block-size: 100%;
+  }
+}
+
+@media (max-width: 980px) {
+  body {
+    overflow: auto;
+  }
+
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .slide-rail {
+    display: none;
+  }
+
+  body.rail-open .slide-rail {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    width: 280px;
+  }
+
+  #toggle-rail {
+    display: inline-flex;
+  }
+
+  .stage {
+    place-items: stretch;
+  }
+
+  .stage-frame {
+    inline-size: 100%;
+    block-size: auto;
+  }
+
+  .topbar,
+  .controls {
+    flex-wrap: wrap;
+  }
+
+  .slide-grid--two,
+  .slide--flow ol {
+    grid-template-columns: 1fr;
+  }
+
+  .slide {
+    min-block-size: calc(100vh - 12rem);
+    block-size: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+
+  .slide.slide--entering {
+    animation: none;
+  }
+
+  .progress-bar {
+    transition: none;
+  }
+}

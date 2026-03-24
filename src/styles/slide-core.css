@@ -1,0 +1,152 @@
+.stage {
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.stage-frame {
+  inline-size: min(100%, 1160px);
+  block-size: min(100%, 760px);
+  min-block-size: 0;
+}
+
+.slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  inline-size: 100%;
+  block-size: 100%;
+  min-block-size: 100%;
+  padding: clamp(1.6rem, 2.6vw, 2.75rem);
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  background:
+    linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--bg) 94%, transparent) 100%),
+    linear-gradient(135deg, color-mix(in srgb, var(--primary) 12%, transparent), transparent 50%);
+  box-shadow: var(--shadow);
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+}
+
+.slide.slide--entering {
+  animation: slide-in 280ms ease-out both;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide::before {
+  display: none;
+}
+
+.slide h1,
+.slide h2 {
+  margin: 0;
+  font-family: var(--title-font);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1.06;
+}
+
+.slide h1 {
+  font-size: clamp(2.2rem, 4vw, 4.1rem);
+  max-inline-size: 15ch;
+}
+
+.slide h2 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.slide p,
+.slide li,
+.slide blockquote,
+.slide td,
+.slide th,
+.slide ol {
+  font-size: clamp(0.98rem, 1.22vw, 1.16rem);
+  line-height: 1.42;
+}
+
+.slide p,
+.slide ul,
+.slide ol,
+.slide blockquote,
+.slide pre,
+.slide table {
+  margin: 0;
+}
+
+.slide ul,
+.slide ol {
+  padding-left: 1.2rem;
+}
+
+.slide li + li {
+  margin-top: 0.35rem;
+}
+
+.slide blockquote {
+  padding: 1rem 1.2rem;
+  border-left: 4px solid var(--warning);
+  background: color-mix(in srgb, var(--warning) 8%, transparent);
+  color: var(--text);
+}
+
+.slide p,
+.slide li,
+.slide td,
+.slide th,
+.slide blockquote,
+.slide code {
+  overflow-wrap: anywhere;
+}
+
+.slide code,
+.diagram code {
+  font-family: var(--mono-font);
+}
+
+.diagram {
+  width: min(100%, 100%);
+  padding: 1rem 1.2rem;
+  border-radius: 1.2rem;
+  background: var(--surface-strong);
+  border: 1px solid var(--line-soft);
+  color: var(--accent);
+  font-size: clamp(0.92rem, 1.08vw, 1.05rem);
+  line-height: 1.42;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.slide table {
+  inline-size: 100%;
+  border-collapse: collapse;
+}
+
+.slide th,
+.slide td {
+  padding: 0.78rem 0.9rem;
+  border-bottom: 1px solid var(--line-soft);
+  text-align: left;
+  vertical-align: top;
+}
+
+.slide th {
+  color: color-mix(in srgb, var(--text) 84%, var(--accent) 16%);
+  font-size: 0.94rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
