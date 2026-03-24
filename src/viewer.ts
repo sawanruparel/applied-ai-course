@@ -46,7 +46,7 @@ export function initDeck(config: DeckConfig) {
       <main class="stage-shell">
         <header class="topbar">
           <div>
-            <p class="eyebrow">Applied AI Course • Spring 2026</p>
+            <p class="eyebrow">UConn GRAD 5900 • Applied Generative AI • Spring 2026</p>
             <h1 id="deck-title">${escapeHtml(deckTitle)}</h1>
           </div>
           <div class="topbar-actions">
