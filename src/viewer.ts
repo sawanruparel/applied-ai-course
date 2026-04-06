@@ -301,6 +301,15 @@ function renderMarkdown(markdown: string, layout: string) {
     return `<div class="card-grid">${cards.map(renderSectionCard).join("")}</div>`;
   }
 
+  if (layout === "cards-title") {
+    const cards = blocks.filter((block): block is Extract<Block, { type: "section" }> => block.type === "section");
+    const extras = blocks.filter((block) => block.type !== "section");
+    return `
+      ${extras.map(renderBlock).join("")}
+      <div class="card-grid">${cards.map(renderSectionCard).join("")}</div>
+    `;
+  }
+
   return blocks.map(renderBlock).join("");
 }
 
@@ -310,7 +319,7 @@ function parseBlocks(markdown: string): Block[] {
   let index = 0;
 
   while (index < lines.length) {
-    const line = lines[index]?.trimEnd() ?? "";
+    const line = (lines[index] ?? "").trim();
 
     if (!line.trim()) {
       index += 1;
