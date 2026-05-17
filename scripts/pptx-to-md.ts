@@ -29,39 +29,27 @@ interface SlideMarkdown {
 
 async function readZipEntry(
   directory: Awaited<ReturnType<typeof Open.file>>,
-  entryPath: string
+  entryPath: string,
 ): Promise<string | null> {
-  const entry = directory.files.find(
-    (f) => f.path.toLowerCase() === entryPath.toLowerCase()
-  );
+  const entry = directory.files.find((f) => f.path.toLowerCase() === entryPath.toLowerCase());
   if (!entry) return null;
   const buffer = await entry.buffer();
   return buffer.toString("utf-8");
 }
 
-async function getSlideOrder(
-  directory: Awaited<ReturnType<typeof Open.file>>
-): Promise<string[]> {
-  const presentationXml = await readZipEntry(
-    directory,
-    "ppt/presentation.xml"
-  );
+async function getSlideOrder(directory: Awaited<ReturnType<typeof Open.file>>): Promise<string[]> {
+  const presentationXml = await readZipEntry(directory, "ppt/presentation.xml");
   if (!presentationXml) throw new Error("Missing ppt/presentation.xml");
 
-  const relsXml = await readZipEntry(
-    directory,
-    "ppt/_rels/presentation.xml.rels"
-  );
-  if (!relsXml)
-    throw new Error("Missing ppt/_rels/presentation.xml.rels");
+  const relsXml = await readZipEntry(directory, "ppt/_rels/presentation.xml.rels");
+  if (!relsXml) throw new Error("Missing ppt/_rels/presentation.xml.rels");
 
   const presentation = await parseStringPromise(presentationXml);
   const rels = await parseStringPromise(relsXml);
 
   // Build rId → target map
   const relMap = new Map<string, string>();
-  const relationships =
-    rels.Relationships?.Relationship || [];
+  const relationships = rels.Relationships?.Relationship || [];
   for (const rel of relationships) {
     const rId = rel.$.Id as string;
     const target = rel.$.Target as string;
@@ -69,8 +57,7 @@ async function getSlideOrder(
   }
 
   // Get slide rIds in order from presentation.xml
-  const sldIdLst =
-    presentation["p:presentation"]?.["p:sldIdLst"]?.[0]?.["p:sldId"] || [];
+  const sldIdLst = presentation["p:presentation"]?.["p:sldIdLst"]?.[0]?.["p:sldId"] || [];
 
   const slideFiles: string[] = [];
   for (const sldId of sldIdLst) {
@@ -111,16 +98,14 @@ function extractText(node: any): string {
 
 function isShapeTitle(sp: any): boolean {
   // Check nvSpPr → nvPr → ph type
-  const ph =
-    sp?.["p:nvSpPr"]?.[0]?.["p:nvPr"]?.[0]?.["p:ph"]?.[0]?.$;
+  const ph = sp?.["p:nvSpPr"]?.[0]?.["p:nvPr"]?.[0]?.["p:ph"]?.[0]?.$;
   if (!ph) return false;
   const phType = ph.type || "";
   return phType === "title" || phType === "ctrTitle";
 }
 
 function isShapeSubtitle(sp: any): boolean {
-  const ph =
-    sp?.["p:nvSpPr"]?.[0]?.["p:nvPr"]?.[0]?.["p:ph"]?.[0]?.$;
+  const ph = sp?.["p:nvSpPr"]?.[0]?.["p:nvPr"]?.[0]?.["p:ph"]?.[0]?.$;
   if (!ph) return false;
   return ph.type === "subTitle";
 }
@@ -165,14 +150,13 @@ function extractParagraphs(sp: any, isTitle: boolean): Paragraph[] {
 async function parseSlide(
   directory: Awaited<ReturnType<typeof Open.file>>,
   slidePath: string,
-  index: number
+  index: number,
 ): Promise<SlideData> {
   const xml = await readZipEntry(directory, slidePath);
   if (!xml) throw new Error(`Missing slide: ${slidePath}`);
 
   const parsed = await parseStringPromise(xml);
-  const spTree =
-    parsed["p:sld"]?.["p:cSld"]?.[0]?.["p:spTree"]?.[0];
+  const spTree = parsed["p:sld"]?.["p:cSld"]?.[0]?.["p:spTree"]?.[0];
 
   let title = "";
   const allParagraphs: Paragraph[] = [];
@@ -205,8 +189,7 @@ async function parseSlide(
     // Check for tables
     const graphicFrames = spTree["p:graphicFrame"] || [];
     for (const frame of graphicFrames) {
-      const tbl =
-        frame?.["a:graphic"]?.[0]?.["a:graphicData"]?.[0]?.["a:tbl"]?.[0];
+      const tbl = frame?.["a:graphic"]?.[0]?.["a:graphicData"]?.[0]?.["a:tbl"]?.[0];
       if (!tbl) continue;
 
       const rows = tbl["a:tr"] || [];
@@ -305,7 +288,7 @@ function slideToMarkdown(slide: SlideData): string {
 function writeIndividualFiles(
   slides: SlideMarkdown[],
   outputDir: string,
-  relativeDir: string
+  relativeDir: string,
 ): void {
   fs.mkdirSync(outputDir, { recursive: true });
 
@@ -340,9 +323,7 @@ async function main(): Promise<void> {
   const positional = args.filter((a) => !a.startsWith("--"));
 
   if (positional.length < 2) {
-    console.error(
-      "Usage: npx tsx scripts/pptx-to-md.ts <input.pptx> <output-dir> [--single]"
-    );
+    console.error("Usage: npx tsx scripts/pptx-to-md.ts <input.pptx> <output-dir> [--single]");
     process.exit(1);
   }
 
@@ -381,7 +362,7 @@ async function main(): Promise<void> {
     const outputPath = path.join(outputDir, "slides.md");
     writeSingleFile(slideMarkdowns, outputPath);
   } else {
-    // Derive relative dir for slides.json paths (e.g., "lectures/mcp")
+    // Derive relative dir for slides.json paths (e.g., "lectures/week08-mcp")
     const cwd = process.cwd();
     const relativeDir = path.relative(cwd, outputDir);
     writeIndividualFiles(slideMarkdowns, outputDir, relativeDir);

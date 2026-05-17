@@ -17,7 +17,10 @@
   { "file": "lectures/week01-landscape/15-Choosing-Models.md", "label": "15 Choosing Models" },
   { "file": "lectures/week01-landscape/16-Beyond-Chat.md", "label": "16 Beyond Chat" },
   { "file": "lectures/week01-landscape/17-Compound-Systems.md", "label": "17 Compound Systems" },
-  { "file": "lectures/week01-landscape/18-Inference-Patterns.md", "label": "18 Inference Patterns" },
+  {
+    "file": "lectures/week01-landscape/18-Inference-Patterns.md",
+    "label": "18 Inference Patterns"
+  },
   { "file": "lectures/week01-landscape/19-Tool-Use.md", "label": "19 Tool Use" },
   { "file": "lectures/week01-landscape/20-Context-Windows.md", "label": "20 Context Windows" },
   { "file": "lectures/week01-landscape/21-Multimodality.md", "label": "21 Multimodality" },

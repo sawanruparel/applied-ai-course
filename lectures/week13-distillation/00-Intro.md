@@ -8,7 +8,7 @@ layout: center
 
 ## Teaching Small Models Big Tricks
 
-Week 13 | Applied Generative AI | Spring 2026
+Week 13 | Applied AI Course | Spring 2026
 
 ---
 

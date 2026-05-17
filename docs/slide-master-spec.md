@@ -176,15 +176,18 @@ The system should standardize on 12 masters.
 ### 1. Cover
 
 Purpose:
+
 - open a lecture or a major guest session
 
 Contains:
+
 - course name
 - lecture title
 - optional subtitle
 - optional lecturer and date
 
 Rules:
+
 - minimal body text
 - strong title block
 - no footer clutter
@@ -192,149 +195,182 @@ Rules:
 ### 2. Executive Summary
 
 Purpose:
+
 - answer "what should the audience leave believing?"
 
 Contains:
+
 - one synthesis headline
 - 3 key takeaways max
 - optional recommendation or framing sentence
 
 Rules:
+
 - use early in the deck
 - should work as a standalone screenshot
 
 ### 3. Agenda or Roadmap
 
 Purpose:
+
 - show the structure of the talk
 
 Contains:
+
 - 4 to 6 sections
 - optional timing
 
 Rules:
+
 - visually simple
 - current section can be highlighted when repeated later
 
 ### 4. Section Divider
 
 Purpose:
+
 - reset the room and signal a topic shift
 
 Contains:
+
 - section name
 - short framing sentence optional
 
 Rules:
+
 - sparse
 - visually distinct from content slides
 
 ### 5. Insight Exhibit
 
 Purpose:
+
 - default slide for a single idea with supporting explanation
 
 Contains:
+
 - assertion headline
 - 2 to 5 support bullets or a short paragraph plus bullets
 - optional kicker or implication line
 
 Rules:
+
 - this replaces most current `standard` slides
 - never let this become a wall of text
 
 ### 6. Compare or Tradeoff
 
 Purpose:
+
 - compare two options, approaches, or states
 
 Contains:
+
 - assertion headline
 - two balanced columns
 - optional recommendation row at bottom
 
 Rules:
+
 - use for "A vs B", "before vs after", "open vs closed", and "tool X vs tool Y"
 
 ### 7. Cards or Framework
 
 Purpose:
+
 - present categories, taxonomies, anti-patterns, or grouped ideas
 
 Contains:
+
 - 3 to 6 cards
 - each card with a short label and 1 to 3 lines
 
 Rules:
+
 - equal-height cards
 - consistent card count across similar slides when possible
 
 ### 8. Process Flow
 
 Purpose:
+
 - explain sequences, pipelines, or stages
 
 Contains:
+
 - 3 to 6 ordered steps
 - optional input and output labels
 - optional failure or decision notes
 
 Rules:
+
 - left-to-right or top-to-bottom, not both
 - each step should read as a verb phrase or noun phrase, not a paragraph
 
 ### 9. Architecture Diagram
 
 Purpose:
+
 - show systems, components, and interfaces
 
 Contains:
+
 - diagram-first canvas
 - compact annotation zone
 - bottom takeaway line
 
 Rules:
+
 - one system story per slide
 - avoid mixing architecture, process, and comparison into one page
 
 ### 10. Data Table or Scorecard
 
 Purpose:
+
 - show structured comparisons, benchmarks, or decision matrices
 
 Contains:
+
 - assertion headline
 - styled table
 - optional highlight column or row
 - note and source footer
 
 Rules:
+
 - tables should emphasize one answer, not merely dump values
 - use visual highlighting to show the row, column, or threshold that matters
 
 ### 11. Research or References
 
 Purpose:
+
 - consolidate reading, papers, benchmarks, and citations
 
 Contains:
+
 - grouped references
 - optional "why this matters" note
 
 Rules:
+
 - should look intentional, not like an appendix accident
 - use smaller text than normal content slides, but keep clean spacing
 
 ### 12. Closing or Q&A
 
 Purpose:
+
 - end the lecture cleanly
 
 Contains:
+
 - closing message, next step, or discussion prompt
 - optional thank-you or office-hours note
 
 Rules:
+
 - sparse
 - no dense content
 
@@ -498,4 +534,3 @@ The master system is successful when:
 - all source-heavy slides share the same footer treatment
 - table slides no longer look like generic markdown tables
 - the deck feels like one presentation system, not a styled document viewer
-

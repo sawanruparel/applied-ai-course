@@ -1,50 +1,55 @@
-# UConn GRAD 5900: Applied Generative AI
+# Applied AI Course
 
-This repository contains the teaching materials for the University of Connecticut course **GRAD 5900: Applied Generative AI**.
+A graduate-level course on applied AI systems — prompting, retrieval, MCP, multi-agent design, evaluation, distillation, and safety. Taught at the **University of Connecticut** (GRAD 5900, Spring 2026).
 
-It is the course site and lecture-deck source for the class I teach, not a student coursework repository. The material covers the progression from prompting and retrieval-augmented generation to MCP, multi-agent systems, evaluation, distillation, and safety.
+This repository is the course site and source for the lecture decks. It is maintained by the instructor; it is not a student coursework repository.
 
-## What is in this repo
+## What's in this repo
 
-- Lecture landing page and week-by-week course navigation
-- Slide decks for each lecture module
-- Source content for lectures in Markdown
-- Utility scripts for slide/content workflows
+- `index.html` — course landing page with the week-by-week schedule
+- `lectures/` — slide content in Markdown (one directory per week, plus a `slides.json` manifest)
+- `src/` — TypeScript deck viewer and per-lecture entry points
+- `src/config/course.ts` — single source of truth for course title, term, and institution
+- `scripts/` — utilities (PPTX→Markdown conversion, link validation)
+- `docs/` — design specs and reference material
 
-## Course scope
+## Course outline
 
-The course is organized around:
-
-- Foundations and reasoning with modern language models
-- Knowledge representation, RAG, and GraphRAG
-- MCP and agentic system design
-- Evaluation, human-in-the-loop workflows, and memory
-- Small models, distillation, and deployment tradeoffs
-- Safety, red-teaming, and capstone presentations
+1. **Foundations & Reasoning** — model landscape, prompting, dev stack, knowledge representation
+2. **Knowledge Augmentation** — RAG 2.0, GraphRAG, evaluation
+3. **Agentic Systems & MCP** — Model Context Protocol, MCP servers, multi-agent workflows, human-in-the-loop
+4. **Efficiency & Governance** — small models, distillation, safety and red-teaming
+5. **Capstone** — final showcase
 
 ## Local development
 
 ```bash
 npm install
-npm run dev
+npm run dev          # serves the site at http://localhost:4173
+npm run build        # type-check + production build
+npm run preview      # serve the built site
+npm run typecheck    # tsc --noEmit
+npm run lint         # eslint
+npm run format       # prettier --write
+npm run format:check # prettier --check
 ```
 
-Other useful commands:
+Content utilities:
 
 ```bash
-npm run build
-npm run preview
-npm run pptx-to-md
-npm run validate-urls
+npm run pptx-to-md    # convert PowerPoint decks to Markdown slides
+npm run validate-urls # check all outbound links in lecture markdown
 ```
 
-## Project structure
+## Adding a new lecture
 
-- `index.html` contains the main course landing page
-- `src/` contains the deck viewer and lecture entry points
-- `lectures/` contains lecture content in Markdown
-- `scripts/` contains utility scripts for content generation and validation
+1. Add `lectures/weekNN-topic/` with numbered markdown slide files and a `slides.json` manifest
+2. Add `src/main-weekNN-topic.ts` (copy an existing entry as a template)
+3. Add `weekNN-topic.html` at the repo root
+4. Register the new entry in `vite.config.ts` and add a card to `index.html`
 
-## Notes
+See `CLAUDE.md` for repo conventions.
 
-This repo is maintained as an instructor-facing course materials project for UConn Spring 2026.
+## License
+
+Course materials © Sawan Ruparel. Lecture content may not be redistributed without permission.

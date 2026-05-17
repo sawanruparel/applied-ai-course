@@ -10,4 +10,4 @@ layout: center
 
 Chain-of-Thought, Analogical Prompting, and ReAct Patterns for Reliability
 
-**Week 2 — Applied Generative AI**
+**Week 2 — Applied AI Course**

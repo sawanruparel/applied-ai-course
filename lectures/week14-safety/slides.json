@@ -16,7 +16,10 @@
   { "file": "lectures/week14-safety/14-Guardrails-AI.md", "label": "14 Guardrails AI" },
   { "file": "lectures/week14-safety/15-Content-Filtering.md", "label": "15 Content Filtering" },
   { "file": "lectures/week14-safety/16-Output-Validation.md", "label": "16 Output Validation" },
-  { "file": "lectures/week14-safety/17-Guardrail-Architecture.md", "label": "17 Guardrail Architecture" },
+  {
+    "file": "lectures/week14-safety/17-Guardrail-Architecture.md",
+    "label": "17 Guardrail Architecture"
+  },
   { "file": "lectures/week14-safety/18-Red-Team-Intro.md", "label": "18 Red Team Intro" },
   { "file": "lectures/week14-safety/19-Red-Team-Process.md", "label": "19 Red Team Process" },
   { "file": "lectures/week14-safety/20-Attack-Categories.md", "label": "20 Attack Categories" },

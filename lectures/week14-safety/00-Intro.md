@@ -8,7 +8,7 @@ layout: center
 
 ## Defending AI Systems in Production
 
-Week 14 | Applied Generative AI | Spring 2026
+Week 14 | Applied AI Course | Spring 2026
 
 ---
 

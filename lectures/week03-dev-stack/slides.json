@@ -3,8 +3,14 @@
   { "file": "lectures/week03-dev-stack/01-Why-Stack-Matters.md", "label": "01 Why Stack Matters" },
   { "file": "lectures/week03-dev-stack/02-Stack-Layers.md", "label": "02 Stack Layers" },
   { "file": "lectures/week03-dev-stack/03-Decision-Map.md", "label": "03 Decision Map" },
-  { "file": "lectures/week03-dev-stack/04-Framework-Explosion.md", "label": "04 Framework Explosion" },
-  { "file": "lectures/week03-dev-stack/05-LangChain-LangGraph.md", "label": "05 LangChain LangGraph" },
+  {
+    "file": "lectures/week03-dev-stack/04-Framework-Explosion.md",
+    "label": "04 Framework Explosion"
+  },
+  {
+    "file": "lectures/week03-dev-stack/05-LangChain-LangGraph.md",
+    "label": "05 LangChain LangGraph"
+  },
   { "file": "lectures/week03-dev-stack/06-LangGraph-Deep.md", "label": "06 LangGraph Deep" },
   { "file": "lectures/week03-dev-stack/07-PydanticAI.md", "label": "07 PydanticAI" },
   { "file": "lectures/week03-dev-stack/08-PydanticAI-Code.md", "label": "08 PydanticAI Code" },

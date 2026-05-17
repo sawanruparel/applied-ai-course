@@ -23,7 +23,10 @@
   { "file": "lectures/week07-evaluation/21-Braintrust.md", "label": "21 Braintrust" },
   { "file": "lectures/week07-evaluation/22-Custom-Evals.md", "label": "22 Custom Evals" },
   { "file": "lectures/week07-evaluation/23-Offline-vs-Online.md", "label": "23 Offline vs Online" },
-  { "file": "lectures/week07-evaluation/24-Regression-Testing.md", "label": "24 Regression Testing" },
+  {
+    "file": "lectures/week07-evaluation/24-Regression-Testing.md",
+    "label": "24 Regression Testing"
+  },
   { "file": "lectures/week07-evaluation/25-Human-Eval.md", "label": "25 Human Eval" },
   { "file": "lectures/week07-evaluation/26-Eval-Driven-Dev.md", "label": "26 Eval Driven Dev" },
   { "file": "lectures/week07-evaluation/27-Takeaways.md", "label": "27 Takeaways" },

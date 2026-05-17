@@ -8,7 +8,7 @@ layout: center
 
 ## Measuring What Matters
 
-Week 7 | Applied Generative AI | Spring 2026
+Week 7 | Applied AI Course | Spring 2026
 
 ---
 

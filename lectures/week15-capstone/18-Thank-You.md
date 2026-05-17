@@ -20,4 +20,4 @@ That is a rare and valuable skill set. Use it well.
 
 **Go build something that matters.**
 
-Applied Generative AI | Spring 2026
+Applied AI Course | Spring 2026

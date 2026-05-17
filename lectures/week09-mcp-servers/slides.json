@@ -20,7 +20,10 @@
   { "file": "lectures/week09-mcp-servers/18-Slack-Server.md", "label": "18 Slack Server" },
   { "file": "lectures/week09-mcp-servers/19-Authentication.md", "label": "19 Authentication" },
   { "file": "lectures/week09-mcp-servers/20-Rate-Limiting.md", "label": "20 Rate Limiting" },
-  { "file": "lectures/week09-mcp-servers/21-Composing-Servers.md", "label": "21 Composing Servers" },
+  {
+    "file": "lectures/week09-mcp-servers/21-Composing-Servers.md",
+    "label": "21 Composing Servers"
+  },
   { "file": "lectures/week09-mcp-servers/22-Remote-Servers.md", "label": "22 Remote Servers" },
   { "file": "lectures/week09-mcp-servers/23-Security.md", "label": "23 Security" },
   { "file": "lectures/week09-mcp-servers/24-Observability.md", "label": "24 Observability" },
