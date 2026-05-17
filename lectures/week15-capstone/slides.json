@@ -3,9 +3,15 @@
   { "file": "lectures/week15-capstone/01-Journey.md", "label": "01 Journey" },
   { "file": "lectures/week15-capstone/02-What-We-Covered.md", "label": "02 What We Covered" },
   { "file": "lectures/week15-capstone/03-Capstone-Criteria.md", "label": "03 Capstone Criteria" },
-  { "file": "lectures/week15-capstone/04-Presentation-Template.md", "label": "04 Presentation Template" },
+  {
+    "file": "lectures/week15-capstone/04-Presentation-Template.md",
+    "label": "04 Presentation Template"
+  },
   { "file": "lectures/week15-capstone/05-Problem-Framing.md", "label": "05 Problem Framing" },
-  { "file": "lectures/week15-capstone/06-Architecture-Showcase.md", "label": "06 Architecture Showcase" },
+  {
+    "file": "lectures/week15-capstone/06-Architecture-Showcase.md",
+    "label": "06 Architecture Showcase"
+  },
   { "file": "lectures/week15-capstone/07-Demo-Tips.md", "label": "07 Demo Tips" },
   { "file": "lectures/week15-capstone/08-Evaluation-Results.md", "label": "08 Evaluation Results" },
   { "file": "lectures/week15-capstone/09-Lessons-Learned.md", "label": "09 Lessons Learned" },

@@ -163,11 +163,47 @@ function extractLinks(filePath: string): LinkEntry[] {
 // ── Keyword Extraction ─────────────────────────────────────────────────
 
 const STOP_WORDS = new Set([
-  "et", "al", "al.", "the", "a", "an", "of", "for", "in", "on", "with",
-  "and", "or", "to", "from", "by", "its", "is", "are", "was", "were",
-  "introducing", "new", "via", "using", "based", "toward", "towards",
-  "paper", "docs", "documentation", "official", "github", "repository",
-  "blog", "post", "guide", "tutorial", "api", "pricing", "page",
+  "et",
+  "al",
+  "al.",
+  "the",
+  "a",
+  "an",
+  "of",
+  "for",
+  "in",
+  "on",
+  "with",
+  "and",
+  "or",
+  "to",
+  "from",
+  "by",
+  "its",
+  "is",
+  "are",
+  "was",
+  "were",
+  "introducing",
+  "new",
+  "via",
+  "using",
+  "based",
+  "toward",
+  "towards",
+  "paper",
+  "docs",
+  "documentation",
+  "official",
+  "github",
+  "repository",
+  "blog",
+  "post",
+  "guide",
+  "tutorial",
+  "api",
+  "pricing",
+  "page",
 ]);
 
 function extractKeywords(linkText: string): string[] {
@@ -223,7 +259,7 @@ function htmlToText(html: string): string {
 async function parallelMap<T, R>(
   items: T[],
   concurrency: number,
-  fn: (item: T, index: number) => Promise<R>
+  fn: (item: T, index: number) => Promise<R>,
 ): Promise<R[]> {
   const results: R[] = new Array(items.length);
   let nextIndex = 0;
@@ -247,7 +283,7 @@ const USER_AGENT =
 
 async function fetchWithNode(
   url: string,
-  options: { timeout: number; retries: number }
+  options: { timeout: number; retries: number },
 ): Promise<FetchResult> {
   const { timeout, retries } = options;
 
@@ -325,10 +361,7 @@ async function closeBrowser(): Promise<void> {
   _browser = null;
 }
 
-async function fetchWithBrowser(
-  url: string,
-  options: { timeout: number }
-): Promise<FetchResult> {
+async function fetchWithBrowser(url: string, options: { timeout: number }): Promise<FetchResult> {
   try {
     const context = await getBrowserContext();
     const page = await context.newPage();
@@ -371,7 +404,7 @@ async function fetchWithBrowser(
 
 function validateContent(
   keywords: string[],
-  pageText: string
+  pageText: string,
 ): { match: boolean; matched: string[]; missing: string[] } {
   if (keywords.length === 0) return { match: true, matched: [], missing: [] };
 
@@ -397,7 +430,7 @@ async function llmValidate(
   linkText: string,
   pageSnippet: string,
   baseUrl: string,
-  model: string
+  model: string,
 ): Promise<string> {
   try {
     const res = await fetch(`${baseUrl}/chat/completions`, {
@@ -494,7 +527,7 @@ async function main() {
 
   const uniqueUrls = Array.from(urlMap.keys());
   console.log(
-    `Found ${c.bold(String(allLinks.length))} links (${c.bold(String(uniqueUrls.length))} unique URLs) across ${c.bold(String(mdFiles.length))} files\n`
+    `Found ${c.bold(String(allLinks.length))} links (${c.bold(String(uniqueUrls.length))} unique URLs) across ${c.bold(String(mdFiles.length))} files\n`,
   );
 
   // 4. Validate each URL — fast fetch first, browser fallback for blocked
@@ -527,7 +560,9 @@ async function main() {
       result.error = "queued for browser verification";
       completed++;
       const pct = Math.round((completed / uniqueUrls.length) * 100);
-      process.stdout.write(`\r${c.dim(`Phase 1 (fetch): ${completed}/${uniqueUrls.length} (${pct}%)`)}`);
+      process.stdout.write(
+        `\r${c.dim(`Phase 1 (fetch): ${completed}/${uniqueUrls.length} (${pct}%)`)}`,
+      );
       return result;
     }
 
@@ -542,13 +577,19 @@ async function main() {
     }
 
     // Content validation for successful fetches
-    if (!args.statusOnly && (result.category === "ok" || result.category === "redirect") && fetchResult.body) {
+    if (
+      !args.statusOnly &&
+      (result.category === "ok" || result.category === "redirect") &&
+      fetchResult.body
+    ) {
       applyContentValidation(result, fetchResult.body, linkTexts, args);
     }
 
     completed++;
     const pct = Math.round((completed / uniqueUrls.length) * 100);
-    process.stdout.write(`\r${c.dim(`Phase 1 (fetch): ${completed}/${uniqueUrls.length} (${pct}%)`)}`);
+    process.stdout.write(
+      `\r${c.dim(`Phase 1 (fetch): ${completed}/${uniqueUrls.length} (${pct}%)`)}`,
+    );
 
     return result;
   });
@@ -587,14 +628,18 @@ async function main() {
       }
 
       // Content validation
-      if (!args.statusOnly && (result.category === "ok" || result.category === "redirect") && fetchResult.body) {
+      if (
+        !args.statusOnly &&
+        (result.category === "ok" || result.category === "redirect") &&
+        fetchResult.body
+      ) {
         const pageText = htmlToText(fetchResult.body).slice(0, 5000);
         applyContentValidation(result, fetchResult.body, linkTexts, args);
       }
 
       browserCompleted++;
       process.stdout.write(
-        `\r${c.dim(`Phase 2 (browser): ${browserCompleted}/${browserQueue.length}`)}`
+        `\r${c.dim(`Phase 2 (browser): ${browserCompleted}/${browserQueue.length}`)}`,
       );
     });
 
@@ -709,7 +754,7 @@ function applyContentValidation(
   result: ValidationResult,
   rawBody: string,
   linkTexts: string[],
-  args: { statusOnly: boolean; llm: boolean; llmBaseUrl: string; llmModel: string }
+  args: { statusOnly: boolean; llm: boolean; llmBaseUrl: string; llmModel: string },
 ) {
   const pageText = htmlToText(rawBody).slice(0, 5000);
 
@@ -741,7 +786,7 @@ async function applyContentValidationWithLLM(
   result: ValidationResult,
   rawBody: string,
   linkTexts: string[],
-  args: { statusOnly: boolean; llm: boolean; llmBaseUrl: string; llmModel: string }
+  args: { statusOnly: boolean; llm: boolean; llmBaseUrl: string; llmModel: string },
 ) {
   applyContentValidation(result, rawBody, linkTexts, args);
 
@@ -753,12 +798,7 @@ async function applyContentValidationWithLLM(
     result.matchedKeywords.length > 0
   ) {
     const pageText = htmlToText(rawBody).slice(0, 5000);
-    result.llmVerdict = await llmValidate(
-      linkTexts[0],
-      pageText,
-      args.llmBaseUrl,
-      args.llmModel
-    );
+    result.llmVerdict = await llmValidate(linkTexts[0], pageText, args.llmBaseUrl, args.llmModel);
     if (result.llmVerdict.toUpperCase().startsWith("YES")) {
       result.contentMatch = true;
       result.category = "ok";

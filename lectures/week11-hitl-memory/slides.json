@@ -1,10 +1,16 @@
 [
   { "file": "lectures/week11-hitl-memory/00-Intro.md", "label": "00 Intro" },
-  { "file": "lectures/week11-hitl-memory/01-Autonomy-Spectrum.md", "label": "01 Autonomy Spectrum" },
+  {
+    "file": "lectures/week11-hitl-memory/01-Autonomy-Spectrum.md",
+    "label": "01 Autonomy Spectrum"
+  },
   { "file": "lectures/week11-hitl-memory/02-Why-HITL.md", "label": "02 Why HITL" },
   { "file": "lectures/week11-hitl-memory/03-Why-Memory.md", "label": "03 Why Memory" },
   { "file": "lectures/week11-hitl-memory/04-Approval-Gates.md", "label": "04 Approval Gates" },
-  { "file": "lectures/week11-hitl-memory/05-Confidence-Routing.md", "label": "05 Confidence Routing" },
+  {
+    "file": "lectures/week11-hitl-memory/05-Confidence-Routing.md",
+    "label": "05 Confidence Routing"
+  },
   { "file": "lectures/week11-hitl-memory/06-Review-Queues.md", "label": "06 Review Queues" },
   { "file": "lectures/week11-hitl-memory/07-Feedback-Loops.md", "label": "07 Feedback Loops" },
   { "file": "lectures/week11-hitl-memory/08-Breakpoints.md", "label": "08 Breakpoints" },
@@ -12,17 +18,26 @@
   { "file": "lectures/week11-hitl-memory/10-Escalation.md", "label": "10 Escalation" },
   { "file": "lectures/week11-hitl-memory/11-UX-Patterns.md", "label": "11 UX Patterns" },
   { "file": "lectures/week11-hitl-memory/12-Memory-Types.md", "label": "12 Memory Types" },
-  { "file": "lectures/week11-hitl-memory/13-Conversation-Memory.md", "label": "13 Conversation Memory" },
+  {
+    "file": "lectures/week11-hitl-memory/13-Conversation-Memory.md",
+    "label": "13 Conversation Memory"
+  },
   { "file": "lectures/week11-hitl-memory/14-Summary-Memory.md", "label": "14 Summary Memory" },
   { "file": "lectures/week11-hitl-memory/15-Entity-Memory.md", "label": "15 Entity Memory" },
   { "file": "lectures/week11-hitl-memory/16-Episodic-Memory.md", "label": "16 Episodic Memory" },
   { "file": "lectures/week11-hitl-memory/17-Vector-Memory.md", "label": "17 Vector Memory" },
   { "file": "lectures/week11-hitl-memory/18-Persistent-State.md", "label": "18 Persistent State" },
-  { "file": "lectures/week11-hitl-memory/19-Memory-Architecture.md", "label": "19 Memory Architecture" },
+  {
+    "file": "lectures/week11-hitl-memory/19-Memory-Architecture.md",
+    "label": "19 Memory Architecture"
+  },
   { "file": "lectures/week11-hitl-memory/20-LangGraph-Memory.md", "label": "20 LangGraph Memory" },
   { "file": "lectures/week11-hitl-memory/21-Mem0.md", "label": "21 Mem0" },
   { "file": "lectures/week11-hitl-memory/22-State-Machines.md", "label": "22 State Machines" },
-  { "file": "lectures/week11-hitl-memory/23-Conversation-Design.md", "label": "23 Conversation Design" },
+  {
+    "file": "lectures/week11-hitl-memory/23-Conversation-Design.md",
+    "label": "23 Conversation Design"
+  },
   { "file": "lectures/week11-hitl-memory/24-Memory-Retrieval.md", "label": "24 Memory Retrieval" },
   { "file": "lectures/week11-hitl-memory/25-Privacy.md", "label": "25 Privacy" },
   { "file": "lectures/week11-hitl-memory/26-Patterns-Summary.md", "label": "26 Patterns Summary" },

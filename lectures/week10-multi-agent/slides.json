@@ -9,7 +9,10 @@
   { "file": "lectures/week10-multi-agent/07-Competitive.md", "label": "07 Competitive" },
   { "file": "lectures/week10-multi-agent/08-Supervisor.md", "label": "08 Supervisor" },
   { "file": "lectures/week10-multi-agent/09-Swarm.md", "label": "09 Swarm" },
-  { "file": "lectures/week10-multi-agent/10-Pattern-Selection.md", "label": "10 Pattern Selection" },
+  {
+    "file": "lectures/week10-multi-agent/10-Pattern-Selection.md",
+    "label": "10 Pattern Selection"
+  },
   { "file": "lectures/week10-multi-agent/11-Agent-Design.md", "label": "11 Agent Design" },
   { "file": "lectures/week10-multi-agent/12-Communication.md", "label": "12 Communication" },
   { "file": "lectures/week10-multi-agent/13-State-Management.md", "label": "13 State Management" },

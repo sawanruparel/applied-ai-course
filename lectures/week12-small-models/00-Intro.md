@@ -8,7 +8,7 @@ layout: center
 
 ## Right-Sizing AI for Production
 
-Week 12 — Applied Generative AI, Spring 2026
+Week 12 — Applied AI Course, Spring 2026
 
 ---
 

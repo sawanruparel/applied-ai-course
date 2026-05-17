@@ -1,5 +1,5 @@
 {
-  "name": "uconn-grad-5900-applied-generative-ai",
+  "name": "applied-ai-course",
   "private": true,
   "type": "module",
   "scripts": {
@@ -7,15 +7,30 @@
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "pptx-to-md": "tsx scripts/pptx-to-md.ts",
-    "validate-urls": "tsx scripts/validate-urls.ts"
+    "validate-urls": "tsx scripts/validate-urls.ts",
+    "course:refresh": "tsx scripts/course-refresh.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.88.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/node": "^22.10.0",
     "@types/unzipper": "^0.10.11",
     "@types/xml2js": "^0.4.14",
+    "eslint": "^9.18.0",
+    "globals": "^15.14.0",
     "playwright": "^1.58.2",
+    "prettier": "^3.4.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.20.0",
     "unzipper": "^0.12.3",
     "vite": "^7.1.7",
     "xml2js": "^0.6.2"

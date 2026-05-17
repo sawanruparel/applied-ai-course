@@ -15,7 +15,10 @@
   { "file": "lectures/week12-small-models/13-Model-Routing.md", "label": "13 Model Routing" },
   { "file": "lectures/week12-small-models/14-Cascade-Pattern.md", "label": "14 Cascade Pattern" },
   { "file": "lectures/week12-small-models/15-Cost-Calculator.md", "label": "15 Cost Calculator" },
-  { "file": "lectures/week12-small-models/16-Decision-Framework.md", "label": "16 Decision Framework" },
+  {
+    "file": "lectures/week12-small-models/16-Decision-Framework.md",
+    "label": "16 Decision Framework"
+  },
   { "file": "lectures/week12-small-models/17-Local-Inference.md", "label": "17 Local Inference" },
   { "file": "lectures/week12-small-models/18-Quantization.md", "label": "18 Quantization" },
   { "file": "lectures/week12-small-models/19-Edge-Deployment.md", "label": "19 Edge Deployment" },

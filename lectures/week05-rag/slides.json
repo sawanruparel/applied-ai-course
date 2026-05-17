@@ -17,11 +17,17 @@
   { "file": "lectures/week05-rag/15-Multi-Step.md", "label": "15 Multi Step" },
   { "file": "lectures/week05-rag/16-Agentic-RAG.md", "label": "16 Agentic RAG" },
   { "file": "lectures/week05-rag/17-Multi-Source.md", "label": "17 Multi Source" },
-  { "file": "lectures/week05-rag/18-Contextual-Compression.md", "label": "18 Contextual Compression" },
+  {
+    "file": "lectures/week05-rag/18-Contextual-Compression.md",
+    "label": "18 Contextual Compression"
+  },
   { "file": "lectures/week05-rag/19-Citation-Grounding.md", "label": "19 Citation Grounding" },
   { "file": "lectures/week05-rag/20-Streaming-RAG.md", "label": "20 Streaming RAG" },
   { "file": "lectures/week05-rag/21-RAG-Fusion.md", "label": "21 RAG Fusion" },
-  { "file": "lectures/week05-rag/22-Pipeline-Architecture.md", "label": "22 Pipeline Architecture" },
+  {
+    "file": "lectures/week05-rag/22-Pipeline-Architecture.md",
+    "label": "22 Pipeline Architecture"
+  },
   { "file": "lectures/week05-rag/23-Indexing-Pipeline.md", "label": "23 Indexing Pipeline" },
   { "file": "lectures/week05-rag/24-Monitoring.md", "label": "24 Monitoring" },
   { "file": "lectures/week05-rag/25-Failure-Modes.md", "label": "25 Failure Modes" },

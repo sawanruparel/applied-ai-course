@@ -8,6 +8,6 @@ layout: center
 
 ## From Stochastic Parrots to Reasoning Machines
 
-**Applied Generative AI -- Spring 2026**
+**Applied AI Course -- Spring 2026**
 
 Week 1: Setting the Stage

@@ -8,7 +8,7 @@ layout: center
 
 ## Safe Agents with Persistent State
 
-**Week 11 — Applied Generative AI**
+**Week 11 — Applied AI Course**
 
 ---
 

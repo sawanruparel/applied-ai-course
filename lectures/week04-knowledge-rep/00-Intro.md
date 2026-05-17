@@ -8,6 +8,6 @@ layout: center
 
 ## From Embeddings to Context Management
 
-**Applied Generative AI -- Spring 2026**
+**Applied AI Course -- Spring 2026**
 
 Week 4

@@ -8,7 +8,7 @@ layout: center
 
 ## From Solo Agents to Agent Teams
 
-Week 10 — Applied Generative AI, Spring 2026
+Week 10 — Applied AI Course, Spring 2026
 
 ---
 

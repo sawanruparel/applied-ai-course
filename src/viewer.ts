@@ -1,4 +1,5 @@
 import "./styles/index.css";
+import { COURSE_EYEBROW } from "./config/course";
 
 type SlideMeta = {
   title?: string;
@@ -46,7 +47,7 @@ export function initDeck(config: DeckConfig) {
       <main class="stage-shell">
         <header class="topbar">
           <div>
-            <p class="eyebrow">UConn GRAD 5900 • Applied Generative AI • Spring 2026</p>
+            <p class="eyebrow">${escapeHtml(COURSE_EYEBROW)}</p>
             <h1 id="deck-title">${escapeHtml(deckTitle)}</h1>
           </div>
           <div class="topbar-actions">
@@ -127,25 +128,33 @@ export function initDeck(config: DeckConfig) {
     let touchStartX = 0;
     let touchStartY = 0;
 
-    slideEl.addEventListener("touchstart", (event) => {
-      touchStartX = event.touches[0]?.clientX ?? 0;
-      touchStartY = event.touches[0]?.clientY ?? 0;
-    }, { passive: true });
+    slideEl.addEventListener(
+      "touchstart",
+      (event) => {
+        touchStartX = event.touches[0]?.clientX ?? 0;
+        touchStartY = event.touches[0]?.clientY ?? 0;
+      },
+      { passive: true },
+    );
 
-    slideEl.addEventListener("touchend", (event) => {
-      const touchEndX = event.changedTouches[0]?.clientX ?? 0;
-      const touchEndY = event.changedTouches[0]?.clientY ?? 0;
-      const deltaX = touchEndX - touchStartX;
-      const deltaY = touchEndY - touchStartY;
+    slideEl.addEventListener(
+      "touchend",
+      (event) => {
+        const touchEndX = event.changedTouches[0]?.clientX ?? 0;
+        const touchEndY = event.changedTouches[0]?.clientY ?? 0;
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
 
-      if (Math.abs(deltaX) < 50 || Math.abs(deltaY) > Math.abs(deltaX)) return;
+        if (Math.abs(deltaX) < 50 || Math.abs(deltaY) > Math.abs(deltaX)) return;
 
-      if (deltaX < 0) {
-        void navigate(currentIndex + 1);
-      } else {
-        void navigate(currentIndex - 1);
-      }
-    }, { passive: true });
+        if (deltaX < 0) {
+          void navigate(currentIndex + 1);
+        } else {
+          void navigate(currentIndex - 1);
+        }
+      },
+      { passive: true },
+    );
 
     toggleRailButton.addEventListener("click", () => {
       document.body.classList.toggle("rail-open");
@@ -205,7 +214,9 @@ export function initDeck(config: DeckConfig) {
     deckTitleEl.textContent = meta.title || deckTitle;
     slideEl.className = `slide slide--${meta.layout || "standard"} slide--entering`;
     slideEl.innerHTML = renderMarkdown(body, meta.layout || "standard");
-    slideEl.addEventListener("animationend", () => slideEl.classList.remove("slide--entering"), { once: true });
+    slideEl.addEventListener("animationend", () => slideEl.classList.remove("slide--entering"), {
+      once: true,
+    });
 
     updateRail();
     updateProgress(meta);
@@ -286,7 +297,9 @@ function renderMarkdown(markdown: string, layout: string) {
   const blocks = parseBlocks(markdown);
 
   if (layout === "two-column") {
-    const sections = blocks.filter((block): block is Extract<Block, { type: "section" }> => block.type === "section");
+    const sections = blocks.filter(
+      (block): block is Extract<Block, { type: "section" }> => block.type === "section",
+    );
     const extras = blocks.filter((block) => block.type !== "section");
     return `
       <div class="slide-grid slide-grid--two">
@@ -297,7 +310,9 @@ function renderMarkdown(markdown: string, layout: string) {
   }
 
   if (layout === "cards") {
-    const cards = blocks.filter((block): block is Extract<Block, { type: "section" }> => block.type === "section");
+    const cards = blocks.filter(
+      (block): block is Extract<Block, { type: "section" }> => block.type === "section",
+    );
     return `<div class="card-grid">${cards.map(renderSectionCard).join("")}</div>`;
   }
 
@@ -413,7 +428,11 @@ function parseBlocks(markdown: string): Block[] {
     }
 
     const paragraph: string[] = [];
-    while (index < lines.length && (lines[index] ?? "").trim() && !isBlockStart(lines[index] ?? "")) {
+    while (
+      index < lines.length &&
+      (lines[index] ?? "").trim() &&
+      !isBlockStart(lines[index] ?? "")
+    ) {
       paragraph.push((lines[index] ?? "").trim());
       index += 1;
     }
@@ -466,7 +485,9 @@ function renderBlock(block: Block): string {
           </thead>
           <tbody>
             ${block.rows
-              .map((row) => `<tr>${row.map((item) => `<td>${renderInline(item)}</td>`).join("")}</tr>`)
+              .map(
+                (row) => `<tr>${row.map((item) => `<td>${renderInline(item)}</td>`).join("")}</tr>`,
+              )
               .join("")}
           </tbody>
         </table>
@@ -494,10 +515,7 @@ function splitTableRow(row: string) {
 }
 
 function escapeHtml(text: string) {
-  return text
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
+  return text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 }
 
 function clamp(value: number, min: number, max: number) {

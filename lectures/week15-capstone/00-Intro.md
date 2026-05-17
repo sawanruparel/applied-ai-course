@@ -8,7 +8,7 @@ layout: center
 
 ## From Theory to Production
 
-Week 15 | Applied Generative AI | Spring 2026
+Week 15 | Applied AI Course | Spring 2026
 
 ---
 

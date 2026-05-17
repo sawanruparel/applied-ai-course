@@ -8,6 +8,6 @@ layout: center
 
 ## Self-Correcting Retrieval for Production
 
-Applied Generative AI -- Spring 2026
+Applied AI Course -- Spring 2026
 
 Week 5

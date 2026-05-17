@@ -8,7 +8,7 @@ layout: center
 
 ## Architectural Design for AI Applications
 
-Week 3 — Applied Generative AI, Spring 2026
+Week 3 — Applied AI Course, Spring 2026
 
 ---
 
