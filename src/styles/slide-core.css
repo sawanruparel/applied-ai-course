@@ -131,6 +131,40 @@
   white-space: pre-wrap;
 }
 
+.slide .mermaid {
+  display: block;
+  flex-shrink: 0;
+  margin: 1.2rem auto;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  background: var(--surface-strong);
+  border: 1px solid var(--line-soft);
+  max-width: 100%;
+  text-align: center;
+  /* mermaid sets data-processed once it renders; before that, hide the raw text
+     to avoid a flash of unparsed source. */
+  min-height: 4rem;
+}
+
+.slide .mermaid:not([data-processed]) {
+  color: var(--muted);
+  font-family: var(--mono-font);
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  opacity: 0.4;
+  text-align: left;
+}
+
+/* Mermaid emits <svg width="100%" style="max-width: Xpx"> with no explicit
+   height attribute. Browsers default unsized SVGs to height: 150px, which
+   crops tall diagrams. Force height: auto with !important to override the
+   inline style and use the viewBox aspect ratio. */
+.slide .mermaid svg {
+  max-width: 100%;
+  height: auto !important;
+  display: inline-block;
+}
+
 .slide table {
   inline-size: 100%;
   border-collapse: collapse;
