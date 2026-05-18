@@ -17,7 +17,8 @@
     "course:refresh": "tsx scripts/course-refresh.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.88.0"
+    "@anthropic-ai/sdk": "^0.88.0",
+    "mermaid": "^11.15.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",

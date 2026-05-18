@@ -1,5 +1,6 @@
 import "./styles/index.css";
 import { COURSE_EYEBROW } from "./config/course";
+import { renderMermaidIn } from "./mermaid-renderer";
 
 type SlideMeta = {
   title?: string;
@@ -19,7 +20,7 @@ type Block =
   | { type: "list"; items: string[] }
   | { type: "ordered-list"; items: string[] }
   | { type: "table"; headers: string[]; rows: string[][] }
-  | { type: "code"; content: string }
+  | { type: "code"; content: string; lang?: string }
   | { type: "section"; title: string; content: string };
 
 export type DeckConfig = {
@@ -221,6 +222,8 @@ export function initDeck(config: DeckConfig) {
     updateRail();
     updateProgress(meta);
     syncUrl(index);
+
+    void renderMermaidIn(slideEl);
   }
 
   function renderRail() {
@@ -317,7 +320,9 @@ function renderMarkdown(markdown: string, layout: string) {
   }
 
   if (layout === "cards-title") {
-    const cards = blocks.filter((block): block is Extract<Block, { type: "section" }> => block.type === "section");
+    const cards = blocks.filter(
+      (block): block is Extract<Block, { type: "section" }> => block.type === "section",
+    );
     const extras = blocks.filter((block) => block.type !== "section");
     return `
       ${extras.map(renderBlock).join("")}
@@ -342,6 +347,7 @@ function parseBlocks(markdown: string): Block[] {
     }
 
     if (line.startsWith("```")) {
+      const lang = line.slice(3).trim() || undefined;
       const content: string[] = [];
       index += 1;
       while (index < lines.length && !(lines[index] ?? "").trimEnd().match(/^```\s*$/)) {
@@ -349,7 +355,7 @@ function parseBlocks(markdown: string): Block[] {
         index += 1;
       }
       index += 1;
-      blocks.push({ type: "code", content: content.join("\n") });
+      blocks.push({ type: "code", content: content.join("\n"), lang });
       continue;
     }
 
@@ -493,7 +499,10 @@ function renderBlock(block: Block): string {
         </table>
       `;
     case "code":
-      return `<pre class="diagram"><code>${escapeHtml(block.content)}</code></pre>`;
+      if (block.lang === "mermaid") {
+        return `<div class="mermaid">${escapeHtml(block.content)}</div>`;
+      }
+      return `<pre class="diagram"${block.lang ? ` data-lang="${escapeHtml(block.lang)}"` : ""}><code>${escapeHtml(block.content)}</code></pre>`;
     case "section":
       return renderSectionCard(block);
   }
