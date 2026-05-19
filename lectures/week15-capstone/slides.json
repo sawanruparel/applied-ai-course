@@ -1,28 +1,16 @@
 [
   { "file": "lectures/week15-capstone/00-Intro.md", "label": "00 Intro" },
-  { "file": "lectures/week15-capstone/01-Journey.md", "label": "01 Journey" },
-  { "file": "lectures/week15-capstone/02-What-We-Covered.md", "label": "02 What We Covered" },
-  { "file": "lectures/week15-capstone/03-Capstone-Criteria.md", "label": "03 Capstone Criteria" },
-  {
-    "file": "lectures/week15-capstone/04-Presentation-Template.md",
-    "label": "04 Presentation Template"
-  },
-  { "file": "lectures/week15-capstone/05-Problem-Framing.md", "label": "05 Problem Framing" },
-  {
-    "file": "lectures/week15-capstone/06-Architecture-Showcase.md",
-    "label": "06 Architecture Showcase"
-  },
-  { "file": "lectures/week15-capstone/07-Demo-Tips.md", "label": "07 Demo Tips" },
-  { "file": "lectures/week15-capstone/08-Evaluation-Results.md", "label": "08 Evaluation Results" },
-  { "file": "lectures/week15-capstone/09-Lessons-Learned.md", "label": "09 Lessons Learned" },
-  { "file": "lectures/week15-capstone/10-Key-Themes.md", "label": "10 Key Themes" },
-  { "file": "lectures/week15-capstone/11-Stack-Evolved.md", "label": "11 Stack Evolved" },
-  { "file": "lectures/week15-capstone/12-Industry-Trends.md", "label": "12 Industry Trends" },
-  { "file": "lectures/week15-capstone/13-Career-Paths.md", "label": "13 Career Paths" },
-  { "file": "lectures/week15-capstone/14-Staying-Current.md", "label": "14 Staying Current" },
-  { "file": "lectures/week15-capstone/15-Resources.md", "label": "15 Resources" },
-  { "file": "lectures/week15-capstone/16-Advice.md", "label": "16 Advice" },
-  { "file": "lectures/week15-capstone/17-Big-Idea.md", "label": "17 Big Idea" },
-  { "file": "lectures/week15-capstone/18-Thank-You.md", "label": "18 Thank You" },
-  { "file": "lectures/week15-capstone/19-References.md", "label": "19 References" }
+  { "file": "lectures/week15-capstone/01-What-Is-Capstone.md", "label": "01 What Is Capstone" },
+  { "file": "lectures/week15-capstone/02-Model-Landscape.md", "label": "02 Model Landscape" },
+  { "file": "lectures/week15-capstone/03-Capstone-Patterns.md", "label": "03 Patterns" },
+  { "file": "lectures/week15-capstone/04-Architecture-Framework.md", "label": "04 Architecture" },
+  { "file": "lectures/week15-capstone/05-Evaluation-Strategy.md", "label": "05 Evaluation" },
+  { "file": "lectures/week15-capstone/06-Cost-Model.md", "label": "06 Cost" },
+  { "file": "lectures/week15-capstone/07-Safety-Checklist.md", "label": "07 Safety Checklist" },
+  { "file": "lectures/week15-capstone/08-Demo-Best-Practices.md", "label": "08 Demo" },
+  { "file": "lectures/week15-capstone/09-Failure-Analysis.md", "label": "09 Failure Analysis" },
+  { "file": "lectures/week15-capstone/10-Common-Mistakes.md", "label": "10 Common Mistakes" },
+  { "file": "lectures/week15-capstone/11-Rubric.md", "label": "11 Rubric" },
+  { "file": "lectures/week15-capstone/12-Logistics.md", "label": "12 Logistics" },
+  { "file": "lectures/week15-capstone/13-Thank-You.md", "label": "13 Thank You" }
 ]

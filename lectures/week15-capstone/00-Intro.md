@@ -1,17 +1,21 @@
 ---
-title: "Capstone Showcase — From Theory to Production"
-section: Opening
+title: "Capstone Showcase"
+section: Framing
 layout: center
 ---
 
-# Capstone Showcase
+# Capstone
 
-## From Theory to Production
+## Putting it all together
 
-Week 15 | Applied AI Course | Spring 2026
+**Week 15 — Applied AI Course**
+
+Frontier models, RAG, MCP, multi-agent, evaluation, safety — applied to a real problem you scoped, built, and measured.
 
 ---
 
-**"The best way to predict the future is to build it."**
+Sources
 
-Today: You present functional, MCP-powered agentic systems solving real business problems
+- [Anthropic — Claude model overview](https://www.anthropic.com/news)
+- [OpenAI — o-series + GPT-5 release notes](https://platform.openai.com/docs/models)
+- [Google DeepMind — Gemini 2 model card](https://deepmind.google/technologies/gemini/)
