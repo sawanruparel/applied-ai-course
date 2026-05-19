@@ -6,6 +6,20 @@ layout: flow
 
 # Decision Map for Choosing Your Stack
 
+```mermaid
+flowchart TB
+    Start[New AI app] --> N{Calls per request?}
+    N -- one --> Direct[Direct API + structured output]
+    N -- 2-3 sequential --> Chain[PydanticAI or bare SDK]
+    N -- many w/ branching --> CF{Control flow?}
+    CF -- static --> Pipe[PydanticAI pipeline]
+    CF -- dynamic --> S{Need persistent state?}
+    S -- no --> Pyd[PydanticAI agent + tools]
+    S -- yes --> A{How many agents?}
+    A -- one --> SDK[PydanticAI or Claude Agent SDK]
+    A -- many --> LG[LangGraph orchestrator]
+```
+
 ## Step 1: How many LLM calls per user request?
 
 - **One call** → Direct API with structured output. No framework needed.

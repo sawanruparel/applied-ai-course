@@ -12,6 +12,20 @@ A single safety check is a single point of failure. Production AI systems need *
 
 ## The Layers
 
+```mermaid
+flowchart LR
+    In[Input] --> L1[1. Input validation]
+    L1 --> L2[2. System prompt hardening]
+    L2 --> L3[3. Model-level safety<br/>RLHF / alignment]
+    L3 --> L4[4. Output filtering]
+    L4 --> L5[5. Tool/action gating]
+    L5 --> Out[Response]
+    L1 -.-> L6[6. Monitoring & alerting]
+    L4 -.-> L6
+    L5 -.-> L6
+    L6 -.-> L7[7. Human oversight]
+```
+
 1. **Input validation** -- Sanitize, classify, and filter all user inputs before they reach the model
 2. **System prompt hardening** -- Clear boundaries, instruction hierarchy, sandwich defense
 3. **Model-level safety** -- RLHF alignment, safety training, refusal behaviors

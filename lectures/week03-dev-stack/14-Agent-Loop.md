@@ -8,31 +8,14 @@ layout: diagram
 
 The model decides what to do next. Plan, act, observe, repeat.
 
-```
-                    ┌──────────────┐
-                    │   User       │
-                    │   Query      │
-                    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-               ┌───▶│   Think /   │
-               │    │   Plan      │
-               │    └──────┬───────┘
-               │           │
-               │    ┌──────▼───────┐
-               │    │   Select    │──── done? ──▶ Return result
-               │    │   Tool      │
-               │    └──────┬───────┘
-               │           │
-               │    ┌──────▼───────┐
-               │    │   Execute   │
-               │    │   Tool      │
-               │    └──────┬───────┘
-               │           │
-               │    ┌──────▼───────┐
-               └────│   Observe   │
-                    │   Result    │
-                    └─────────────┘
+```mermaid
+flowchart TB
+    Q[User query] --> Think[Think / Plan]
+    Think --> Sel{Tool to call?}
+    Sel -- done --> Out[Return result]
+    Sel -- pick tool --> Exec[Execute tool]
+    Exec --> Obs[Observe result]
+    Obs --> Think
 ```
 
 ## This Is What "Agents" Actually Are

@@ -8,6 +8,20 @@ layout: standard
 
 Agents argue different positions to improve output quality through structured disagreement.
 
+```mermaid
+sequenceDiagram
+    participant A as Advocate
+    participant D as Devil's Advocate
+    participant J as Judge
+    A->>D: Position v1
+    D->>A: Counter-arguments
+    A->>D: Position v2 (defended)
+    D->>A: New counter-arguments
+    A->>J: Final position + history
+    D->>J: Final critique + history
+    J-->>A: Synthesized verdict
+```
+
 ## How It Works
 1. **Agent A** (Advocate) presents a position or solution
 2. **Agent B** (Devil's Advocate) argues against it, finding weaknesses

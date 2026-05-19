@@ -8,22 +8,17 @@ layout: diagram
 
 Instead of one monolithic prompt, break the task into a sequence of focused LLM calls. Each stage has a clear input/output contract.
 
-```
-  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-  │   Stage 1    │     │   Stage 2    │     │   Stage 3    │     │   Stage 4    │
-  │              │     │              │     │              │     │              │
-  │  EXTRACT     │────▶│  ANALYZE     │────▶│  GENERATE    │────▶│  VALIDATE    │
-  │              │     │              │     │              │     │              │
-  │ Input: raw   │     │ Input: JSON  │     │ Input:       │     │ Input:       │
-  │ document     │     │ entities     │     │ analysis     │     │ draft report │
-  │              │     │              │     │ results      │     │              │
-  │ Output: JSON │     │ Output: risk │     │ Output:      │     │ Output:      │
-  │ entities     │     │ scores       │     │ draft report │     │ final report │
-  └──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
-        │                    │                    │                     │
-        ▼                    ▼                    ▼                     ▼
-   [checkpoint]         [checkpoint]         [checkpoint]          [checkpoint]
-   validate JSON        validate scores      check format          run eval
+```mermaid
+flowchart LR
+    Raw[Raw document] --> S1["Stage 1: EXTRACT<br/>entities (JSON)"]
+    S1 --> V1[Validate JSON]
+    V1 --> S2["Stage 2: ANALYZE<br/>risk scores"]
+    S2 --> V2[Validate scores]
+    V2 --> S3["Stage 3: GENERATE<br/>draft report"]
+    S3 --> V3[Check format]
+    V3 --> S4["Stage 4: VALIDATE<br/>final report"]
+    S4 --> V4[Run eval]
+    V4 --> Out[Final output]
 ```
 
 ## Design Principles

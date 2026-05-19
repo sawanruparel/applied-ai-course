@@ -33,9 +33,11 @@ Embedding-based retrieval casts a wide net (high recall). Reranking narrows it t
 
 ### Implementation Pattern
 
-```
-Query --> Bi-encoder retrieval (top 50) --> Cross-encoder rerank (top 5) --> LLM
-            ~20ms                              ~100ms                        ~1-3s
+```mermaid
+flowchart LR
+    Q[Query] --> Bi["Bi-encoder retrieval<br/>top 50 (~20ms)"]
+    Bi --> Cross["Cross-encoder rerank<br/>top 5 (~100ms)"]
+    Cross --> LLM["LLM generate<br/>(~1-3s)"]
 ```
 
 ### Practical Tips

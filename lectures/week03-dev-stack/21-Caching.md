@@ -1,12 +1,24 @@
 ---
 title: "Caching Strategies"
 section: Production Concerns
-layout: cards
+layout: cards-title
 ---
 
 # Caching Strategies
 
 Caching is the single biggest lever for reducing LLM costs and latency.
+
+```mermaid
+flowchart LR
+    Req[Request] --> L1{Exact-match<br/>cache hit?}
+    L1 -- yes --> Resp[Response]
+    L1 -- no --> L2{Semantic<br/>cache hit?}
+    L2 -- yes --> Resp
+    L2 -- no --> L3[Call LLM]
+    L3 -. provider prefix cache .-> L3
+    L3 --> Store[Store in caches]
+    Store --> Resp
+```
 
 ## Exact Match Cache
 

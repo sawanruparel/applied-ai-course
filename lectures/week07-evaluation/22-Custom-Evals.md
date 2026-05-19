@@ -8,46 +8,15 @@ layout: diagram
 
 ## When off-the-shelf metrics don't cover your domain requirements.
 
-```
-+-----------------------------------------------------------+
-|                  YOUR CUSTOM EVAL PIPELINE                 |
-+-----------------------------------------------------------+
-|                                                           |
-|  1. DEFINE CRITERIA (domain-specific)                     |
-|     +-------------------------------------------+         |
-|     | - Regulatory compliance (finance, health) |         |
-|     | - Brand voice consistency                  |         |
-|     | - Citation accuracy                        |         |
-|     | - Domain terminology correctness           |         |
-|     +-------------------------------------------+         |
-|                        |                                  |
-|  2. BUILD RUBRICS                                         |
-|     +-------------------------------------------+         |
-|     | Score 5: Fully compliant, correct terms    |         |
-|     | Score 3: Minor terminology errors           |         |
-|     | Score 1: Non-compliant or wrong terms       |         |
-|     +-------------------------------------------+         |
-|                        |                                  |
-|  3. IMPLEMENT SCORING                                     |
-|     +-------------------+--------------------+            |
-|     | Rule-Based Checks | LLM Judge Scoring  |            |
-|     | - Regex for PII   | - Rubric scoring   |            |
-|     | - Blocklist words  | - Custom criteria  |            |
-|     | - Format checks    | - Chain-of-thought |            |
-|     +-------------------+--------------------+            |
-|                        |                                  |
-|  4. VALIDATE & CALIBRATE                                  |
-|     +-------------------------------------------+         |
-|     | Human-label 100 samples                    |         |
-|     | Compute agreement (target kappa > 0.6)     |         |
-|     | Iterate on rubric until calibrated          |         |
-|     +-------------------------------------------+         |
-|                        |                                  |
-|  5. INTEGRATE                                             |
-|     +-------------------------------------------+         |
-|     | CI/CD gate  | Dashboard  | Alerting        |         |
-|     +-------------------------------------------+         |
-+-----------------------------------------------------------+
+```mermaid
+flowchart TB
+    Crit["1. Define criteria<br/>compliance, brand voice,<br/>citation, terminology"] --> Rub["2. Build rubrics<br/>concrete score levels"]
+    Rub --> Score["3. Implement scoring"]
+    Score --> Rule[Rule-based checks<br/>regex, blocklist, format]
+    Score --> LLMJ[LLM judge<br/>rubric + CoT]
+    Rule --> Val["4. Validate & calibrate<br/>human-label 100 samples<br/>target kappa > 0.6"]
+    LLMJ --> Val
+    Val --> Int["5. Integrate<br/>CI/CD gate, dashboard,<br/>alerting"]
 ```
 
 **Template for custom LLM judge metric:**

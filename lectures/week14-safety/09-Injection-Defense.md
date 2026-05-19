@@ -1,7 +1,7 @@
 ---
 title: Defending Against Prompt Injection
 section: Prompt Injection
-layout: cards
+layout: cards-title
 ---
 
 # Defending Against Prompt Injection
@@ -68,6 +68,17 @@ def validate_output(response: str) -> str:
 ## Dual-LLM Pattern
 
 Use a separate, isolated LLM to evaluate inputs and outputs for safety:
+
+```mermaid
+flowchart LR
+    U[User input] --> J[Safety judge LLM<br/>isolated]
+    J -->|UNSAFE| Block[Block]
+    J -->|SAFE| Main[Main LLM<br/>with tools]
+    Main --> J2[Safety judge<br/>output check]
+    J2 -->|UNSAFE| Block
+    J2 -->|SAFE| Resp[Response]
+```
+
 
 ```python
 async def dual_llm_check(user_input: str) -> bool:

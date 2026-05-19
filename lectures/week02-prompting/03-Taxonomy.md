@@ -1,10 +1,21 @@
 ---
 title: "Taxonomy of Prompting Strategies"
 section: Framing
-layout: cards
+layout: cards-title
 ---
 
 # Taxonomy of Prompting Strategies
+
+```mermaid
+flowchart TB
+    Task[Prompting task] --> Q1{Examples available?}
+    Q1 -- no --> Zero[Zero-shot]
+    Q1 -- yes --> Few[Few-shot]
+    Task --> Q2{Multi-step reasoning?}
+    Q2 -- yes --> CoT[Chain-of-Thought]
+    Task --> Q3{Needs external tools?}
+    Q3 -- yes --> ReAct[Agentic / ReAct]
+```
 
 ## Zero-Shot
 

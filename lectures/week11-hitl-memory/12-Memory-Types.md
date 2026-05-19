@@ -1,12 +1,19 @@
 ---
 title: "Memory Types"
 section: Agent Memory
-layout: cards
+layout: cards-title
 ---
 
 # Memory Types
 
 Inspired by human cognition: different memory systems for different purposes.
+
+```mermaid
+flowchart LR
+    W["Working memory<br/>(context window)<br/>volatile"] --> S["Short-term<br/>(conversation)<br/>session"]
+    S --> L["Long-term<br/>(persistent store)<br/>permanent"]
+```
+
 
 ## Working Memory (Context Window)
 

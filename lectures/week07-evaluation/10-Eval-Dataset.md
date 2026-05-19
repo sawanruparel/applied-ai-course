@@ -8,6 +8,14 @@ layout: flow
 
 Your evaluation is only as good as your dataset. Here's how to build one.
 
+```mermaid
+flowchart LR
+    S1["1. Manual curation<br/>50-100 expert pairs"] --> S2["2. Synthetic generation<br/>RAGAS TestsetGenerator"]
+    S2 --> S3["3. Production logging<br/>sample real traffic"]
+    S3 --> S4["4. Continuous maintenance<br/>quarterly review"]
+    S4 -.->|new failures| S1
+```
+
 ## Step 1: Manual Curation (Start Here)
 
 - Domain experts write 50-100 question-answer pairs covering key use cases

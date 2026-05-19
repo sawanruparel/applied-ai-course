@@ -57,8 +57,11 @@ trainer.train()
 
 ## Typical pipeline
 
-```
-Base Model -> SFT (learn the task) -> DPO (refine preferences) -> Deploy
+```mermaid
+flowchart LR
+    Base[Base model] --> SFT[SFT<br/>learn the task]
+    SFT --> DPO[DPO<br/>refine preferences]
+    DPO --> Deploy[Deploy]
 ```
 
 ## When to add DPO

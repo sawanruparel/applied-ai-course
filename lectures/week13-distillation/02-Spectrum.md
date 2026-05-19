@@ -6,6 +6,14 @@ layout: flow
 
 # The Customization Spectrum
 
+```mermaid
+flowchart LR
+    P[1. Prompting<br/>$0, 0 examples] --> FS[2. Few-shot<br/>5-20 examples]
+    FS --> FT[3. Fine-tune LoRA<br/>100-10K examples<br/>$5-50]
+    FT --> KD[4. Distillation<br/>teacher + synthetic<br/>$50-500]
+    KD --> PT[5. Pre-train<br/>billions of tokens<br/>$10K-10M]
+```
+
 ## Step 1: Prompting
 - Zero engineering effort
 - No training data needed

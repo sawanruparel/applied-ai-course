@@ -8,30 +8,15 @@ layout: diagram
 
 A coordinator that delegates to multiple agents or sub-chains.
 
-```
-                    ┌──────────────────┐
-                    │   Orchestrator   │
-                    │   (plans and     │
-                    │    delegates)    │
-                    └────────┬─────────┘
-                             │
-              ┌──────────────┼──────────────┐
-              │              │              │
-       ┌──────▼─────┐ ┌─────▼──────┐ ┌────▼───────┐
-       │  Research   │ │   Code     │ │  Review    │
-       │  Agent      │ │   Agent    │ │  Agent     │
-       │             │ │            │ │            │
-       │ tools:      │ │ tools:     │ │ tools:     │
-       │ - search    │ │ - write    │ │ - lint     │
-       │ - read_url  │ │ - run_test │ │ - security │
-       └──────┬──────┘ └─────┬──────┘ └────┬──────┘
-              │              │              │
-              └──────────────┼──────────────┘
-                             │
-                    ┌────────▼─────────┐
-                    │   Synthesize     │
-                    │   Final Output   │
-                    └──────────────────┘
+```mermaid
+flowchart TB
+    Orc["Orchestrator<br/>(plans & delegates)"]
+    Orc --> R["Research agent<br/>search, read_url"]
+    Orc --> C["Code agent<br/>write, run_test"]
+    Orc --> Rv["Review agent<br/>lint, security"]
+    R --> Syn[Synthesize final output]
+    C --> Syn
+    Rv --> Syn
 ```
 
 ## LangGraph Implementation

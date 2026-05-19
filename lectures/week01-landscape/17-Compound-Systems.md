@@ -6,29 +6,15 @@ layout: diagram
 
 # Compound AI Systems
 
-```
-                    +-------------------+
-                    |   Orchestrator    |
-                    |   (Router/Agent)  |
-                    +--------+----------+
-                             |
-            +----------------+----------------+
-            |                |                |
-    +-------v------+  +-----v-------+  +-----v-------+
-    | Fast Model   |  | Reasoning   |  | Specialized |
-    | (GPT-4o/     |  | Model       |  | Model       |
-    | Flash)       |  | (o3/R1/     |  | (Code/      |
-    |              |  | Extended)   |  | Vision)     |
-    +-------+------+  +-----+-------+  +-----+-------+
-            |                |                |
-            +----------------+----------------+
-                             |
-            +----------------+----------------+
-            |                |                |
-    +-------v------+  +-----v-------+  +-----v-------+
-    | Vector DB    |  | Code        |  | External    |
-    | (RAG)        |  | Sandbox     |  | APIs        |
-    +--------------+  +-------------+  +-------------+
+```mermaid
+flowchart TB
+    Orc["Orchestrator<br/>(Router / Agent)"]
+    Orc --> Fast["Fast model<br/>(GPT-4o, Flash)"]
+    Orc --> Reason["Reasoning model<br/>(o3, R1, extended)"]
+    Orc --> Spec["Specialized<br/>(code, vision)"]
+    Fast --> Vec[Vector DB / RAG]
+    Reason --> Sand[Code sandbox]
+    Spec --> API[External APIs]
 ```
 
 ### Key principles:

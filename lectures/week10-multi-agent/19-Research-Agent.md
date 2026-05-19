@@ -6,6 +6,16 @@ layout: flow
 
 # Example: Research Agent Team
 
+```mermaid
+flowchart LR
+    Q[Research question] --> S[Searcher]
+    S -->|sources| A[Analyzer]
+    A -->|structured analysis| W[Writer]
+    W -->|draft brief| F[Fact-checker]
+    F -->|verified brief| Out[Final report]
+    F -.->|re-verifies independently| Q
+```
+
 ## Step 1: Searcher Agent
 - **Input:** Research question from user
 - **Action:** Breaks question into sub-queries, searches multiple sources

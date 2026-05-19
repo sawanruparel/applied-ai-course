@@ -8,6 +8,13 @@ layout: flow
 
 Where does your agent sit?
 
+```mermaid
+flowchart LR
+    M["1. Full manual<br/>(dashboards)"] --> Co["2. Copilot<br/>(human executes)"]
+    Co --> Sup["3. Supervised<br/>(approval gates)"]
+    Sup --> Auto["4. Full autonomy<br/>(policy boundaries)"]
+```
+
 ## Step 1: Full Manual
 
 Human does everything. AI provides information only.

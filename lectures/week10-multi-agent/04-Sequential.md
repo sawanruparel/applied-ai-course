@@ -8,16 +8,12 @@ layout: diagram
 
 Agent A's output becomes Agent B's input, forming a linear chain.
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  Researcher  │────>│   Analyst   │────>│   Writer    │────>│   Editor    │
-│              │     │             │     │             │     │             │
-│ Gathers raw  │     │ Extracts    │     │ Drafts      │     │ Polishes    │
-│ information  │     │ insights    │     │ content     │     │ final output│
-└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
-      │                    │                   │                    │
-      v                    v                   v                    v
-  Raw Data            Key Findings        Draft Report        Final Report
+```mermaid
+flowchart LR
+    R[Researcher] -->|raw data| A[Analyst]
+    A -->|key findings| W[Writer]
+    W -->|draft| E[Editor]
+    E --> F[Final report]
 ```
 
 ## When to Use

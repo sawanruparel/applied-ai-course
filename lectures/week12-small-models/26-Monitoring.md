@@ -47,11 +47,14 @@ Small models fail differently than large models:
 
 ## The Feedback Loop
 
-```
-Monitor → Detect regression → Root cause analysis → Fix
-                                    │
-                    ┌───────────────┼──────────────┐
-                    │               │              │
-              Add training     Update prompt   Escalate to
-              examples         template        larger model
+```mermaid
+flowchart LR
+    M[Monitor] --> D[Detect regression]
+    D --> RCA[Root cause analysis]
+    RCA --> F1[Add training examples]
+    RCA --> F2[Update prompt template]
+    RCA --> F3[Escalate to larger model]
+    F1 --> M
+    F2 --> M
+    F3 --> M
 ```

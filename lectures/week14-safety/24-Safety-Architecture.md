@@ -8,69 +8,16 @@ layout: diagram
 
 ## Complete Safety Pipeline from Input to Output
 
-```
-  +================================================================+
-  |                 PRODUCTION SAFETY ARCHITECTURE                   |
-  +================================================================+
-  |                                                                  |
-  |  USER INPUT                                                      |
-  |     |                                                            |
-  |     v                                                            |
-  |  [LAYER 1: EDGE PROTECTION]                                     |
-  |  +----------------------------------------------------------+   |
-  |  | - Rate limiting (per-user, per-IP)                        |   |
-  |  | - Input length limits                                     |   |
-  |  | - Authentication & authorization                          |   |
-  |  | - WAF rules for known attack patterns                     |   |
-  |  +----------------------------------------------------------+   |
-  |     |                                                            |
-  |     v                                                            |
-  |  [LAYER 2: INPUT CLASSIFICATION]                                 |
-  |  +----------------------------------------------------------+   |
-  |  | - Injection detection (classifier model)                  |   |
-  |  | - Topic classification (on-topic / off-topic)             |   |
-  |  | - PII detection & redaction                               |   |
-  |  | - Toxicity screening                                      |   |
-  |  +----------------------------------------------------------+   |
-  |     |                                                            |
-  |     v                                                            |
-  |  [LAYER 3: PROMPT CONSTRUCTION]                                  |
-  |  +----------------------------------------------------------+   |
-  |  | - Hardened system prompt (sandwich defense)                |   |
-  |  | - Data/instruction boundary markers                       |   |
-  |  | - Context window management                               |   |
-  |  +----------------------------------------------------------+   |
-  |     |                                                            |
-  |     v                                                            |
-  |  [LAYER 4: LLM INFERENCE]                                       |
-  |  +----------------------------------------------------------+   |
-  |  | - Aligned model (RLHF / Constitutional AI)                |   |
-  |  | - Temperature & sampling controls                         |   |
-  |  | - Token budget limits                                     |   |
-  |  +----------------------------------------------------------+   |
-  |     |                                                            |
-  |     v                                                            |
-  |  [LAYER 5: OUTPUT VALIDATION]                                    |
-  |  +----------------------------------------------------------+   |
-  |  | - Safety classification (LlamaGuard)                      |   |
-  |  | - PII scanning & redaction                                |   |
-  |  | - Schema enforcement                                      |   |
-  |  | - Exfiltration detection                                  |   |
-  |  | - Tool call authorization & confirmation                  |   |
-  |  +----------------------------------------------------------+   |
-  |     |                                                            |
-  |     v                                                            |
-  |  [LAYER 6: MONITORING & LOGGING]                                 |
-  |  +----------------------------------------------------------+   |
-  |  | - Full audit trail (input, output, safety verdicts)       |   |
-  |  | - Anomaly detection & alerting                            |   |
-  |  | - Feedback collection for continuous improvement          |   |
-  |  +----------------------------------------------------------+   |
-  |     |                                                            |
-  |     v                                                            |
-  |  VALIDATED RESPONSE --> USER                                     |
-  |                                                                  |
-  +================================================================+
+```mermaid
+flowchart TB
+    U[User Input] --> L1["Layer 1: Edge Protection<br/>rate limit, auth, WAF"]
+    L1 --> L2["Layer 2: Input Classification<br/>injection, topic, PII, toxicity"]
+    L2 --> L3["Layer 3: Prompt Construction<br/>hardened + sandwich + boundaries"]
+    L3 --> L4["Layer 4: LLM Inference<br/>aligned model, sampling, budgets"]
+    L4 --> L5["Layer 5: Output Validation<br/>LlamaGuard, PII, schema, exfil, tool auth"]
+    L5 --> L6["Layer 6: Monitoring & Logging<br/>audit trail, anomalies, feedback"]
+    L6 --> R[Validated Response]
+    L6 -.->|alerts| Ops[On-call / SecOps]
 ```
 
 ## Sources

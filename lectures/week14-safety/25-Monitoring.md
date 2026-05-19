@@ -27,6 +27,18 @@ Guardrails prevent known attacks. Monitoring catches **unknown attacks and emerg
 
 ## Anomaly Detection Pipeline
 
+```mermaid
+flowchart LR
+    Req[Request + Response] --> Checks[Run safety checks]
+    Checks --> Events[Emit SafetyEvent]
+    Events --> Store[(Event store)]
+    Store --> Anom{Anomaly?<br/>rate, similarity}
+    Anom -->|Yes| Alert[Alert + page on-call]
+    Anom -->|No| Continue[Continue]
+    Alert --> IR[Incident response]
+```
+
+
 ```python
 from dataclasses import dataclass
 from datetime import datetime

@@ -6,17 +6,18 @@ layout: diagram
 
 # How LoRA Works: Low-Rank Weight Decomposition
 
+```mermaid
+flowchart LR
+    X[Input x] --> W["W (d x d)<br/>FROZEN<br/>~16M params"]
+    X --> A["A (d x r)<br/>trainable<br/>~256K"]
+    A --> B["B (r x d)<br/>trainable<br/>~256K"]
+    W --> Sum((+))
+    B --> Scale["× alpha/rank"]
+    Scale --> Sum
+    Sum --> Out[Output]
 ```
-  ORIGINAL WEIGHT MATRIX (frozen)          LoRA ADAPTER (trainable)
-  +--------------------------+             +--------+  +----------+
-  |                          |             |        |  |          |
-  |     W (d x d)            |      +      | A(d x r)  | B(r x d) |
-  |   (e.g., 4096 x 4096)   |             |        |  |          |
-  |     ~16M parameters      |             | ~256K  |  | ~256K    |
-  |     FROZEN               |             | params |  | params   |
-  |                          |             |        |  |          |
-  +--------------------------+             +--------+  +----------+
 
+```
   Forward pass:   output = W @ x  +  (B @ A) @ x * (alpha / rank)
 
   Where:

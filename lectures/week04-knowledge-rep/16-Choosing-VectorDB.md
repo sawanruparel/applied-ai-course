@@ -8,6 +8,19 @@ layout: flow
 
 There is no single best vector DB. The right choice depends on your constraints.
 
+```mermaid
+flowchart TB
+    Start[Pick a vector DB] --> Scale{Scale?}
+    Scale -->|< 100K| Tiny[Chroma / pgvector / NumPy]
+    Scale -->|100K - 10M| Mid{Managed?}
+    Scale -->|10M - 1B| Large{Hosted?}
+    Scale -->|> 1B| Huge[Pinecone serverless<br/>or sharded Qdrant/Milvus]
+    Mid -->|yes| Pinecone1[Pinecone / Weaviate Cloud]
+    Mid -->|no| Self1[pgvector / Qdrant / Weaviate]
+    Large -->|yes| Pinecone2[Pinecone]
+    Large -->|no| Self2[Qdrant / Weaviate distributed]
+```
+
 ## Step 1: Define Your Scale
 
 - **< 100K vectors**: Chroma (embedded), pgvector, or even in-memory with NumPy

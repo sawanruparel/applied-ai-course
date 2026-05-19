@@ -6,47 +6,33 @@ layout: diagram
 
 # ReAct Execution Flow
 
-```
-  ┌───────────────────────────────────────────────────────────┐
-  │                     USER QUERY                            │
-  │  "Compare Q1 revenue of Apple and Microsoft this year"    │
-  └──────────────────────────┬────────────────────────────────┘
-                             ▼
-  ┌──────────────────────────────────────────────────────────┐
-  │ THOUGHT 1: I need Apple's Q1 revenue. Let me search.    │
-  └──────────────────────────┬───────────────────────────────┘
-                             ▼
-  ┌──────────────────────────────────────────────────────────┐
-  │ ACTION 1: search("Apple Q1 2025 revenue")               │
-  └──────────────────────────┬───────────────────────────────┘
-                             ▼
-  ┌──────────────────────────────────────────────────────────┐
-  │ OBSERVATION 1: Apple Q1 FY2025 revenue: $124.3 billion  │
-  └──────────────────────────┬───────────────────────────────┘
-                             ▼
-  ┌──────────────────────────────────────────────────────────┐
-  │ THOUGHT 2: Got Apple's data. Now I need Microsoft's.    │
-  └──────────────────────────┬───────────────────────────────┘
-                             ▼
-  ┌──────────────────────────────────────────────────────────┐
-  │ ACTION 2: search("Microsoft Q1 FY2025 revenue")         │
-  └──────────────────────────┬───────────────────────────────┘
-                             ▼
-  ┌──────────────────────────────────────────────────────────┐
-  │ OBSERVATION 2: Microsoft Q1 FY2025 revenue: $65.6B      │
-  └──────────────────────────┬───────────────────────────────┘
-                             ▼
-  ┌──────────────────────────────────────────────────────────┐
-  │ THOUGHT 3: I have both figures. Apple ($124.3B) earned   │
-  │ roughly 1.9x Microsoft's Q1 revenue ($65.6B).           │
-  └──────────────────────────┬───────────────────────────────┘
-                             ▼
-  ┌──────────────────────────────────────────────────────────┐
-  │ ACTION 3: finish(comparison summary with cited figures)  │
-  └──────────────────────────────────────────────────────────┘
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant M as Model
+    participant T as search tool
+    U->>M: Compare Q1 revenue of Apple and Microsoft
+    Note over M: Thought 1: I need Apple's Q1 revenue
+    M->>T: search("Apple Q1 2025 revenue")
+    T-->>M: $124.3B
+    Note over M: Thought 2: Now I need Microsoft's
+    M->>T: search("Microsoft Q1 FY2025 revenue")
+    T-->>M: $65.6B
+    Note over M: Thought 3: I have both figures
+    M-->>U: finish(comparison summary)
 ```
 
 ## The Loop
+
+```mermaid
+flowchart LR
+    T[Thought] --> A[Action]
+    A --> O[Observation]
+    O --> D{Done?}
+    D -- no --> T
+    D -- yes --> F[finish]
+```
 
 **Thought** (reason about state) → **Action** (call a tool) → **Observation** (receive result) → repeat until **finish**.
 

@@ -24,6 +24,15 @@ layout: two-column
 - **Use for:** math, code generation, complex analysis, planning, research
 - 1M calls/day would cost $10,000-$100,000+
 
+```mermaid
+flowchart LR
+    Q[Incoming query] --> R{Difficulty}
+    R -- simple --> S1["System 1<br/>(Flash, Haiku, 4o-mini)"]
+    R -- hard --> S2["System 2<br/>(o3, Opus + thinking)"]
+    S1 --> A[Answer]
+    S2 --> A
+```
+
 > The winning architecture in 2026: route easy tasks to cheap models, hard tasks to reasoning models. Pay for thinking only when you need it.
 
 ## Sources

@@ -17,28 +17,18 @@ Token          Purpose                        Values
 
 **Generation flow with reflection tokens**
 
-```
-Input:  "What causes aurora borealis?"
-
-Step 1: Model generates --> [Retrieve = Yes]
-        (Model decides external knowledge is needed)
-
-Step 2: Retriever fetches passage about solar wind and magnetosphere
-
-Step 3: Model evaluates --> [IsRel = Relevant]
-        (Retrieved passage is relevant to the query)
-
-Step 4: Model generates response segment:
-        "Aurora borealis is caused by charged particles from
-         solar wind interacting with Earth's magnetosphere..."
-
-Step 5: Model evaluates --> [IsSup = Fully Supported]
-        (Generated text is grounded in the retrieved passage)
-
-Step 6: Model evaluates --> [IsUse = 5]
-        (Overall response quality is high)
-
-Step 7: Continue or retrieve again for next segment
+```mermaid
+flowchart TB
+    In["Input:<br/>What causes aurora borealis?"] --> R{"[Retrieve]?"}
+    R -->|Yes| Fetch[Retrieve passage<br/>about solar wind]
+    R -->|No| Direct[Generate from<br/>parametric memory]
+    Fetch --> Rel{"[IsRel]?"}
+    Rel -->|Relevant| Gen[Generate response segment]
+    Rel -->|Irrelevant| Skip[Skip passage]
+    Gen --> Sup{"[IsSup]?"}
+    Sup -->|Fully| Use["[IsUse] = 5"]
+    Sup -->|Partial| Use
+    Use --> Next[Continue or retrieve<br/>for next segment]
 ```
 
 **Inference-time control** -- By adjusting thresholds on [IsSup] and [IsUse] scores, you can trade off between:

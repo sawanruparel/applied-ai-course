@@ -8,26 +8,18 @@ layout: diagram
 
 Modern embedding models are trained with **contrastive learning**: push similar pairs together, pull dissimilar pairs apart.
 
-```
-  Training: Contrastive Learning
-  ================================
-
-  Positive pair (similar):          Negative pair (dissimilar):
-
-  "reset password"  "forgot login"  "reset password"  "quarterly revenue"
-        |                 |               |                    |
-        v                 v               v                    v
-  +-----------+     +-----------+   +-----------+       +-----------+
-  | Encoder   |     | Encoder   |   | Encoder   |       | Encoder   |
-  | (shared)  |     | (shared)  |   | (shared)  |       | (shared)  |
-  +-----------+     +-----------+   +-----------+       +-----------+
-        |                 |               |                    |
-        v                 v               v                    v
-    [0.2, 0.8, ...]  [0.3, 0.7, ...]  [0.2, 0.8, ...]  [-0.5, 0.1, ...]
-        \               /                  \                  /
-         \             /                    \                /
-       cos_sim = 0.95                     cos_sim = 0.12
-       Loss: MINIMIZE distance            Loss: MAXIMIZE distance
+```mermaid
+flowchart LR
+    subgraph "Positive pair (similar)"
+      A1["reset password"] --> E1[Shared encoder]
+      A2["forgot login"] --> E1
+      E1 --> V1["cos_sim = 0.95<br/>MINIMIZE distance"]
+    end
+    subgraph "Negative pair (dissimilar)"
+      B1["reset password"] --> E2[Shared encoder]
+      B2["quarterly revenue"] --> E2
+      E2 --> V2["cos_sim = 0.12<br/>MAXIMIZE distance"]
+    end
 ```
 
 ### Key Training Techniques

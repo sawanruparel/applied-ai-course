@@ -23,14 +23,15 @@ layout: standard
 
 ## The decision framework
 
-```
-Volume > 10K calls/day?
-  YES -> Is prompt engineering sufficient quality?
-    YES -> Stay with prompting (but monitor costs)
-    NO  -> Fine-tune
-  NO  -> Is latency critical (<100ms)?
-    YES -> Fine-tune a small model
-    NO  -> Prompt engineering + caching
+```mermaid
+flowchart TB
+    V{Volume > 10K calls/day?}
+    V -->|Yes| Q1{Prompting<br/>quality sufficient?}
+    Q1 -->|Yes| P1[Stay with prompting<br/>monitor costs]
+    Q1 -->|No| FT1[Fine-tune]
+    V -->|No| Q2{Latency critical<br/>< 100ms?}
+    Q2 -->|Yes| FT2[Fine-tune a small model]
+    Q2 -->|No| P2[Prompt engineering + caching]
 ```
 
 ## Rule of thumb

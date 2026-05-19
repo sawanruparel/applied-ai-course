@@ -8,25 +8,19 @@ layout: diagram
 
 The ingestion pipeline transforms raw documents into a searchable knowledge base. Every production RAG system needs one.
 
-```
-  Raw Sources                      Ingestion Pipeline
-  ===========                      ==================
-
-  +--------+
-  | PDFs   |--+
-  +--------+  |    +----------+    +----------+    +----------+    +----------+
-  +--------+  +--->|          |--->|          |--->|          |--->|          |
-  | Docs   |------>|  LOAD    |    |  CHUNK   |    |  EMBED   |    |  STORE   |
-  +--------+  +--->|          |--->|          |--->|          |--->|          |
-  +--------+  |    +----------+    +----------+    +----------+    +----------+
-  | HTML   |--+         |              |                |               |
-  +--------+            |              |                |               |
-  +--------+            v              v                v               v
-  | APIs   |--+    Parse to text  Split into       Generate          Upsert to
-  +--------+  |    Extract meta   semantic units   vectors via        vector DB
-  +--------+  |    Handle errors  Add metadata     embedding API     + metadata
-  | DBs    |--+    Detect format  Contextualize    Batch process     Dedup check
-  +--------+       Deduplicate    (optional LLM)   Handle failures   Index build
+```mermaid
+flowchart LR
+    subgraph "Raw sources"
+      PDF[PDFs]
+      Docs[Docs]
+      HTML[HTML]
+      API[APIs]
+      DB[Databases]
+    end
+    PDF & Docs & HTML & API & DB --> Load["LOAD<br/>parse, extract meta,<br/>detect format"]
+    Load --> Chunk["CHUNK<br/>split, add metadata,<br/>(optional contextualize)"]
+    Chunk --> Embed["EMBED<br/>batch via embedding API,<br/>handle failures"]
+    Embed --> Store["STORE<br/>upsert to vector DB,<br/>dedup + index build"]
 ```
 
 ### Stage Details

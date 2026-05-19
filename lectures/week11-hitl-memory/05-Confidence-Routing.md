@@ -8,25 +8,12 @@ layout: diagram
 
 Auto-execute when confident. Escalate when uncertain.
 
-```
-                    ┌──────────────────┐
-                    │   Agent Output   │
-                    │   + Confidence   │
-                    │     Score        │
-                    └────────┬─────────┘
-                             │
-              ┌──────────────┼──────────────┐
-              │              │              │
-         conf > 0.9     0.5-0.9        conf < 0.5
-              │              │              │
-              ▼              ▼              ▼
-      ┌──────────────┐ ┌──────────┐ ┌──────────────┐
-      │ AUTO-EXECUTE │ │ SUGGEST  │ │  ESCALATE    │
-      │              │ │ + CONFIRM│ │  to Human    │
-      │ Log action   │ │          │ │              │
-      │ for audit    │ │ "I think │ │ "I'm not     │
-      │              │ │ X. OK?"  │ │ sure. Help?" │
-      └──────────────┘ └──────────┘ └──────────────┘
+```mermaid
+flowchart TB
+    Out["Agent output<br/>+ confidence score"] --> R{Confidence}
+    R -->|"> 0.9"| Auto["Auto-execute<br/>(log for audit)"]
+    R -->|"0.5 – 0.9"| Confirm["Suggest + confirm<br/>'I think X. OK?'"]
+    R -->|"< 0.5"| Esc["Escalate to human<br/>'I'm not sure'"]
 ```
 
 ### How to get confidence scores:

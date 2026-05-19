@@ -8,36 +8,18 @@ layout: diagram
 
 Agents hand off control to each other based on conversation context. No central coordinator.
 
-```
-    User: "I need to book a flight and then file an expense report"
-                          │
-                          v
-                   ┌─────────────┐
-                   │  Triage      │  "This starts with travel..."
-                   │  Agent       │──────────────────────────────┐
-                   └─────────────┘                               │
-                                                                 │
-                          handoff(travel_agent)                  │
-                          │                                      │
-                          v                                      │
-                   ┌─────────────┐                               │
-                   │  Travel      │  Books the flight            │
-                   │  Agent       │  "Done! Now for expenses..." │
-                   └─────────────┘                               │
-                          │                                      │
-                          handoff(expense_agent)                 │
-                          │                                      │
-                          v                                      │
-                   ┌─────────────┐                               │
-                   │  Expense     │  Files expense report        │
-                   │  Agent       │  "All set!"                  │
-                   └─────────────┘                               │
-                          │                                      │
-                          v                                      │
-                   ┌─────────────────────────────────────────────┘
-                   │  Conversation history follows the user
-                   │  through all handoffs
-                   └─────────────────────────────────────────────
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant T as Triage
+    participant Tr as Travel
+    participant E as Expense
+    U->>T: "Book a flight, then file expenses"
+    T->>Tr: handoff(travel_agent, history)
+    Tr->>U: "Flight booked"
+    Tr->>E: handoff(expense_agent, history)
+    E->>U: "Expense report filed"
+    Note over U,E: Conversation history travels with the user
 ```
 
 ## Key Properties

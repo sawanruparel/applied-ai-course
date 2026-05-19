@@ -1,7 +1,7 @@
 ---
 title: "Deploying MCP Servers"
 section: Production Patterns
-layout: cards
+layout: cards-title
 ---
 
 # Deploying MCP Servers
@@ -49,10 +49,12 @@ Wrap the Streamable HTTP transport in your function handler.
 
 Run a lightweight proxy that routes to multiple backend MCP servers:
 
-```
-Client → MCP Proxy → SQL Server
-                   → Jira Server
-                   → Slack Server
+```mermaid
+flowchart LR
+    C[MCP Client] --> P["MCP Proxy<br/>(auth · rate-limit · audit)"]
+    P --> S1[SQL server]
+    P --> S2[Jira server]
+    P --> S3[Slack server]
 ```
 
 The proxy handles:

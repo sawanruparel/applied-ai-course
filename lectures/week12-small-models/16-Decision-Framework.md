@@ -6,6 +6,18 @@ layout: flow
 
 # Decision Framework: When to Go Small
 
+```mermaid
+flowchart TB
+    S1[1. Define quality bar] --> S2[2. Characterize task]
+    S2 --> S3[3. Estimate volume]
+    S3 --> S4[4. Test smallest viable model]
+    S4 --> Pass{Meets bar?}
+    Pass -->|No| Up[Step up one tier]
+    Up --> S4
+    Pass -->|Yes| S5[5. Check deploy constraints]
+    S5 --> S6[6. Implement + monitor]
+```
+
 ## Step 1: Define Your Quality Bar
 - What is the minimum acceptable performance?
 - Measure with your own eval set, not public benchmarks

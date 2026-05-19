@@ -8,33 +8,18 @@ layout: diagram
 
 Wang et al. (2022): Sample multiple reasoning chains at temperature > 0, then take the majority answer. Different reasoning paths that converge on the same answer signal correctness.
 
-```
-                         ┌─────────────────────────┐
-                         │     SAME PROMPT          │
-                         │  (temperature = 0.7)     │
-                         └────────┬────────────────┘
-                    ┌─────────────┼─────────────────┐
-                    ▼             ▼                  ▼
-            ┌──────────┐  ┌──────────┐       ┌──────────┐
-            │  Path 1  │  │  Path 2  │  ...  │  Path N  │
-            │          │  │          │       │          │
-            │ Step A   │  │ Step X   │       │ Step A   │
-            │ Step B   │  │ Step Y   │       │ Step C   │
-            │ Step C   │  │ Step Z   │       │ Step D   │
-            │          │  │          │       │          │
-            │ Ans: 42  │  │ Ans: 42  │       │ Ans: 37  │
-            └────┬─────┘  └────┬─────┘       └────┬─────┘
-                 │             │                   │
-                 └─────────────┼───────────────────┘
-                               ▼
-                    ┌─────────────────────┐
-                    │   MAJORITY VOTE     │
-                    │                     │
-                    │   42: ██████░ 73%   │
-                    │   37: ██░░░░░ 27%   │
-                    │                     │
-                    │   Answer: 42        │
-                    └─────────────────────┘
+```mermaid
+flowchart TB
+    P["Same prompt<br/>(temperature = 0.7)"]
+    P --> C1["Chain 1<br/>Ans: 42"]
+    P --> C2["Chain 2<br/>Ans: 42"]
+    P --> C3["Chain 3<br/>Ans: 37"]
+    P --> Cn["Chain N<br/>Ans: 42"]
+    C1 --> V[Majority vote]
+    C2 --> V
+    C3 --> V
+    Cn --> V
+    V --> A["Answer: 42<br/>(3 of 4 agree)"]
 ```
 
 ## Key Properties

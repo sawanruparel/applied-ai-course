@@ -24,6 +24,15 @@ layout: two-column
 - **LLM analogy:** chain-of-thought, self-verification, search over reasoning paths
 - Essential for complex, novel problems
 
+```mermaid
+flowchart LR
+    Q[Question] --> Router{Easy or hard?}
+    Router -- easy --> S1["System 1<br/>(fast, intuitive)"]
+    Router -- hard --> S2["System 2<br/>(slow, deliberate)"]
+    S1 --> Ans[Answer]
+    S2 --> Ans
+```
+
 > Inference-time scaling gives LLMs their first real "System 2" -- the ability to think harder when the problem demands it.
 
 ## Sources

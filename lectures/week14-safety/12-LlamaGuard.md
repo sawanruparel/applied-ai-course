@@ -62,6 +62,17 @@ def classify_safety(role: str, content: str) -> dict:
 
 ## Using LlamaGuard as Input + Output Rail
 
+```mermaid
+flowchart LR
+    U[User message] --> LG1[LlamaGuard<br/>input check]
+    LG1 -->|unsafe| R1["I can't process that"]
+    LG1 -->|safe| LLM[Main LLM]
+    LLM --> LG2[LlamaGuard<br/>output check]
+    LG2 -->|unsafe| R2["I'm unable to provide that"]
+    LG2 -->|safe| Response[Response to user]
+```
+
+
 ```python
 async def guarded_chat(user_message: str) -> str:
     # Input rail

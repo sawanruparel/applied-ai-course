@@ -8,26 +8,16 @@ layout: diagram
 
 Classify the input, then route to specialized handlers.
 
-```
-                         ┌──────────────┐
-                         │   Classify   │
-                         │    Input     │
-                         └──────┬───────┘
-                                │
-                ┌───────────────┼───────────────┐
-                │               │               │
-         ┌──────▼─────┐  ┌─────▼──────┐  ┌─────▼──────┐
-         │   FAQ       │  │  Technical │  │   Sales    │
-         │   Handler   │  │  Support   │  │   Handler  │
-         │  (cheap     │  │  (RAG +    │  │  (CRM +    │
-         │   model)    │  │  expert)   │  │  context)  │
-         └──────┬──────┘  └─────┬──────┘  └─────┬──────┘
-                │               │               │
-                └───────────────┼───────────────┘
-                                │
-                         ┌──────▼───────┐
-                         │   Response   │
-                         └──────────────┘
+```mermaid
+flowchart TB
+    In[Input] --> C[Classify intent]
+    C --> R{Intent}
+    R -- faq --> FAQ["FAQ handler<br/>(cheap model)"]
+    R -- technical --> Tech["Technical support<br/>(RAG + expert)"]
+    R -- sales --> Sales["Sales handler<br/>(CRM + context)"]
+    FAQ --> Resp[Response]
+    Tech --> Resp
+    Sales --> Resp
 ```
 
 ## Why Route?

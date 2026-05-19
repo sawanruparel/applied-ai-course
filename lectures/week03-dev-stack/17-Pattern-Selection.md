@@ -6,6 +6,19 @@ layout: flow
 
 # Choosing the Right Pattern
 
+```mermaid
+flowchart TB
+    Start[What does your app do?] --> Q1{Behavior}
+    Q1 -- single transform --> P1[Simple Chain]
+    Q1 -- branch per input type --> P2[Router]
+    Q1 -- Q&A from knowledge --> P3[RAG]
+    Q1 -- multi-call --> Q2{Steps known upfront?}
+    Q2 -- yes --> P5[Pipeline]
+    Q2 -- no --> Q3{Multiple specialists?}
+    Q3 -- no --> P4[Agent Loop]
+    Q3 -- yes --> P6[Orchestrator]
+```
+
 ## Start Here: What does your application do?
 
 - **Single transformation** (classify, extract, summarize) → **Simple Chain** (Pattern 1)

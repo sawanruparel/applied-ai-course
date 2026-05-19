@@ -8,6 +8,20 @@ layout: standard
 
 Programmatic pause points in agent execution graphs.
 
+```mermaid
+sequenceDiagram
+    participant G as Graph
+    participant CP as Checkpointer
+    participant H as Human
+    G->>CP: Save state before sensitive node
+    G->>H: interrupt({action, params, question})
+    Note over G: Execution paused
+    H-->>G: Command(resume={approved: true})
+    G->>CP: Save updated state
+    G->>G: Continue from interrupt
+```
+
+
 ## Breakpoints in LangGraph
 
 LangGraph provides first-class support for HITL via `interrupt()`:

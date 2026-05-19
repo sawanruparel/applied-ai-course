@@ -6,6 +6,15 @@ layout: flow
 
 # The Red-Teaming Process
 
+```mermaid
+flowchart LR
+    S1[1. Define scope] --> S2[2. Plan attacks]
+    S2 --> S3[3. Execute attacks]
+    S3 --> S4[4. Document findings]
+    S4 --> S5[5. Fix and retest]
+    S5 --> S2
+```
+
 ## Step 1: Define Scope
 
 Determine what you are testing and what success looks like:

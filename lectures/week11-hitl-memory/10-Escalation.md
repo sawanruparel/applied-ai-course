@@ -8,6 +8,20 @@ layout: flow
 
 When and how agents hand off to humans.
 
+```mermaid
+flowchart LR
+    A[Agent in session] --> T{Trigger?}
+    T -- "low conf · 3 retries · user asks · sensitive" --> Pkg[Package context]
+    T -- no --> A
+    Pkg --> Route{Route to specialist}
+    Route --> Eng[Engineering]
+    Route --> Fin[Finance]
+    Route --> CS[Senior CS]
+    Eng --> Learn[Capture resolution for training]
+    Fin --> Learn
+    CS --> Learn
+```
+
 ## Step 1: Detect Escalation Trigger
 
 Reasons to escalate:

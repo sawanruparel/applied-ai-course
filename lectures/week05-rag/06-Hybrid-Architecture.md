@@ -6,39 +6,17 @@ layout: diagram
 
 # Hybrid Search: Vector + BM25 + Reciprocal Rank Fusion
 
-```
-                         +-------------+
-                         |   Query     |
-                         +------+------+
-                                |
-                   +------------+------------+
-                   |                         |
-            +------v------+          +-------v-------+
-            | Embedding   |          | Tokenizer +   |
-            | Model       |          | Stemmer       |
-            +------+------+          +-------+-------+
-                   |                         |
-            +------v------+          +-------v-------+
-            | Vector Index|          | Inverted Index|
-            | (HNSW/IVF)  |          | (BM25)        |
-            +------+------+          +-------+-------+
-                   |                         |
-            +------v------+          +-------v-------+
-            | Top-K Dense |          | Top-K Sparse  |
-            | Results     |          | Results       |
-            +------+------+          +-------+-------+
-                   |                         |
-                   +------------+------------+
-                                |
-                        +-------v--------+
-                        | Reciprocal     |
-                        | Rank Fusion    |
-                        +-------+--------+
-                                |
-                        +-------v--------+
-                        | Merged &       |
-                        | Re-scored List |
-                        +----------------+
+```mermaid
+flowchart TB
+    Q[Query] --> Emb[Embedding model]
+    Q --> Tok[Tokenizer + stemmer]
+    Emb --> VIdx["Vector index<br/>(HNSW/IVF)"]
+    Tok --> IIdx["Inverted index<br/>(BM25)"]
+    VIdx --> Dense[Top-K dense results]
+    IIdx --> Sparse[Top-K sparse results]
+    Dense --> RRF[Reciprocal rank fusion]
+    Sparse --> RRF
+    RRF --> Merged[Merged & re-scored list]
 ```
 
 **Reciprocal Rank Fusion (RRF)**

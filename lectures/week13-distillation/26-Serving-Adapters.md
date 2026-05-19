@@ -10,14 +10,18 @@ layout: standard
 
 Keep one base model in memory. Swap LoRA adapters per request for different tasks.
 
-```
-                     +--> LoRA: Customer Support
-                     |
-Base Model (8B) -----+--> LoRA: Code Review
-                     |
-                     +--> LoRA: Medical Triage
-                     |
-                     +--> LoRA: Legal Summary
+```mermaid
+flowchart LR
+    Req[Request] --> R{Router by task}
+    R --> L1[LoRA: Customer Support]
+    R --> L2[LoRA: Code Review]
+    R --> L3[LoRA: Medical Triage]
+    R --> L4[LoRA: Legal Summary]
+    L1 --> Base[(Base model 8B<br/>shared in memory)]
+    L2 --> Base
+    L3 --> Base
+    L4 --> Base
+    Base --> Out[Response]
 ```
 
 **Memory:** Base model (4.5 GB quantized) + each adapter (~20 MB) = serve 50 tasks in 5.5 GB

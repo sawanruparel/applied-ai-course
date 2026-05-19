@@ -6,25 +6,13 @@ layout: diagram
 
 # Synthetic Data Pipeline
 
-```
-+------------------+     +-------------------+     +------------------+
-|  1. DEFINE TASK  |     |  2. SEED INPUTS   |     | 3. PROMPT TEACHER|
-|                  | --> |                   | --> |                  |
-| - Input/output   |     | - Real examples   |     | - System prompt  |
-|   schema         |     | - Edge cases      |     | - Few-shot demos |
-| - Quality rubric |     | - Topic taxonomy  |     | - Temperature    |
-| - Failure modes  |     | - Difficulty tiers |     |   0.7-1.0       |
-+------------------+     +-------------------+     +------------------+
-                                                          |
-                                                          v
-+------------------+     +-------------------+     +------------------+
-| 6. TRAIN STUDENT | <-- | 5. FORMAT & SPLIT | <-- | 4. FILTER &      |
-|                  |     |                   |     |    VALIDATE      |
-| - LoRA/QLoRA     |     | - Chat format     |     | - Deduplication  |
-| - SFT training   |     | - 80/10/10 split  |     | - Quality score  |
-| - Eval on held-  |     | - Shuffle         |     | - Length filter   |
-|   out set        |     | - JSONL export    |     | - Human spot-check|
-+------------------+     +-------------------+     +------------------+
+```mermaid
+flowchart LR
+    S1["1. Define task<br/>schema, rubric, failures"] --> S2["2. Seed inputs<br/>real examples, edge cases"]
+    S2 --> S3["3. Prompt teacher<br/>system + few-shot, T=0.7-1.0"]
+    S3 --> S4["4. Filter & validate<br/>dedupe, quality, length"]
+    S4 --> S5["5. Format & split<br/>chat format, 80/10/10"]
+    S5 --> S6["6. Train student<br/>LoRA/QLoRA + SFT"]
 ```
 
 ## Practical example: generating customer support data

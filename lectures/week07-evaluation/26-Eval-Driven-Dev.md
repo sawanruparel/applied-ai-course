@@ -16,6 +16,16 @@ Eval-driven development (EDD) is test-driven development (TDD) for LLM applicati
 
 ## The EDD Loop
 
+```mermaid
+flowchart LR
+    Def[1. Define good] --> Data[2. Build eval set]
+    Data --> Score[3. Set up scoring]
+    Score --> Prompt[4. Write prompt<br/>establish baseline]
+    Prompt --> Iter[5. Iterate using<br/>eval scores]
+    Iter --> Add[6. Add failures<br/>to eval set]
+    Add --> Prompt
+```
+
 1. **Define what "good" looks like** for your use case (criteria + rubrics)
 2. **Build your eval dataset** (50-100 examples covering key scenarios)
 3. **Set up automated scoring** (RAGAS / DeepEval / custom judge)

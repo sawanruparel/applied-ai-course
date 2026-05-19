@@ -10,6 +10,19 @@ layout: standard
 
 Output validation ensures the model's responses are not only safe but also **correct, structured, and verifiable**.
 
+```mermaid
+flowchart LR
+    Out[LLM output] --> Schema{Schema valid?}
+    Schema -->|No| Reask[Re-ask LLM]
+    Schema -->|Yes| Ground{Grounded in sources?}
+    Ground -->|No| Flag[Flag hallucination]
+    Ground -->|Yes| Cite{Citations real?}
+    Cite -->|No| Flag
+    Cite -->|Yes| Exfil{Exfil patterns?}
+    Exfil -->|Yes| Block[Block]
+    Exfil -->|No| Deliver[Deliver to user]
+```
+
 ## Schema Enforcement with Structured Outputs
 
 ```python

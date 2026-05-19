@@ -25,6 +25,24 @@ layout: standard
 3. Tool executes, returns results to the model
 4. Model reasons about results, decides next action or produces final answer
 
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant M as Model
+    participant T as Tool
+    U->>M: Task + tool schemas
+    M->>M: Decide which tool to call
+    M->>T: Call tool(args)
+    T-->>M: Result
+    M->>M: Reason: done or call another?
+    alt more work
+      M->>T: Call tool(args)
+      T-->>M: Result
+    end
+    M-->>U: Final answer
+```
+
 ### State of the art:
 - Claude: parallel tool use, multi-step tool chains, computer use
 - GPT-4o/o3: function calling with structured outputs

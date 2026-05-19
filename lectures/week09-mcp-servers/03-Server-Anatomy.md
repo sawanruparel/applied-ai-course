@@ -6,40 +6,20 @@ layout: diagram
 
 # Anatomy of an MCP Server
 
-```
-┌─────────────────────────────────────────────────┐
-│                   MCP HOST                      │
-│  (Claude Desktop / IDE / Custom App)            │
-│                                                 │
-│   ┌──────────┐                                  │
-│   │MCP Client│──── JSON-RPC 2.0 ────┐          │
-│   └──────────┘                       │          │
-└──────────────────────────────────────│──────────┘
-                                       │
-                              ┌────────▼─────────┐
-                              │   MCP SERVER      │
-                              │                   │
-                              │ ┌───────────────┐ │
-                              │ │  Transport    │ │  ← stdio or Streamable HTTP
-                              │ │  Layer        │ │
-                              │ └───────┬───────┘ │
-                              │         │         │
-                              │ ┌───────▼───────┐ │
-                              │ │  Request      │ │  ← Routes initialize,
-                              │ │  Handler      │ │    tools/list, tools/call,
-                              │ └───────┬───────┘ │    resources/read
-                              │         │         │
-                              │ ┌───────▼───────┐ │
-                              │ │  Tool & Rsrc  │ │  ← Your business logic:
-                              │ │  Registry     │ │    SQL queries, API calls,
-                              │ └───────┬───────┘ │    data transforms
-                              │         │         │
-                              └─────────│─────────┘
-                                        │
-                              ┌─────────▼─────────┐
-                              │  External System   │
-                              │  (DB / API / SaaS) │
-                              └────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Host["MCP Host (Claude Desktop / IDE)"]
+      Client[MCP Client]
+    end
+    subgraph Server["MCP Server"]
+      Transport["Transport layer<br/>(stdio or HTTP)"]
+      Router["Request handler<br/>initialize, tools/*, resources/*"]
+      Registry["Tool & resource registry<br/>(your business logic)"]
+      Transport --> Router --> Registry
+    end
+    External[("External system<br/>DB / API / SaaS")]
+    Client <-->|JSON-RPC 2.0| Transport
+    Registry --> External
 ```
 
 The SDK handles transport + request routing. **You implement the tools and resources.**

@@ -12,6 +12,14 @@ layout: standard
 
 **Three retrieval confidence levels**
 
+```mermaid
+flowchart LR
+    Eval[Retrieval evaluator] --> Conf{Confidence}
+    Conf -->|Correct| Refine[Refine + generate]
+    Conf -->|Ambiguous| Mix[Refine + web search]
+    Conf -->|Incorrect| Web[Web search fallback]
+```
+
 - **Correct** -- At least one retrieved document is highly relevant. Proceed to generation with knowledge refinement to strip irrelevant sentences.
 - **Incorrect** -- All retrieved documents are irrelevant. Discard them entirely and fall back to web search for fresh, relevant context.
 - **Ambiguous** -- Some documents are marginally relevant. Combine refined internal retrieval results with supplementary web search results.

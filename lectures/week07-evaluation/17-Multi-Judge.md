@@ -12,6 +12,17 @@ layout: standard
 
 Just as academic papers use multiple reviewers, use multiple LLM judges and aggregate their scores. This reduces individual model biases and increases reliability.
 
+```mermaid
+flowchart LR
+    In[Answer + rubric] --> J1[GPT-4o judge]
+    In --> J2[Claude judge]
+    In --> J3[Gemini judge]
+    J1 --> Agg["Aggregate<br/>(median / majority vote)"]
+    J2 --> Agg
+    J3 --> Agg
+    Agg --> Score[Final score]
+```
+
 ## Panel Configurations
 
 **Same model, different prompts:**

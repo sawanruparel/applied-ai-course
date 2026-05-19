@@ -56,6 +56,13 @@ async def update_running_summary(existing_summary: str, new_messages: list):
 - **Level 3:** Session summary (keep last 10 sessions)
 - **Level 4:** Relationship summary (permanent, updated weekly)
 
+```mermaid
+flowchart LR
+    L1["L1: raw<br/>last 10 turns"] -->|compress| L2["L2: turn summaries<br/>this session"]
+    L2 -->|compress| L3["L3: session summary<br/>last 10 sessions"]
+    L3 -->|compress| L4["L4: relationship<br/>permanent"]
+```
+
 Each level compresses further, trading detail for longevity.
 
 ## Sources

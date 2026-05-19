@@ -6,6 +6,13 @@ layout: flow
 
 # The Evolution of RAG
 
+```mermaid
+flowchart LR
+    S1["Stage 1<br/>Naive RAG<br/>(2023)"] --> S2["Stage 2<br/>Advanced RAG<br/>(2023-24)"]
+    S2 --> S3["Stage 3<br/>Modular RAG<br/>(2024)"]
+    S3 --> S4["Stage 4<br/>Agentic RAG<br/>(2024-25)"]
+```
+
 ## Stage 1: Naive RAG (2023)
 
 - Single-pass retrieve-then-read

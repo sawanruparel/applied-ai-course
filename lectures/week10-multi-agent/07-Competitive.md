@@ -8,40 +8,15 @@ layout: diagram
 
 Multiple agents independently solve the same problem; a judge selects the best result.
 
-```
-                    ┌─────────────────┐
-                    │   Same Prompt    │
-                    │   distributed    │
-                    │   to all agents  │
-                    └────────┬────────┘
-                             │
-              ┌──────────────┼──────────────┐
-              │              │              │
-              v              v              v
-       ┌────────────┐ ┌────────────┐ ┌────────────┐
-       │  Agent A    │ │  Agent B    │ │  Agent C    │
-       │ (Approach 1)│ │ (Approach 2)│ │ (Approach 3)│
-       │             │ │             │ │             │
-       │ Conservative│ │ Creative    │ │ Analytical  │
-       │ solution    │ │ solution    │ │ solution    │
-       └──────┬─────┘ └──────┬─────┘ └──────┬─────┘
-              │              │              │
-              └──────────────┼──────────────┘
-                             │
-                             v
-                    ┌─────────────────┐
-                    │     JUDGE       │
-                    │                 │
-                    │ Evaluates all   │
-                    │ proposals on:   │
-                    │ - Correctness   │
-                    │ - Completeness  │
-                    │ - Quality       │
-                    │                 │
-                    │ Selects winner  │
-                    │ or merges best  │
-                    │ parts           │
-                    └─────────────────┘
+```mermaid
+flowchart TB
+    P[Shared prompt] --> A["Agent A<br/>(conservative)"]
+    P --> B["Agent B<br/>(creative)"]
+    P --> C["Agent C<br/>(analytical)"]
+    A --> J{"Judge<br/>correctness · quality"}
+    B --> J
+    C --> J
+    J --> W[Winner or merged best parts]
 ```
 
 ## When to Use

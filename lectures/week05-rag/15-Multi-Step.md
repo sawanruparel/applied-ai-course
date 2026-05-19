@@ -12,12 +12,14 @@ layout: standard
 
 Alternate between generating reasoning steps and retrieving new evidence. Each reasoning step may surface new entities or concepts that trigger a fresh retrieval.
 
-```
-Query: "Did the director of Inception also direct a Batman movie?"
-Step 1: Retrieve --> "Inception was directed by Christopher Nolan"
-Step 2: Reason  --> "Need to check if Nolan directed a Batman film"
-Step 3: Retrieve --> "Christopher Nolan directed The Dark Knight trilogy"
-Step 4: Answer  --> "Yes, Christopher Nolan directed both"
+```mermaid
+flowchart LR
+    Q["Did the director of Inception<br/>also direct a Batman movie?"] --> R1[Retrieve]
+    R1 --> F1["Inception directed by<br/>Christopher Nolan"]
+    F1 --> Reason["Reason: check if<br/>Nolan directed Batman"]
+    Reason --> R2[Retrieve]
+    R2 --> F2["Nolan directed<br/>Dark Knight trilogy"]
+    F2 --> Ans["Yes, Christopher Nolan<br/>directed both"]
 ```
 
 **ITER-RETGEN (Iterative Retrieval-Generation)**

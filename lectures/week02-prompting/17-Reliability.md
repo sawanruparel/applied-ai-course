@@ -38,3 +38,15 @@ You need **defense in depth**, not just a good prompt:
 3. **Retry logic** — re-prompt on validation failure with error context
 4. **Fallback models** — route to backup model if primary fails
 5. **Monitoring** — track output distributions, alert on drift
+
+```mermaid
+flowchart LR
+    P[Prompt engineering] --> V[Output validation]
+    V --> R{Valid?}
+    R -- no --> Retry[Retry with error context]
+    Retry --> V
+    R -- yes --> Out[Downstream]
+    Retry -. max retries .-> FB[Fallback model]
+    FB --> V
+    V --> Mon[Monitoring + drift alerts]
+```

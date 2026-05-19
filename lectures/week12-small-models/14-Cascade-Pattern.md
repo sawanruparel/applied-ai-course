@@ -8,39 +8,16 @@ layout: diagram
 
 ## Try Small First, Escalate If Quality Is Low
 
-```
-  ┌──────────────┐
-  │  User Query   │
-  └──────┬───────┘
-         │
-  ┌──────▼────────────┐
-  │  Small Model (3B) │──── Generate response ────┐
-  └───────────────────┘                            │
-                                            ┌──────▼───────┐
-                                            │  Quality      │
-                                            │  Check        │
-                                            │  (confidence, │
-                                            │   heuristics) │
-                                            └──┬────────┬──┘
-                                               │        │
-                                          PASS │        │ FAIL
-                                               │        │
-                                        ┌──────▼──┐  ┌──▼──────────────┐
-                                        │ Return  │  │ Medium Model    │
-                                        │ response│  │ (8B–14B)        │
-                                        └─────────┘  └──────┬──────────┘
-                                                             │
-                                                      ┌──────▼───────┐
-                                                      │  Quality      │
-                                                      │  Check        │
-                                                      └──┬────────┬──┘
-                                                         │        │
-                                                    PASS │        │ FAIL
-                                                         │        │
-                                                  ┌──────▼──┐  ┌──▼──────────────┐
-                                                  │ Return  │  │ Frontier Model  │
-                                                  │ response│  │ (Claude/GPT-4)  │
-                                                  └─────────┘  └─────────────────┘
+```mermaid
+flowchart TB
+    Q[User Query] --> S[Small model 3B]
+    S --> QC1{Quality check}
+    QC1 -->|Pass| R1[Return response]
+    QC1 -->|Fail| M[Medium model 8B-14B]
+    M --> QC2{Quality check}
+    QC2 -->|Pass| R2[Return response]
+    QC2 -->|Fail| F[Frontier model<br/>Claude / GPT-4]
+    F --> R3[Return response]
 ```
 
 ## Quality Check Strategies

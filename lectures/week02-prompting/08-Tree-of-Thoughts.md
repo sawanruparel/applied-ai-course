@@ -8,30 +8,18 @@ layout: diagram
 
 Yao et al. (2023): Generalize CoT from a single chain to a tree. At each step, generate multiple candidate next-steps, evaluate them, and prune or backtrack.
 
-```
-                            ┌──────────┐
-                            │ Problem  │
-                            └────┬─────┘
-                   ┌─────────────┼─────────────┐
-                   ▼             ▼              ▼
-              ┌─────────┐  ┌─────────┐    ┌─────────┐
-              │ Thought  │  │ Thought │    │ Thought │
-              │  1a      │  │  1b     │    │  1c     │
-              │ score:8  │  │ score:3 │    │ score:7 │
-              └────┬─────┘  └────┬────┘    └────┬────┘
-                   │             ✗ prune         │
-              ┌────┼────┐                   ┌────┼────┐
-              ▼         ▼                   ▼         ▼
-         ┌────────┐┌────────┐          ┌────────┐┌────────┐
-         │  2a    ││  2b    │          │  2c    ││  2d    │
-         │ scr:9  ││ scr:4  │          │ scr:6  ││ scr:2  │
-         └───┬────┘└───┬────┘          └───┬────┘└────────┘
-             │         ✗ prune              │       ✗ prune
-             ▼                              ▼
-        ┌─────────┐                   ┌─────────┐
-        │ ANSWER  │ ◀── best path     │ backup  │
-        │  ★      │                   │ answer  │
-        └─────────┘                   └─────────┘
+```mermaid
+flowchart TB
+    P[Problem]
+    P --> T1a["Thought 1a<br/>score: 8"]
+    P --> T1b["Thought 1b<br/>score: 3 — prune"]
+    P --> T1c["Thought 1c<br/>score: 7"]
+    T1a --> T2a["Thought 2a<br/>score: 9"]
+    T1a --> T2b["Thought 2b<br/>score: 4 — prune"]
+    T1c --> T2c["Thought 2c<br/>score: 6"]
+    T1c --> T2d["Thought 2d<br/>score: 2 — prune"]
+    T2a --> Ans["Final answer<br/>(best path)"]
+    T2c --> Back[Backup answer]
 ```
 
 ## How It Works

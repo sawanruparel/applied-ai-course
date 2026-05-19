@@ -8,26 +8,16 @@ layout: diagram
 
 Agents communicate as peers, refining each other's work through rounds of feedback.
 
-```
-          Round 1                Round 2                Round 3
-    ┌──────────────┐       ┌──────────────┐       ┌──────────────┐
-    │   Proposer    │       │   Proposer    │       │   Proposer    │
-    │  "Here's my   │       │  "Updated     │       │  "Final       │
-    │   draft..."   │       │   based on    │       │   version     │
-    │               │       │   feedback."  │       │   ready."     │
-    └──────┬───────┘       └──────┬───────┘       └──────┬───────┘
-           │                      │                      │
-           v                      v                      v
-    ┌──────────────┐       ┌──────────────┐       ┌──────────────┐
-    │   Critic      │       │   Critic      │       │   Critic      │
-    │  "Issues:     │       │  "Better, but │       │  "LGTM.       │
-    │   1. Missing  │       │   consider    │       │   Approved."  │
-    │   2. Wrong    │       │   edge case." │       │               │
-    │   format"     │       │               │       │               │
-    └──────────────┘       └──────────────┘       └──────────────┘
-
-    ────────────────────────────────────────────────────────────>
-                    Iteration until convergence
+```mermaid
+sequenceDiagram
+    participant P as Proposer
+    participant C as Critic
+    P->>C: Draft v1
+    C->>P: Issues: missing X, wrong format
+    P->>C: Draft v2 (addresses feedback)
+    C->>P: Better — consider edge case
+    P->>C: Draft v3
+    C-->>P: Approved (or max_rounds hit)
 ```
 
 ## How It Works

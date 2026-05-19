@@ -6,6 +6,16 @@ layout: flow
 
 # Example: Data Analysis Pipeline
 
+```mermaid
+flowchart LR
+    Src[CSV / DB / API] --> I["Ingestion<br/>schema + profile"]
+    I -->|clean data| A["Analysis<br/>Python sandbox"]
+    A -->|results| V["Visualization<br/>matplotlib / plotly"]
+    A --> N[Narrative]
+    V --> N
+    N --> R[Markdown report]
+```
+
 ## Step 1: Ingestion Agent
 - **Input:** User query + data source reference (CSV file, database, API endpoint)
 - **Action:** Loads data, inspects schema, identifies data quality issues

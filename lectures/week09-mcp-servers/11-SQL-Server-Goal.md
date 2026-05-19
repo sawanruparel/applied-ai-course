@@ -31,3 +31,22 @@ Plus resources for schema context that the host can preload.
 3. LLM calls `describe_table` to understand the structure
 4. LLM writes SQL and calls `run_query`
 5. LLM interprets the results and answers the user
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant L as LLM
+    participant S as SQL MCP Server
+    participant DB as SQLite
+    U->>L: "Sales by region last quarter?"
+    L->>S: list_tables
+    S->>DB: SELECT FROM sqlite_master
+    S-->>L: [orders, regions, ...]
+    L->>S: describe_table(orders)
+    S-->>L: columns + types
+    L->>S: run_query(SELECT ...)
+    S->>DB: prepared SELECT
+    S-->>L: rows
+    L-->>U: Natural-language answer
+```

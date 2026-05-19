@@ -27,6 +27,22 @@ layout: standard
 - **Self-consistency:** sample multiple times, flag disagreements
 - **Human-in-the-loop:** design systems where humans verify critical outputs
 
+```mermaid
+flowchart LR
+    Q[Query] --> M[LLM]
+    M --> H{Risk of hallucination?}
+    H -- high --> RAG[Ground via RAG]
+    H -- high --> Tools[Tools / search]
+    H -- high --> SC[Self-consistency]
+    RAG --> V[Verify + cite]
+    Tools --> V
+    SC --> V
+    V --> HIL{Critical output?}
+    HIL -- yes --> Human[Human review]
+    HIL -- no --> Out[Answer]
+    Human --> Out
+```
+
 > Hallucination is not a bug that will be patched -- it is a fundamental property of generative models that must be engineered around.
 
 ## Sources

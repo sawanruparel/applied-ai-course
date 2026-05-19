@@ -8,6 +8,15 @@ layout: standard
 
 The core task: turn **unstructured knowledge** into **computable representations** that an LLM can use at inference time.
 
+```mermaid
+flowchart LR
+    Raw["Raw knowledge<br/>(PDFs, docs, code, APIs)"] --> Chunk["Chunked text<br/>(semantic segments)"]
+    Chunk --> Vec["Dense vectors<br/>(embeddings)"]
+    Vec --> Index["Indexed store<br/>(searchable)"]
+    Index --> Ctx["Curated context<br/>(right info, right order)"]
+    Ctx --> LLM[LLM]
+```
+
 ### The Representation Pipeline
 
 1. **Raw Knowledge** -- PDFs, docs, code, databases, APIs, web pages
