@@ -45,25 +45,26 @@ Good for low-traffic, bursty workloads. Pay per invocation. Cold starts can add 
 
 Wrap the Streamable HTTP transport in your function handler.
 
-## MCP Proxy Pattern
+## MCP Gateway Pattern
 
-Run a lightweight proxy that routes to multiple backend MCP servers:
+Run an enterprise **gateway** that sits between agents and servers, routing to multiple backends through a single governed control plane:
 
 ```mermaid
 flowchart LR
-    C[MCP Client] --> P["MCP Proxy<br/>(auth · rate-limit · audit)"]
+    C[MCP Client] --> P["MCP Gateway<br/>(auth · policy · rate-limit · audit)"]
     P --> S1[SQL server]
     P --> S2[Jira server]
     P --> S3[Slack server]
 ```
 
-The proxy handles:
+The gateway centralizes:
 - Authentication and authorization
+- **Tool-level access policies** — which agents may call which tools
 - Rate limiting across all servers
-- Centralized logging and metrics
-- Server discovery and health checks
+- **Audit trails** capturing every tool invocation
+- Traffic routing, server discovery, and health checks
 
-Useful for organizations managing many MCP servers across teams.
+This is the standard pattern for organizations managing many MCP servers across teams. Leading 2026 gateway products include **Bifrost**, **MintMCP**, and **Maxim**. The principle: every tool invocation should flow through a governed control plane rather than connecting agents directly to servers.
 
 ## npx / Registry
 
@@ -96,3 +97,4 @@ Zero install for end users. Version pinning via npm.
 
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [MCP Specification](https://modelcontextprotocol.io)
+- [MCP gateways for enterprise engineering — MintMCP](https://www.mintmcp.com/blog/gateways-enterprise-engineering-with-mcp)

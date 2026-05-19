@@ -9,14 +9,15 @@ layout: standard
 | Model | Input $/1M tok | Output $/1M tok | Context | Reasoning | Speed |
 |-------|----------------|-----------------|---------|-----------|-------|
 | GPT-4o | $2.50 | $10.00 | 128K | Standard | Fast |
-| o3 (low) | $10.00 | $40.00 | 128K | Strong | Medium |
+| GPT-5.4 (Mar 2026) | varies | varies | 256K | Strong (agentic) | Fast |
+| GPT-5.5 (Apr 2026) | varies | varies | 1M | Very strong | Medium |
 | o3 (high) | $10.00 | $40.00 | 128K | Very strong | Slow |
-| Claude 4 Sonnet | $3.00 | $15.00 | 200K | Extended thinking | Fast |
 | Claude 4 Opus | $15.00 | $75.00 | 200K | Extended thinking | Medium |
+| Claude Opus 4.7 (Apr 2026) | varies | varies | 200K | Extended thinking | Medium |
 | Gemini 2.0 Flash | $0.10 | $0.40 | 1M | Flash thinking | Very fast |
-| Gemini 2.0 Pro | $1.25 | $5.00 | 2M | Standard | Fast |
+| Gemini 3.1 Pro (Feb 2026) | varies | varies | 1M+ | Standard (multimodal) | Fast |
 | DeepSeek R1 | $0.55 | $2.19 | 64K | Strong (visible CoT) | Medium |
-| Llama 3 405B* | Self-host | Self-host | 128K | Standard | Varies |
+| Llama 4 Maverick* | Self-host | Self-host | 1M | Standard (MoE) | Varies |
 
 *Self-hosted costs depend on infrastructure. Prices are approximate and change frequently.*
 

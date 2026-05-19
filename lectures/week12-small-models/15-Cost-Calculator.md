@@ -30,6 +30,14 @@ layout: standard
 | 70% nano + 20% mini + 10% Opus         | **$25,100**  | Very Good   |
 | 80% self-hosted 8B + 15% mini + 5% Opus| **$12,000**  | Very Good   |
 
+## Private-Endpoint Rule of Thumb
+
+At a smaller scale — say **10,000 daily queries** — running an SLM on a private endpoint typically costs **$500–$2,000/month**, versus **$5,000–$50,000/month** for equivalent frontier API usage. That is roughly a **10–32× cost differential** for tasks where the small model holds quality.
+
 ## Key Insight
 
 A well-designed routing strategy achieves 90%+ of frontier quality at 5–10% of the cost.
+
+## Sources
+
+- [Small Language Models vs LLMs (Lucas8)](https://lucas8.com/small-language-models-vs-llms/)

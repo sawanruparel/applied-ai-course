@@ -20,7 +20,7 @@ A vector database is a specialized store optimized for indexing, storing, and qu
 
 - Open-source (BSL license), cloud or self-hosted
 - Built-in vectorization modules (plug in OpenAI, Cohere, etc.)
-- GraphQL API, hybrid (vector + BM25) search
+- GraphQL API; natively combines BM25 + dense vectors + metadata filtering in a **single query**
 - Multi-modal: text, images, audio in same collection
 - **Tradeoff**: heavier resource footprint, complex configuration
 
@@ -38,7 +38,16 @@ A vector database is a specialized store optimized for indexing, storing, and qu
 - Embedded mode: runs in-process (great for prototyping)
 - Simple API: add, query, delete -- minimal boilerplate
 - Integrates with LangChain, LlamaIndex out of the box
-- **Tradeoff**: not designed for production scale (millions+ vectors)
+- Completed a **Rust-core rewrite** delivering ~4x performance, closing much of the prior production-scale gap
+- **Tradeoff**: ecosystem and distributed-scale story still maturing vs Pinecone/Qdrant
+
+## MongoDB Atlas Vector Search
+
+- Vectors live alongside operational documents -- one database for app data and search
+- **Automated Embedding** (powered by Voyage AI): one-click vector generation on write, no separate embedding pipeline
+- Hybrid search and rich metadata filtering via the aggregation pipeline
+- Strong for: teams already on MongoDB wanting to avoid a second datastore
+- **Tradeoff**: vector features tied to Atlas (managed) tier
 
 ## pgvector / PostgreSQL
 
@@ -55,3 +64,4 @@ A vector database is a specialized store optimized for indexing, storing, and qu
 - [Qdrant Documentation (Qdrant)](https://qdrant.tech/documentation/)
 - [Chroma Documentation (Chroma)](https://docs.trychroma.com)
 - [pgvector — Open-source vector similarity search for PostgreSQL](https://github.com/pgvector/pgvector)
+- [Best Vector Databases in 2026: Pricing, Scale Limits & Architecture Tradeoffs (MarkTechPost, 2026)](https://www.marktechpost.com/2026/05/10/best-vector-databases-in-2026-pricing-scale-limits-and-architecture-tradeoffs-across-nine-leading-systems/)

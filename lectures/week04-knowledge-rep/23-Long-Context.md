@@ -6,7 +6,7 @@ layout: two-column
 
 # Long Context: Does RAG Still Matter?
 
-With context windows reaching 1M+ tokens, do we still need retrieval pipelines?
+With 1M-token context windows now production-available (GPT-5.5, Gemini 3.1 Pro), do we still need retrieval pipelines? The frontier has moved from "can we fit it?" to "should we?"
 
 ## The Case for RAG
 
@@ -23,7 +23,8 @@ With context windows reaching 1M+ tokens, do we still need retrieval pipelines?
 - **Simplicity**: no chunking, no embeddings, no vector DB, no retrieval pipeline
 - **Full document understanding**: the model sees the entire document, not fragments
 - **Cross-reference**: can reason across sections that RAG might not retrieve together
-- **Small corpora**: for <500 pages, just load everything into context
+- **Single large docs**: for one big document, long context is now viable end-to-end
+- **Small corpora**: economics favor retrieval below ~50 pages of repeatedly-queried content; above that, per-query token cost dominates
 - **Complex reasoning**: tasks requiring holistic document understanding (e.g., legal analysis)
 - **Rapid prototyping**: go from zero to working system in minutes, not days
 
@@ -31,9 +32,9 @@ With context windows reaching 1M+ tokens, do we still need retrieval pipelines?
 
 | Scenario | Best Approach |
 |----------|--------------|
-| < 500 pages, infrequent queries | Long context |
-| < 500 pages, high query volume | RAG (amortize embedding cost) |
-| > 500 pages | RAG (or RAG + long context for retrieved chunks) |
+| Single large doc, infrequent queries | Long context |
+| < ~50 pages, repeatedly queried | RAG (economics favor retrieval; amortize embedding cost) |
+| Large corpus, high query volume | RAG (or RAG + long context for retrieved chunks) |
 | Real-time data feeds | RAG with streaming ingestion |
 | Complex document analysis | Long context (or RAG to select, then long context to analyze) |
 | Multi-document synthesis | RAG to retrieve, long context to reason |
@@ -44,3 +45,4 @@ With context windows reaching 1M+ tokens, do we still need retrieval pipelines?
 
 - [Lost in the Middle: How Language Models Use Long Contexts (Liu et al., 2023)](https://arxiv.org/abs/2307.03172)
 - [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)](https://arxiv.org/abs/2005.11401)
+- [AI Model Comparisons: Long-Context Windows & Retrieval Economics (GuruSup)](https://gurusup.com/blog/ai-comparisons)

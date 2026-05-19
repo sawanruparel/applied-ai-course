@@ -30,10 +30,11 @@ layout: standard
 - Example: "If the test pass rate is above 95%, stop the review cycle"
 - Don't let perfect be the enemy of good (or cheap)
 
-### Model Tiering
+### Model Tiering & Multi-Model Routing
 - Use cheaper models for simple tasks (classification, routing, formatting)
 - Reserve expensive models for tasks that need reasoning (analysis, code generation)
 - Example: Triage agent uses Haiku ($0.25/M tokens), specialist uses Sonnet ($3/M tokens)
+- A production pattern in 2026 is **multi-model routing**: the orchestrator dynamically routes each subtask across providers — **GPT-5.4, Claude Opus 4.7, Gemini 3.1 Pro** — choosing based on cost, latency, and capability rather than committing the whole pipeline to one model
 
 ## Cost Monitoring Dashboard
 Track these metrics per agent and per workflow:
@@ -42,3 +43,7 @@ Track these metrics per agent and per workflow:
 - **Cost per completed workflow** (sum of all agent calls)
 - **Abort rate** (how often workflows hit budget limits)
 - Set alerts when cost per workflow exceeds 2x the expected baseline
+
+## Sources
+
+- [Building smarter AI agents with multi-model routing in 2026 — AIThority](https://aithority.com/machine-learning/from-gpt-5-5-to-deepseek-v4-how-developers-are-building-smarter-ai-agents-with-multi-model-routing-in-2026/)

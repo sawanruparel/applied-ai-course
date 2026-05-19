@@ -51,6 +51,10 @@ result = graph.invoke(None, config)  # Loads last checkpoint
 | PostgreSQL | Production, multi-user | Requires DB infrastructure |
 | Redis | High-throughput, TTL-based | Data loss risk without persistence |
 
+## Serverless alternative: Cloudflare Agents
+
+You do not have to self-host the persistence layer. **Cloudflare Agents** is a serverless platform with built-in **durable execution**, **human-approval hooks** for HITL gating, and **hibernation** that lets long-running agents sleep between events without holding compute — an alternative to running your own LangGraph + Postgres stack.
+
 ## Time-travel debugging
 
 ```python
@@ -71,4 +75,5 @@ graph.invoke(Command(resume=new_input), fork_config)
 ## Sources
 
 - [LangGraph Persistence Documentation (LangChain)](https://langchain-ai.github.io/langgraph/concepts/persistence/)
+- [Human-in-the-Loop with Cloudflare Agents (Cloudflare Docs)](https://developers.cloudflare.com/agents/concepts/human-in-the-loop/)
 - [LangGraph Library (LangChain)](https://langchain-ai.github.io/langgraph/)

@@ -40,6 +40,11 @@ Common layers to apply LoRA to:
 - `q_proj`, `k_proj`, `v_proj`, `o_proj` -- full attention (recommended)
 - All linear layers -- maximum expressiveness, higher cost
 
+## KD-LoRA: a hybrid with distillation
+
+**KD-LoRA** combines LoRA adapters with a knowledge-distillation signal from a teacher model -- the adapter is trained against the teacher's outputs rather than hard labels alone. The result is performance comparable to full fine-tuning at much lower resource cost, bridging the LoRA and distillation tracks of this course.
+
 ## Sources
 
 - [LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2021)](https://arxiv.org/abs/2106.09685)
+- [KD-LoRA: A Hybrid Approach Combining LoRA with Knowledge Distillation (arXiv:2410.20777)](https://arxiv.org/abs/2410.20777)

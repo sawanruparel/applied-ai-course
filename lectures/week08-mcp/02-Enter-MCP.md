@@ -30,7 +30,7 @@ flowchart LR
 
 ## What MCP actually is
 
-- **An open protocol** — specification at [modelcontextprotocol.io](https://modelcontextprotocol.io), maintained by Anthropic with a multi-vendor governance group
+- **An open protocol** — specification at [modelcontextprotocol.io](https://modelcontextprotocol.io). In December 2025 Anthropic donated MCP to the **Agentic AI Foundation (AAIF)** under the Linux Foundation, co-founded with Block and OpenAI; Google, Microsoft, AWS, and Cloudflare have endorsed the spec, so governance is now neutral and multi-vendor
 - **A wire format** — JSON-RPC 2.0 over stdio, HTTP, or streamable HTTP transports
 - **A capability model** — three primitives (tools, resources, prompts) that cover the common patterns, plus negotiated extensions
 - **Not a framework** — no opinion about your agent loop, model choice, language, or runtime
@@ -45,3 +45,4 @@ Sources
 
 - [MCP Specification](https://modelcontextprotocol.io/specification)
 - [Anthropic — Introducing the Model Context Protocol (Nov 2024)](https://www.anthropic.com/news/model-context-protocol)
+- [Anthropic — Donating MCP and establishing the Agentic AI Foundation (Dec 2025)](https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation)

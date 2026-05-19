@@ -66,7 +66,20 @@ Thought: Now I can calculate...
 
 Best for: tasks requiring external data, multi-step workflows, real-world actions.
 
+## Tool-Augmented Prompting
+
+By 2026 this is a distinct category alongside CoT and ReAct: structure the prompt to **hand sub-tasks off to tools** (search, code execution, calculators) rather than asking the model to *simulate* them.
+
+```
+Don't compute the variance yourself.
+Call run_python(...) with the data and
+report the result.
+```
+
+Best for: anything the model is unreliable at simulating — exact arithmetic, current facts, code output.
+
 ## Sources
 
 - [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (Wei et al., 2022)](https://arxiv.org/abs/2201.11903)
 - [ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2022)](https://arxiv.org/abs/2210.03629)
+- [Prompt Engineering Insight: Tool-Augmented Prompting (Meta-Intelligence, 2026)](https://www.meta-intelligence.tech/en/insight-prompt-engineering)

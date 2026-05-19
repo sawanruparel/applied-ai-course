@@ -6,7 +6,7 @@ layout: standard
 
 # What's Available Off-the-Shelf
 
-By mid-2026 the MCP ecosystem has crossed the threshold where most common capabilities are one config-file edit away from being usable. The official and community server registries together list several thousand entries.
+By mid-2026 the MCP ecosystem has crossed the threshold where most common capabilities are one config-file edit away from being usable. As of April 2026 there are **10,000+ active public MCP servers**, the Python + TypeScript SDKs see **97 million monthly downloads**, **78% of enterprise AI teams** report at least one MCP-backed agent in production, and **28% of the Fortune 500** run MCP servers in production.
 
 ## Reference and high-quality community servers
 
@@ -60,3 +60,4 @@ Sources
 
 - [modelcontextprotocol/servers — official server list](https://github.com/modelcontextprotocol/servers)
 - [Anthropic MCP servers blog post](https://www.anthropic.com/news/model-context-protocol)
+- [MCP adoption statistics 2026 — DigitalApplied](https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol)

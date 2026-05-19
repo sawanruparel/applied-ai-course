@@ -11,6 +11,7 @@ layout: standard
 - MMLU: GPT-4 86.4% (2023) -> frontier models ~90%+ (2025) -- ceiling effect
 - HumanEval (code): solved by most frontier models at 90%+
 - GSM8K (math): went from challenging to trivial in 18 months
+- **ARC-AGI-2:** released as a harder successor to ARC-AGI to combat saturation -- human average is 66%, and it is now the de-facto leaderboard for abstract reasoning; GPT-5.5 leads at 85%
 - When models ace the test, the test stops being informative
 
 ### Leaderboards are unreliable:
@@ -36,5 +37,7 @@ layout: standard
 - [Measuring Massive Multitask Language Understanding — MMLU (Hendrycks et al., 2020)](https://arxiv.org/abs/2009.03300)
 - [Evaluating Large Language Models Trained on Code — HumanEval (Chen et al., 2021)](https://arxiv.org/abs/2107.03374)
 - [Training Verifiers to Solve Math Word Problems — GSM8K (Cobbe et al., 2021)](https://arxiv.org/abs/2110.14168)
+- [ARC-AGI-2 Benchmark (ARC Prize Foundation)](https://arcprize.org/arc-agi/2)
+- [ARC-AGI-2: A New Challenge for Frontier AI Reasoning (2025)](https://arxiv.org/abs/2505.11831)
 - [Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena (Zheng et al., 2023)](https://arxiv.org/abs/2306.05685)
 - [Chatbot Arena Leaderboard (LMSYS)](https://arena.ai/)

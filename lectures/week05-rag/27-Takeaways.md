@@ -29,3 +29,11 @@ Every statement in a RAG output should trace back to a retrieved source. Impleme
 ## Optimize the Pipeline, Not Just the Model
 
 Chunking strategy, embedding model selection, reranker choice, and caching architecture often matter more than upgrading the LLM. Profile your pipeline end-to-end before spending on a larger generator.
+
+## The Knowledge Base Is the Primary Investment
+
+The 2026 consensus: knowledge-base quality -- chunking, freshness, and deduplication -- matters more for RAG performance than model choice. Treat the knowledge source as the asset you invest in first; a frontier model cannot rescue a stale, noisy, or poorly-chunked corpus.
+
+## Sources
+
+- [RAG in 2026: Knowledge-Base Quality Over Model Choice (Techment)](https://www.techment.com/blogs/rag-in-2026/)

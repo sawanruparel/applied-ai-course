@@ -36,10 +36,15 @@ Guardrails are **automated input/output filters** that sit between users and the
 - **Lakera Guard** -- API-based injection detection
 - **Azure AI Content Safety** -- Microsoft's hosted filtering service
 
+## Open-Source vs Runtime Guardrail Products
+
+A distinct **2026 product category** has emerged: **runtime guardrail platforms** -- **Straiker**, **Noma Security**, and **Lakera** -- that ship drop-in middleware purpose-built for *agentic* pipelines (intercepting tool calls and multi-step plans at runtime). Compare these to open-source **Guardrails AI**, which you self-host and assemble yourself: the commercial products trade configurability for managed, production-ready coverage.
+
 ## Sources
 
 - [Llama Guard (Inan et al., 2023)](https://arxiv.org/abs/2312.06674)
 - [NeMo Guardrails -- NVIDIA](https://github.com/NVIDIA/NeMo-Guardrails)
 - [Guardrails AI](https://github.com/guardrails-ai/guardrails)
 - [Lakera Guard](https://www.lakera.ai/lakera-guard)
+- [Straiker Guardrails (Straiker)](https://www.straiker.ai/solution/guardrails)
 - [Azure AI Content Safety -- Microsoft](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/)

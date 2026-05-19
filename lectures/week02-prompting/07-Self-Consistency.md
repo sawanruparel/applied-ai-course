@@ -29,7 +29,9 @@ flowchart TB
 - **Cost tradeoff**: N times the inference cost, but significantly higher accuracy
 - GSM8K: CoT alone ~57% → Self-Consistency ~74% (PaLM 540B)
 - Works with any CoT variant as the base sampling strategy
+- **A production standard in 2026:** sampling multiple CoT chains and taking the majority vote is now a routine reliability pattern, not just a research technique
 
 ## Sources
 
 - [Self-Consistency Improves Chain of Thought Reasoning in Language Models (Wang et al., 2022)](https://arxiv.org/abs/2203.11171)
+- [Advanced Prompt Engineering Techniques for LLMs in 2026 (PySquad, 2026)](https://medium.com/@pysquad/advanced-prompt-engineering-techniques-for-llms-in-2026-1df5ebb414d1)

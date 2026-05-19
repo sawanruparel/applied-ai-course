@@ -18,6 +18,14 @@ flowchart TB
     S5 --> S6[6. Implement + monitor]
 ```
 
+## The Right-Sizing Ladder
+
+Before picking a model size, decide how much machinery the task actually needs. Climb only as high as you must:
+
+**Prompt engineering → RAG → SLM fine-tune → Distill**
+
+Start at the bottom rung and stop at the lowest one that meets your quality bar, rather than defaulting to a frontier model. Most tasks are solved well before the top of the ladder.
+
 ## Step 1: Define Your Quality Bar
 - What is the minimum acceptable performance?
 - Measure with your own eval set, not public benchmarks
@@ -42,9 +50,14 @@ flowchart TB
 
 ## Step 5: Evaluate Deployment Constraints
 - Latency requirement under 100ms? Self-hosted small model required
-- Data cannot leave your network? On-premise deployment mandatory
+- Data cannot leave your network? On-premise deployment is now a viable production default, not a niche constraint — on-device inference delivers frontier-comparable performance for many tasks, so keeping all inference on-prem rarely costs you quality
 - Need offline capability? Edge/on-device model required
 - None of the above? API-served models are simplest
+
+## Sources
+
+- [Best Local LLM Models 2026 (SitePoint)](https://www.sitepoint.com/best-local-llm-models-2026/)
+- [The Best Open-Source Small Language Models (BentoML)](https://www.bentoml.com/blog/the-best-open-source-small-language-models)
 
 ## Step 6: Implement and Monitor
 - Deploy with A/B testing against your current model

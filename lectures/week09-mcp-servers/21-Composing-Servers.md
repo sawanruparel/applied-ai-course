@@ -33,3 +33,11 @@ flowchart TB
 > "Find the Jira ticket about the sales drop, query the DB for Q4 numbers, and post a summary to #data-team."
 
 **The LLM orchestrates across all three** — no custom integration code needed between the servers. This is the power of MCP's composability.
+
+## You rarely build from scratch
+
+The public MCP registry has surpassed **9,400 servers** (up from ~50 in early 2025), and managed-integration vendors close most of the remaining gap. **Composio** alone ships **500+ pre-built managed integrations** for Slack, GitHub, Jira, Salesforce, ServiceNow, and more — so composing a real workflow is increasingly about wiring existing servers, not authoring them.
+
+## Sources
+
+- [Best MCP deployment platforms for enterprise 2026 — Prefect](https://www.prefect.io/resources/best-mcp-deployment-platforms-enterprise-2026)

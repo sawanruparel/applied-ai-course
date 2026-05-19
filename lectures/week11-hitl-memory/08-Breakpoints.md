@@ -24,7 +24,7 @@ sequenceDiagram
 
 ## Breakpoints in LangGraph
 
-LangGraph provides first-class support for HITL via `interrupt()`:
+LangGraph (v0.4) provides first-class support for HITL via `interrupt()`. Calling `interrupt()` pauses graph execution and now surfaces `Interrupt` objects automatically in the `.invoke()` return value, so you no longer have to inspect graph state separately to detect a pause:
 
 ```python
 from langgraph.graph import StateGraph
@@ -61,7 +61,12 @@ graph = builder.compile(
 ## Resuming after interrupt
 
 ```python
-# Human reviews the interrupted state
+# In v0.4, the interrupt surfaces directly in the invoke() return value
+result = graph.invoke({"messages": [...]}, config=thread_config)
+if result.get("__interrupt__"):
+    interrupts = result["__interrupt__"]   # list of Interrupt objects
+
+# You can also reach in via state if you need full context
 current_state = graph.get_state(thread_config)
 print(current_state.next)       # Which node is paused
 print(current_state.tasks)      # Pending interrupt data
@@ -82,4 +87,6 @@ graph.invoke(
 ## Sources
 
 - [LangGraph Interrupts Documentation (LangChain)](https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/)
+- [LangGraph v0.4: HITL, Checkpoints & State Persistence (AITechConnect)](https://aitechconnect.in/news/langgraph-v04-hitl-checkpoints-state-persistence)
+- [LangGraph Persistence (LangChain Docs)](https://docs.langchain.com/oss/python/langgraph/persistence)
 - [LangGraph Library (LangChain)](https://langchain-ai.github.io/langgraph/)

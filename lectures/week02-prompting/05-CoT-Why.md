@@ -25,6 +25,12 @@ flowchart LR
 - **Error localization**: if step 2 is wrong, the error is visible and can be caught
 - **Compositional generalization**: familiar sub-steps combine to solve novel problems
 
+## How Much It Helps
+
+- 2026 analyses report CoT improves **math and logic accuracy by 15–40%** over direct answering, with the largest gains on multi-step problems
+- The lift is task-dependent: little benefit on simple lookups, large benefit on arithmetic, proofs, and structured reasoning
+
 ## Sources
 
 - [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (Wei et al., 2022)](https://arxiv.org/abs/2201.11903)
+- [Advanced Prompt Engineering Techniques for LLMs in 2026 (PySquad, 2026)](https://medium.com/@pysquad/advanced-prompt-engineering-techniques-for-llms-in-2026-1df5ebb414d1)

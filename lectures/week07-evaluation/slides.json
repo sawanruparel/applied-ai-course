@@ -2,6 +2,10 @@
   { "file": "lectures/week07-evaluation/00-Intro.md", "label": "00 Intro" },
   { "file": "lectures/week07-evaluation/01-Why-Eval.md", "label": "01 Why Eval" },
   { "file": "lectures/week07-evaluation/02-Eval-Landscape.md", "label": "02 Eval Landscape" },
+  {
+    "file": "lectures/week07-evaluation/02b-Eval-Architecture.md",
+    "label": "02b Eval Architecture"
+  },
   { "file": "lectures/week07-evaluation/03-What-To-Measure.md", "label": "03 What To Measure" },
   { "file": "lectures/week07-evaluation/04-RAG-Metrics.md", "label": "04 RAG Metrics" },
   { "file": "lectures/week07-evaluation/05-RAGAS-Framework.md", "label": "05 RAGAS Framework" },

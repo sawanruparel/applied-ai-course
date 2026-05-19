@@ -50,3 +50,15 @@ flowchart LR
     FB --> V
     V --> Mon[Monitoring + drift alerts]
 ```
+
+## Prompt Stability as a CI Concern
+
+In 2026, teams treat prompt stability the way they treat code stability:
+
+- **Pin model versions** so a silent provider update can't change behavior under you
+- **Run regression tests** on every prompt or model change, asserting against **golden outputs**
+- **DSPy signatures** make this tractable: prompts become typed, versioned program components you can re-compile and re-test rather than fragile strings
+
+## Sources
+
+- [Automatic Prompt Optimization with DSPy: Self-Tuning Agent Pipelines (Muthu, 2026)](https://notes.muthu.co/2026/02/automatic-prompt-optimization-with-dspy-building-self-tuning-agent-pipelines/)
