@@ -4,13 +4,13 @@ This is the source for the **Applied AI Course** site (taught at UConn, GRAD 590
 
 ## Architecture
 
-- `index.html` — landing page with the week-by-week schedule
-- `weekNN-topic.html` — thin shells; each loads a single `src/main-weekNN-topic.ts`
+- `index.html` — landing page with the week-by-week schedule (must stay at repo root: it's the dev-server root and the main build entry)
+- `pages/weekNN-topic.html` — thin per-lecture shells; each loads a single `src/main-weekNN-topic.ts`. Served at `/pages/weekNN-topic.html`
 - `src/main-weekNN-topic.ts` — entry point: imports a `slides.json` manifest and the markdown files for that week, hands them to the shared viewer
 - `src/viewer.ts` — the single deck-rendering engine (markdown parser, keyboard nav, theme toggle, rail, etc.)
 - `src/config/course.ts` — **single source of truth** for course title, term, institution. Change these here, not inline in HTML/JS.
 - `lectures/weekNN-topic/` — slide source. Each numbered `.md` is one slide, plus `slides.json` listing them in display order.
-- `vite.config.ts` — registers every `weekNN-topic.html` as a build input
+- `vite.config.ts` — registers every `pages/weekNN-topic.html` as a build input
 
 ## Slide markdown format
 
@@ -35,9 +35,9 @@ Layouts: `standard` (default), `center`, `two-column`, `cards`. See `docs/slide-
 1. Create `lectures/weekNN-foo/` with numbered `NN-Title.md` slide files
 2. Create `lectures/weekNN-foo/slides.json` with `{ file, label }` entries (paths are repo-rooted, e.g. `lectures/weekNN-foo/00-Intro.md`)
 3. Copy an existing `src/main-weekXX-*.ts` to `src/main-weekNN-foo.ts` and update the two `lectures/weekNN-foo` path references and the deck/rail titles
-4. Create `weekNN-foo.html` at the repo root (copy an existing one and update the title + script src)
-5. Register `weekNN-foo` in `vite.config.ts` under `rollupOptions.input`
-6. Add a lecture card to `index.html` linking `/weekNN-foo.html`
+4. Create `pages/weekNN-foo.html` (copy an existing one and update the title + script src; the `<script src="/src/main-...">` uses an absolute path so it works from `pages/`)
+5. Register `weekNN-foo` in `vite.config.ts` under `rollupOptions.input` (path is `pages/weekNN-foo.html`)
+6. Add a lecture card to `index.html` linking `/pages/weekNN-foo.html`
 
 ## Branding rule
 
@@ -60,4 +60,4 @@ Course title, term, and institution live in `src/config/course.ts`. The viewer e
 
 - Don't hardcode "UConn", "GRAD 5900", or "Spring 2026" in lecture markdown or HTML — reference the config or omit. The repo is positioned as a general "Applied AI Course"; UConn is mentioned in the README and the landing-page eyebrow only.
 - Don't add lecture cards to `index.html` for weeks that don't exist yet — the cards are the source of truth for what's published.
-- Don't rename `lectures/weekNN-topic/` without also updating `src/main-weekNN-topic.ts`, the matching `slides.json` paths inside it, the `.html` shell, and `vite.config.ts`.
+- Don't rename `lectures/weekNN-topic/` without also updating `src/main-weekNN-topic.ts`, the matching `slides.json` paths inside it, the `pages/weekNN-topic.html` shell, and `vite.config.ts`.

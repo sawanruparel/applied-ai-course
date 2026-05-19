@@ -7,6 +7,7 @@ This repository is the course site and source for the lecture decks. It is maint
 ## What's in this repo
 
 - `index.html` — course landing page with the week-by-week schedule
+- `pages/` — thin per-lecture HTML shells (one per week), each booting a deck
 - `lectures/` — slide content in Markdown (one directory per week, plus a `slides.json` manifest)
 - `src/` — TypeScript deck viewer and per-lecture entry points
 - `src/config/course.ts` — single source of truth for course title, term, and institution
@@ -45,7 +46,7 @@ npm run validate-urls # check all outbound links in lecture markdown
 
 1. Add `lectures/weekNN-topic/` with numbered markdown slide files and a `slides.json` manifest
 2. Add `src/main-weekNN-topic.ts` (copy an existing entry as a template)
-3. Add `weekNN-topic.html` at the repo root
+3. Add `pages/weekNN-topic.html` (copy an existing shell as a template)
 4. Register the new entry in `vite.config.ts` and add a card to `index.html`
 
 See `CLAUDE.md` for repo conventions.
