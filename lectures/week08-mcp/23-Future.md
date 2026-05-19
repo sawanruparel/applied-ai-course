@@ -60,5 +60,5 @@ Sources
 - [MCP — Specification roadmap](https://github.com/modelcontextprotocol/specification)
 - [MCP 2026 roadmap (modelcontextprotocol.io)](https://modelcontextprotocol.io/development/roadmap)
 - [MCP evolution, capabilities, and MCP Apps — ByteBridge](https://bytebridge.medium.com/model-context-protocol-mcp-evolution-capabilities-and-the-rise-of-peta-ff2967b45d48)
-- [MCP complete guide 2026: built-in connectors, Tool Search, Programmatic Tool Calling — SurePrompts](https://sureprompts.com/blog/blog/model-context-protocol-mcp-complete-guide-2026)
+- [MCP complete guide 2026: built-in connectors, Tool Search, Programmatic Tool Calling — SurePrompts](https://docs.claude.com/en/docs/agents-and-tools/tool-use/tool-search-tool)
 - [OTel semantic conventions WG](https://github.com/open-telemetry/semantic-conventions)

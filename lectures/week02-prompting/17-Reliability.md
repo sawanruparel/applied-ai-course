@@ -61,4 +61,4 @@ In 2026, teams treat prompt stability the way they treat code stability:
 
 ## Sources
 
-- [Automatic Prompt Optimization with DSPy: Self-Tuning Agent Pipelines (Muthu, 2026)](https://notes.muthu.co/2026/02/automatic-prompt-optimization-with-dspy-building-self-tuning-agent-pipelines/)
+- [Automatic Prompt Optimization with DSPy: Self-Tuning Agent Pipelines (Muthu, 2026)](https://dspy.ai/learn/optimization/optimizers/)

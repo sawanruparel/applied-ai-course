@@ -48,5 +48,5 @@ flowchart LR
 
 Sources
 
-- [MCP Specification — Architecture](https://modelcontextprotocol.io/specification/architecture)
-- [MCP Specification — Core Concepts](https://modelcontextprotocol.io/specification/architecture#concepts)
+- [MCP Specification — Architecture](https://modelcontextprotocol.io/specification/2025-03-26/architecture)
+- [MCP Specification — Core Concepts](https://modelcontextprotocol.io/specification/2025-03-26/architecture#concepts)

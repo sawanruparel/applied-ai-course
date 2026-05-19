@@ -37,6 +37,6 @@ flowchart LR
 
 Sources
 
-- [MCP — Architecture](https://modelcontextprotocol.io/specification/architecture)
+- [MCP — Architecture](https://modelcontextprotocol.io/specification/2025-03-26/architecture)
 - [LangChain MCP integration](https://python.langchain.com/docs/integrations/tools/mcp/)
 - [LSP — the historical precedent](https://microsoft.github.io/language-server-protocol/)
