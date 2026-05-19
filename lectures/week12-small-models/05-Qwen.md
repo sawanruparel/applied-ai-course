@@ -42,4 +42,4 @@ layout: standard
 - [Qwen2.5-Coder Technical Report — arXiv:2409.12186 (Qwen Team, 2024)](https://arxiv.org/abs/2409.12186)
 - [Qwen3: Think Deeper, Act Faster (Alibaba, 2025)](https://qwenlm.github.io/blog/qwen3/)
 - [Qwen3 Technical Report — arXiv:2505.09388 (Qwen Team, 2025)](https://arxiv.org/abs/2505.09388)
-- [New Open-Source LLM Releases, April 2026 (Fazm AI)](https://fazm.ai/blog/new-open-source-llm-releases-april-2026)
+- [Qwen3 (QwenLM, GitHub)](https://github.com/QwenLM/Qwen3)

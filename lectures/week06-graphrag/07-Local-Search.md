@@ -72,4 +72,4 @@ For the second case, hybrid retrieval (next section) helps: combine an embedding
 Sources
 
 - [Edge et al. — §4.2 Local Search](https://arxiv.org/abs/2404.16130)
-- [microsoft/graphrag — local_search.py](https://github.com/microsoft/graphrag/blob/main/graphrag/query/structured_search/local_search/search.py)
+- [microsoft/graphrag — local search implementation](https://github.com/microsoft/graphrag)

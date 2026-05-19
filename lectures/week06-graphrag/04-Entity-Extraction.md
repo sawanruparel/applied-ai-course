@@ -63,5 +63,5 @@ So **~$1.50–$2 per 1M tokens** with Haiku — cheap enough that re-indexing a 
 
 Sources
 
-- [microsoft/graphrag — extraction prompts](https://github.com/microsoft/graphrag/tree/main/graphrag/prompts)
+- [microsoft/graphrag — extraction prompts & source](https://github.com/microsoft/graphrag)
 - [Edge et al. — §3.1 Source Documents → Text Chunks → Element Instances](https://arxiv.org/abs/2404.16130)

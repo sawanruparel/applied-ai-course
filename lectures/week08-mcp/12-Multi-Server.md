@@ -51,5 +51,5 @@ A power user can easily end up with 50+ tools across 8+ servers. Two patterns he
 
 Sources
 
-- [MCP — Architecture](https://modelcontextprotocol.io/specification/architecture)
+- [MCP — Architecture](https://modelcontextprotocol.io/specification/2025-03-26/architecture)
 - [Anthropic — Tool search tool](https://docs.claude.com/en/docs/agents-and-tools/tool-use/tool-search-tool)

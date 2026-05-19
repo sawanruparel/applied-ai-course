@@ -73,4 +73,4 @@ A query router or the user's choice picks the level. Some implementations let th
 Sources
 
 - [Edge et al. — §4.1 Global Search](https://arxiv.org/abs/2404.16130)
-- [microsoft/graphrag — global_search.py](https://github.com/microsoft/graphrag/blob/main/graphrag/query/structured_search/global_search/search.py)
+- [microsoft/graphrag — global search implementation](https://github.com/microsoft/graphrag)

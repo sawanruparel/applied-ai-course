@@ -37,4 +37,4 @@ layout: standard
 - [Llama 3.2: Revolutionizing Edge AI and Vision (Meta, 2024)](https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/)
 - [The Llama 3 Herd of Models — arXiv:2407.21783 (Meta, 2024)](https://arxiv.org/abs/2407.21783)
 - [The Llama 4 Herd: Natively Multimodal AI Innovation (Meta, 2025)](https://ai.meta.com/blog/llama-4-multimodal-intelligence/)
-- [New Open-Source LLM Releases, April 2026 (Fazm AI)](https://fazm.ai/blog/new-open-source-llm-releases-april-2026)
+- [Llama model family (Meta, Hugging Face)](https://huggingface.co/meta-llama)

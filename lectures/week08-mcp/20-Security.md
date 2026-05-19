@@ -43,6 +43,6 @@ flowchart LR
 
 Sources
 
-- [MCP — Security and trust principles](https://modelcontextprotocol.io/specification/draft/basic/security)
+- [MCP — Security and trust principles](https://modelcontextprotocol.io/specification/2025-03-26/basic)
 - [Simon Willison — prompt injection writings](https://simonwillison.net/series/prompt-injection/)
 - [Anthropic — Tool use permission policies](https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview)
