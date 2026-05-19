@@ -6,35 +6,23 @@ layout: diagram
 
 # The Hybrid Fleet: Mixing Model Sizes in One Application
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Application Layer                         │
-│                                                             │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│  │ Chat UI  │  │ Search   │  │ Pipeline │  │ Admin    │   │
-│  │          │  │          │  │ (batch)  │  │ Tools    │   │
-│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘   │
-│       │              │             │              │         │
-│  ┌────▼──────────────▼─────────────▼──────────────▼─────┐   │
-│  │              Model Gateway / Router                   │   │
-│  │     (routes by task type, complexity, SLA)            │   │
-│  └──┬──────────┬──────────────┬───────────────┬─────────┘   │
-│     │          │              │               │             │
-└─────┼──────────┼──────────────┼───────────────┼─────────────┘
-      │          │              │               │
-┌─────▼────┐ ┌──▼───────┐ ┌───▼────────┐ ┌───▼──────────┐
-│  Tier 1  │ │  Tier 2  │ │  Tier 3    │ │  Tier 4      │
-│  1B–3B   │ │  7B–14B  │ │  API Small │ │  API Large   │
-│          │ │          │ │            │ │              │
-│ Self-    │ │ Self-    │ │ GPT-4.1   │ │ Claude       │
-│ hosted   │ │ hosted   │ │ nano/mini │ │ Sonnet/Opus  │
-│ Llama 3B │ │ Qwen 8B  │ │ Gemini    │ │ GPT-4.1      │
-│          │ │          │ │ Flash     │ │              │
-│ ~$0.03/  │ │ ~$0.10/  │ │ ~$0.50/  │ │ ~$5.00/     │
-│  1K req  │ │  1K req  │ │  1K req  │ │  1K req     │
-└──────────┘ └──────────┘ └────────────┘ └──────────────┘
-   70%           15%           10%             5%
- of traffic   of traffic    of traffic      of traffic
+```mermaid
+flowchart TB
+    subgraph App[Application Layer]
+        Chat[Chat UI]
+        Search[Search]
+        Batch[Pipeline batch]
+        Admin[Admin Tools]
+    end
+    Chat --> GW
+    Search --> GW
+    Batch --> GW
+    Admin --> GW
+    GW[Model Gateway / Router<br/>by task, complexity, SLA]
+    GW -->|70%| T1["Tier 1: 1B-3B<br/>Self-hosted Llama 3B<br/>~$0.03 / 1K"]
+    GW -->|15%| T2["Tier 2: 7B-14B<br/>Self-hosted Qwen 8B<br/>~$0.10 / 1K"]
+    GW -->|10%| T3["Tier 3: API small<br/>GPT-4.1 nano / Gemini Flash<br/>~$0.50 / 1K"]
+    GW -->|5%| T4["Tier 4: API large<br/>Claude Sonnet / Opus<br/>~$5.00 / 1K"]
 ```
 
 ## Fleet Composition Per Feature

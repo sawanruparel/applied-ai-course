@@ -8,11 +8,13 @@ layout: diagram
 
 A deterministic chain of transformations, each using an LLM.
 
-```
-┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐
-│  Raw     │───▶│ Extract  │───▶│ Enrich   │───▶│ Validate │───▶│ Format   │
-│  Input   │    │ (LLM 1)  │    │ (LLM 2)  │    │ (code)   │    │ (LLM 3)  │
-└──────────┘    └──────────┘    └──────────┘    └──────────┘    └──────────┘
+```mermaid
+flowchart LR
+    Raw[Raw input] --> Ext["Extract (LLM 1)"]
+    Ext --> Enr["Enrich (LLM 2)"]
+    Enr --> Val["Validate (code)"]
+    Val --> Fmt["Format (LLM 3)"]
+    Fmt --> Out[Final output]
 ```
 
 ## Key Difference from Agent Loop

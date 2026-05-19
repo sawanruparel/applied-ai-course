@@ -6,6 +6,20 @@ layout: flow
 
 # Example: Automated Code Review Pipeline
 
+```mermaid
+flowchart LR
+    PR[Pull request diff] --> P[Planner]
+    P -->|review tasks| R1[Reviewer · file 1]
+    P --> R2[Reviewer · file 2]
+    P --> R3[Reviewer · file N]
+    P --> T[Tester]
+    R1 --> Rep[Reporter]
+    R2 --> Rep
+    R3 --> Rep
+    T --> Rep
+    Rep --> GH[GitHub PR comment]
+```
+
 ## Step 1: Planner Agent
 - **Input:** Pull request diff and description
 - **Action:** Analyzes the scope of changes and creates a review plan

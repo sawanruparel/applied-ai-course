@@ -8,6 +8,19 @@ layout: standard
 
 **Concept** -- Instead of a fixed retrieval pipeline, an LLM agent dynamically plans and executes retrieval strategies based on the query, intermediate results, and available tools.
 
+```mermaid
+flowchart TB
+    Q[Query] --> Agent[LLM agent]
+    Agent --> Plan{Select tool}
+    Plan --> VS[vector_search]
+    Plan --> BM[bm25_search]
+    Plan --> SQL[sql_query]
+    Plan --> Web[web_search]
+    VS & BM & SQL & Web --> Eval{Sufficient context?}
+    Eval -->|no| Agent
+    Eval -->|yes| Gen[Generate answer]
+```
+
 **Agent capabilities**
 
 - **Tool selection** -- Choose between vector search, keyword search, SQL queries, API calls, and web search based on query characteristics

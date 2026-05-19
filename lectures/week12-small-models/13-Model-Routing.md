@@ -8,29 +8,12 @@ layout: diagram
 
 ## Send Easy Queries to Small Models, Hard Queries to Large Models
 
-```
-                         ┌──────────────┐
-                         │  User Query  │
-                         └──────┬───────┘
-                                │
-                         ┌──────▼───────┐
-                         │   Router     │
-                         │  (Classifier │
-                         │   or Rules)  │
-                         └──┬───┬───┬───┘
-                            │   │   │
-              ┌─────────────┘   │   └─────────────┐
-              │                 │                  │
-       ┌──────▼──────┐  ┌──────▼──────┐   ┌──────▼──────┐
-       │  Simple /    │  │  Medium     │   │  Complex /   │
-       │  Routine     │  │  Difficulty │   │  Novel       │
-       └──────┬───────┘  └──────┬──────┘   └──────┬──────┘
-              │                 │                  │
-       ┌──────▼──────┐  ┌──────▼──────┐   ┌──────▼──────┐
-       │  Llama 3.2  │  │  Qwen 3 8B  │   │  Claude     │
-       │  3B         │  │  or Phi-4   │   │  Sonnet 4   │
-       │  $0.03/1K   │  │  $0.15/1K   │   │  $2.50/1K   │
-       └─────────────┘  └─────────────┘   └─────────────┘
+```mermaid
+flowchart TB
+    Q[User Query] --> R{Router<br/>classifier or rules}
+    R -->|Simple| S["Llama 3.2 3B<br/>$0.03 / 1K"]
+    R -->|Medium| M["Qwen 3 8B / Phi-4<br/>$0.15 / 1K"]
+    R -->|Complex| L["Claude Sonnet 4<br/>$2.50 / 1K"]
 ```
 
 ## Router Implementation Options

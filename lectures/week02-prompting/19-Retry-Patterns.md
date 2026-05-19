@@ -6,6 +6,20 @@ layout: flow
 
 # Retry and Fallback Patterns: Graceful Degradation
 
+```mermaid
+flowchart TB
+    Start[Initial call] --> V1{Valid?}
+    V1 -- yes --> Done[Return result]
+    V1 -- no --> Retry[Retry w/ error context]
+    Retry --> V2{Valid?}
+    V2 -- yes --> Done
+    V2 -- no --> Esc[Escalate to stronger model]
+    Esc --> V3{Valid?}
+    V3 -- yes --> Done
+    V3 -- no --> FB[Fallback: human review]
+    FB --> Alert[Log + alert]
+```
+
 ## Step 1: Initial Call
 
 Send prompt to primary model (e.g., Claude Sonnet). Parse and validate the response against the expected schema.

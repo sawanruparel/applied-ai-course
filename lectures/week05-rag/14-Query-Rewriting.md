@@ -8,6 +8,16 @@ layout: standard
 
 **Problem** -- User queries are often vague, conversational, or poorly structured for retrieval. The gap between how humans ask questions and how information is indexed is a primary cause of retrieval failure.
 
+```mermaid
+flowchart LR
+    Q[Raw query] --> Choose{Rewrite strategy}
+    Choose --> Rewrite[LLM rewrite<br/>clarify + expand]
+    Choose --> HyDE[HyDE<br/>generate hypothetical doc]
+    Choose --> StepBack[Step-back<br/>abstract concept]
+    Choose --> Decomp[Decompose<br/>sub-questions]
+    Rewrite & HyDE & StepBack & Decomp --> Retrieve[Retrieval]
+```
+
 **Technique 1: LLM-based rewriting**
 
 Prompt the LLM to reformulate the query before retrieval. Effective for expanding abbreviations, resolving coreferences, and adding domain context.

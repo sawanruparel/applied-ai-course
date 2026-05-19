@@ -43,4 +43,16 @@ Prompt engineering is the fastest path to a working prototype. But it has hard l
 
 ## Decision Framework
 
+```mermaid
+flowchart TB
+    T[Task] --> J{Needs human judgment?}
+    J -- no --> Code[Traditional code]
+    J -- yes --> S{Single step or workflow?}
+    S -- single --> P[Prompt engineering]
+    S -- multi-step + tools --> A[Agent]
+    P --> F{Plateaued accuracy<br/>despite optimization?}
+    F -- yes --> FT[Fine-tune]
+    F -- no --> Done[Stay with prompts]
+```
+
 Ask: "Would a junior employee need to exercise judgment for this task?" If yes, prompting or agents. If no, write code.

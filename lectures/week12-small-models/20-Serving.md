@@ -8,12 +8,16 @@ layout: standard
 
 ## The Serving Stack
 
-```
-Client → Load Balancer → Inference Server → GPU/CPU Workers
-                              │
-                    ┌─────────┼─────────┐
-                    │         │         │
-                  vLLM       TGI     Triton
+```mermaid
+flowchart LR
+    C[Client] --> LB[Load Balancer]
+    LB --> IS[Inference Server]
+    IS --> vLLM
+    IS --> TGI
+    IS --> Triton
+    vLLM --> W[GPU / CPU Workers]
+    TGI --> W
+    Triton --> W
 ```
 
 ## vLLM — The Throughput Champion

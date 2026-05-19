@@ -6,44 +6,14 @@ layout: diagram
 
 # Example: Customer Support with Agent Routing
 
-```
-    Customer: "I was charged twice for my subscription"
-                          │
-                          v
-               ┌──────────────────┐
-               │   Triage Agent    │
-               │                  │
-               │ Classifies:      │
-               │ - billing        │◄──── Routes based on
-               │ - technical      │      intent classification
-               │ - account        │
-               │ - general        │
-               └────────┬─────────┘
-                        │ billing detected
-                        v
-               ┌──────────────────┐
-               │  Billing Agent    │
-               │                  │
-               │ Tools:           │
-               │ - lookup_charges │
-               │ - process_refund │     ┌──────────────────┐
-               │ - check_sub      │────>│  Escalation      │
-               │                  │     │  Agent            │
-               │ Checks charges,  │     │                  │
-               │ finds duplicate  │     │ Activated when:  │
-               │                  │     │ - Agent unsure   │
-               └────────┬─────────┘     │ - Customer angry │
-                        │               │ - Policy edge    │
-                        │               │   case           │
-                        v               │                  │
-               ┌──────────────────┐     │ Creates ticket   │
-               │  Resolution      │     │ for human review │
-               │                  │     └──────────────────┘
-               │ "I've found the  │
-               │  duplicate charge│
-               │  and initiated a │
-               │  refund."        │
-               └──────────────────┘
+```mermaid
+flowchart TB
+    U["Customer:<br/>'I was charged twice'"] --> T{Triage agent}
+    T -->|billing| B["Billing agent<br/>lookup_charges<br/>process_refund"]
+    T -->|technical| Tech[Tech support agent]
+    T -->|account| Acc[Account agent]
+    B --> R[Resolution to user]
+    B -->|low confidence or<br/>angry customer| E["Escalation agent<br/>(human ticket)"]
 ```
 
 ## Design Decisions

@@ -6,6 +6,16 @@ layout: standard
 
 # Self-Reflection: An Agent Critiques Its Own Output
 
+```mermaid
+flowchart LR
+    Task[Task] --> G["Generator<br/>'write the best output'"]
+    G --> Draft[Draft]
+    Draft --> C["Critic<br/>'find everything wrong'"]
+    C --> FB[Critique]
+    FB --> G2[Generator revises]
+    G2 --> Final[Final output]
+```
+
 ## The Simplest Multi-Agent Pattern
 - Same model, two passes: **generate** then **critique**
 - The critic pass has a different system prompt focused on finding problems

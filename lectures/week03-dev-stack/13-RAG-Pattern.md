@@ -8,18 +8,13 @@ layout: diagram
 
 Retrieve relevant context, augment the prompt, then generate.
 
-```
-┌──────────┐     ┌──────────────┐     ┌──────────────┐
-│  User    │────▶│   Embed      │────▶│   Vector     │
-│  Query   │     │   Query      │     │   Search     │
-└──────────┘     └──────────────┘     └──────┬───────┘
-                                              │
-                                       top-k chunks
-                                              │
-┌──────────┐     ┌──────────────┐     ┌──────▼───────┐
-│ Response │◀────│   Generate   │◀────│   Augment    │
-│          │     │   (LLM)      │     │   Prompt     │
-└──────────┘     └──────────────┘     └──────────────┘
+```mermaid
+flowchart LR
+    Q[User query] --> E[Embed query]
+    E --> V[Vector search]
+    V -- top-k chunks --> Aug[Augment prompt]
+    Aug --> G["Generate (LLM)"]
+    G --> Resp[Response]
 ```
 
 ## Key Decisions in RAG

@@ -15,6 +15,18 @@ layout: standard
 
 ## A/B Test Design for Model Swaps
 
+```mermaid
+flowchart LR
+    Traffic[Production traffic] --> Split{Traffic split}
+    Split -->|90-95%| Control[Control: current model]
+    Split -->|5-10%| Variant[Variant: smaller model]
+    Control --> M[Metrics: quality, latency, cost]
+    Variant --> M
+    M --> D{Within threshold?}
+    D -->|Yes| Ramp[Ramp to 25 -> 50 -> 100%]
+    D -->|No| RB[Auto-rollback]
+```
+
 ### Traffic Split
 - Start with **5–10%** of traffic to the new (smaller) model
 - Gradually ramp to 25%, 50%, then 100% if metrics hold

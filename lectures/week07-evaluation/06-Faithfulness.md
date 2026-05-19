@@ -12,6 +12,14 @@ Faithfulness is the single most important metric for RAG systems. A high faithfu
 
 ## How RAGAS Computes Faithfulness
 
+```mermaid
+flowchart LR
+    Ans[Generated answer] --> Decomp["1. Decompose<br/>into atomic claims"]
+    Decomp --> Verify["2. Verify each claim<br/>against context"]
+    Ctx[Retrieved context] --> Verify
+    Verify --> Score["3. score =<br/>supported / total"]
+```
+
 **Step 1: Claim Decomposition**
 The LLM breaks the generated answer into individual atomic claims.
 

@@ -28,6 +28,19 @@ GPU:  [A,B,C] [A,B,C,D] [A,C,D] [A,D,E] [D,E,F] ...
 
 ## Speculative Decoding — Use Small Models to Speed Up Big Ones
 
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant D as Draft model (small)
+    participant T as Target model (large)
+    U->>D: prompt
+    D->>D: generate K candidate tokens
+    D->>T: K tokens for verification
+    T->>T: verify all K in one forward pass
+    T-->>U: accepted tokens (free)
+    Note over T: rejected token costs 1 extra step
+```
+
 1. **Draft model** (small, fast): generates K candidate tokens
 2. **Target model** (large, accurate): verifies all K tokens in one forward pass
 3. Accepted tokens are free — rejected tokens cost one extra step

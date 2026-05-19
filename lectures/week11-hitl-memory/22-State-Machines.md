@@ -8,34 +8,17 @@ layout: diagram
 
 Explicit state transitions with persistence for complex, multi-step agent tasks.
 
-```
-  ┌──────────┐   user submits   ┌──────────────┐  research done  ┌────────────┐
-  │          │   request        │              │                 │            │
-  │  INTAKE  │─────────────────▶│  RESEARCHING │────────────────▶│  DRAFTING  │
-  │          │                  │              │                 │            │
-  └──────────┘                  └──────┬───────┘                 └─────┬──────┘
-                                       │                               │
-                                  needs info                     draft ready
-                                       │                               │
-                                       ▼                               ▼
-                                ┌──────────────┐                ┌────────────┐
-                                │  WAITING ON  │                │  HUMAN     │
-                                │  USER INPUT  │                │  REVIEW    │◀── HITL pause
-                                └──────┬───────┘                └─────┬──────┘
-                                       │                              │
-                                  user responds              ┌───────┴───────┐
-                                       │                     │               │
-                                       ▼                  approved       rejected
-                                ┌──────────────┐             │               │
-                                │ RESEARCHING  │             ▼               ▼
-                                │ (re-enter)   │       ┌──────────┐   ┌───────────┐
-                                └──────────────┘       │ EXECUTING│   │ REVISING  │
-                                                       └────┬─────┘   └─────┬─────┘
-                                                            │               │
-                                                            ▼               │
-                                                       ┌─────────┐         │
-                                                       │  DONE   │◀────────┘
-                                                       └─────────┘
+```mermaid
+flowchart TB
+    Intake([INTAKE]) --> Research[RESEARCHING]
+    Research -->|needs info| Wait[WAITING ON USER]
+    Wait -->|user responds| Research
+    Research -->|research done| Draft[DRAFTING]
+    Draft --> Review["HUMAN REVIEW<br/>(HITL pause)"]
+    Review -->|approved| Exec[EXECUTING]
+    Review -->|rejected| Revise[REVISING]
+    Revise --> Draft
+    Exec --> Done([DONE])
 ```
 
 ## Implementation with LangGraph

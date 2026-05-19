@@ -6,6 +6,15 @@ layout: flow
 
 # Incident Response: When Safety Fails
 
+```mermaid
+flowchart LR
+    S1[1. Detect<br/>alert / report] --> S2[2. Contain<br/>rate limit, circuit breaker]
+    S2 --> S3[3. Investigate<br/>root cause, scope]
+    S3 --> S4[4. Remediate<br/>guardrails, prompts, retrain]
+    S4 --> S5[5. Review<br/>post-mortem, threat model]
+    S5 --> S1
+```
+
 ## Step 1: Detect
 
 Identify that a safety failure has occurred:

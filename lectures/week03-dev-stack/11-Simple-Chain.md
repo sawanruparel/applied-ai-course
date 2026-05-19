@@ -8,11 +8,11 @@ layout: diagram
 
 The most common pattern. Most LLM applications are just this.
 
-```
-┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
-│  Input    │────▶│  Prompt  │────▶│   LLM    │────▶│  Parse   │
-│           │     │ Template │     │   Call   │     │  Output  │
-└──────────┘     └──────────┘     └──────────┘     └──────────┘
+```mermaid
+flowchart LR
+    In[Input] --> P[Prompt template]
+    P --> L[LLM call]
+    L --> Out[Parse output]
 ```
 
 ## When to Use

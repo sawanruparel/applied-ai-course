@@ -8,49 +8,22 @@ layout: diagram
 
 Combining multiple memory types in one agent system.
 
-```
-                         ┌─────────────────────────────┐
-                         │        AGENT CORE            │
-                         │                              │
-                         │   ┌──────────────────────┐   │
-                         │   │   Working Memory      │   │
-                         │   │   (Context Window)    │   │
-                         │   │                        │   │
-                         │   │  System Prompt         │   │
-                         │   │  + Retrieved Memories  │   │
-                         │   │  + Recent Messages     │   │
-                         │   │  + Current Tool State  │   │
-                         │   └──────────────────────┘   │
-                         └──────────┬──────────────────┘
-                                    │
-                    ┌───────────────┼───────────────┐
-                    │               │               │
-                    ▼               ▼               ▼
-         ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-         │  Conversation │  │   Semantic    │  │   Episodic   │
-         │  Memory       │  │   Memory     │  │   Memory     │
-         │               │  │              │  │              │
-         │  This session │  │  Entities &  │  │  Past task   │
-         │  messages +   │  │  facts about │  │  outcomes &  │
-         │  running      │  │  user, world │  │  lessons     │
-         │  summary      │  │              │  │  learned     │
-         │               │  │  Key-value   │  │              │
-         │  In-memory    │  │  or Graph DB │  │  Vector DB   │
-         └──────────────┘  └──────────────┘  └──────────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │   Memory Manager      │
-                         │                        │
-                         │  - Decides what to     │
-                         │    store vs discard    │
-                         │  - Retrieves relevant  │
-                         │    memories per query  │
-                         │  - Handles conflicts   │
-                         │    and updates         │
-                         │  - Manages decay and   │
-                         │    forgetting          │
-                         └──────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Core[Agent core]
+      W["Working memory<br/>system prompt + retrieved + recent"]
+    end
+    Conv["Conversation memory<br/>session + summary"]
+    Sem["Semantic memory<br/>entities, facts<br/>(KV or graph DB)"]
+    Epi["Episodic memory<br/>past task outcomes<br/>(vector DB)"]
+    MM["Memory manager<br/>store · retrieve · resolve · decay"]
+    W --> MM
+    MM --> Conv
+    MM --> Sem
+    MM --> Epi
+    Conv --> W
+    Sem --> W
+    Epi --> W
 ```
 
 ## Wiring it together

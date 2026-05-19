@@ -8,6 +8,19 @@ layout: standard
 
 An LLM generating SQL is powerful but dangerous. Layer your defenses:
 
+```mermaid
+flowchart LR
+    LLM[LLM-generated SQL] --> V{SELECT only?}
+    V -- no --> R1[Reject: isError]
+    V -- yes --> Allow{Table allowlisted?}
+    Allow -- no --> R2[Reject]
+    Allow -- yes --> Bind[Parameter binding]
+    Bind --> Timeout[Statement timeout]
+    Timeout --> Limit[LIMIT 100 wrapper]
+    Limit --> RO[(Read-only connection)]
+```
+
+
 **1. Read-only connection:**
 ```typescript
 // SQLite: open in read-only mode

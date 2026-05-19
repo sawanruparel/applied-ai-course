@@ -6,22 +6,16 @@ layout: diagram
 
 # Training-Time vs. Inference-Time Scaling
 
-```
-Performance
-    ^
-    |                                    ___________  Inference-time scaling
-    |                               ___/              (o3, R1 with more compute)
-    |                          ___/
-    |                     ___/
-    |                ___/
-    |           ___/        ____________  Training-time scaling
-    |      ___/        ____/              (GPT-3 -> GPT-4)
-    |  ___/       ____/
-    | /       ___/
-    |/    ___/
-    | ___/
-    |/
-    +-------------------------------------------------> Compute (log scale)
+```mermaid
+flowchart LR
+    subgraph Train["Training-time scaling (Chinchilla)"]
+      T1[Small model] --> T2[Medium model] --> T3[Large model<br/>diminishing returns]
+    end
+    subgraph Infer["Inference-time scaling (o1, o3, R1)"]
+      I1[Direct answer] --> I2[Short CoT] --> I3[Long CoT<br/>+ search + verify]
+    end
+    Train -.compose.-> Best[Larger model + more thinking = best results]
+    Infer -.compose.-> Best
 ```
 
 ### Key observations:

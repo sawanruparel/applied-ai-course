@@ -8,29 +8,14 @@ layout: diagram
 
 Humans correct agent outputs. Agent improves from corrections.
 
-```
-     ┌─────────────────────────────────────────────────────┐
-     │                  FEEDBACK LOOP                       │
-     │                                                      │
-     │  ┌─────────┐    ┌──────────┐    ┌───────────────┐   │
-     │  │  Agent   │───▶│  Output  │───▶│  Human Review │   │
-     │  │  Action  │    │          │    │               │   │
-     │  └─────────┘    └──────────┘    └───────┬───────┘   │
-     │       ▲                                  │           │
-     │       │                          ┌───────┴───────┐   │
-     │       │                          │               │   │
-     │       │                       CORRECT         ACCEPT │
-     │       │                          │               │   │
-     │       │                          ▼               │   │
-     │  ┌────┴──────┐    ┌──────────────────┐          │   │
-     │  │  Update   │◀───│  Correction Data │          │   │
-     │  │  - Prompts│    │  - What was wrong│          │   │
-     │  │  - Rules  │    │  - Correct answer│          │   │
-     │  │  - Memory │    │  - Why it matters│          │   │
-     │  └───────────┘    └──────────────────┘          │   │
-     │                                                  │   │
-     └──────────────────────────────────────────────────┘   │
-                                                            │
+```mermaid
+flowchart LR
+    A[Agent action] --> O[Output]
+    O --> H{Human review}
+    H -- accept --> Done([Accepted])
+    H -- correct --> CD["Correction data<br/>what · right answer · why"]
+    CD --> U["Update<br/>prompts · rules · memory"]
+    U --> A
 ```
 
 ## Types of feedback:

@@ -17,6 +17,21 @@ layout: standard
 
 ## Defense Layers
 
+```mermaid
+flowchart LR
+    Req[Request] --> Val[Input validation]
+    Val --> Call[LLM call]
+    Call --> Out{OK?}
+    Out -- no --> Retry[Retry w/ backoff]
+    Retry --> Call
+    Retry -. max retries .-> FB[Fallback model]
+    FB --> Call
+    Out -- yes --> SchemaV[Pydantic validation]
+    SchemaV -- invalid --> Retry
+    SchemaV -- valid --> Done[Return]
+    Retry -. circuit open .-> CB[Circuit breaker: degrade]
+```
+
 ### 1. Retries with Exponential Backoff
 
 ```python

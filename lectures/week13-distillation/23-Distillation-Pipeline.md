@@ -6,30 +6,14 @@ layout: diagram
 
 # End-to-End Distillation Pipeline
 
-```
-  +===========================================================================+
-  |                        DISTILLATION PIPELINE                               |
-  +===========================================================================+
-  |                                                                            |
-  |  +--------------+      +----------------+      +-----------------+         |
-  |  |   TEACHER    |      |  SYNTHETIC DATA|      |    STUDENT      |         |
-  |  |   MODEL      | ---> |  GENERATION    | ---> |    TRAINING     |         |
-  |  |              |      |                |      |                 |         |
-  |  | GPT-4o /     |      | 5K-50K examples|      | Llama 8B +     |         |
-  |  | Claude Opus  |      | Filtered &     |      | QLoRA           |         |
-  |  |              |      | validated      |      |                 |         |
-  |  +--------------+      +----------------+      +-----------------+         |
-  |                                                       |                    |
-  |                                                       v                    |
-  |  +--------------+      +----------------+      +-----------------+         |
-  |  |   DEPLOY     | <--- |   EVALUATE     | <--- |   MERGE         |         |
-  |  |              |      |                |      |   ADAPTER        |         |
-  |  | vLLM / TGI / |      | Task-specific  |      |                 |         |
-  |  | Ollama /     |      | evals + bench- |      | Base + LoRA =   |         |
-  |  | cloud API    |      | mark suite     |      | single model    |         |
-  |  +--------------+      +----------------+      +-----------------+         |
-  |                                                                            |
-  +===========================================================================+
+```mermaid
+flowchart LR
+    T["Teacher model<br/>GPT-4o / Claude Opus"] --> G["Synthetic data<br/>5K-50K filtered examples"]
+    G --> ST["Student training<br/>Llama 8B + QLoRA"]
+    ST --> Merge["Merge adapter<br/>Base + LoRA"]
+    Merge --> Eval["Evaluate<br/>task evals + benchmarks"]
+    Eval --> Deploy["Deploy<br/>vLLM / TGI / Ollama"]
+    Eval -->|Fails bar| G
 ```
 
 ## Phase details with cost estimates

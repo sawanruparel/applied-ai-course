@@ -8,59 +8,16 @@ layout: diagram
 
 ## Input Rail --> LLM --> Output Rail
 
-```
-  USER REQUEST
-       |
-       v
-  +==========================================+
-  |           INPUT RAILS                     |
-  |  +------------------------------------+  |
-  |  | 1. Injection detection (classifier)|  |
-  |  | 2. PII detection & redaction       |  |
-  |  | 3. Topic classification            |  |
-  |  | 4. Rate limiting & abuse detection |  |
-  |  | 5. Input length & format checks    |  |
-  |  +------------------------------------+  |
-  +==========================================+
-       |                          |
-       | PASS                     | BLOCK
-       v                          v
-  +------------------+    +------------------+
-  |   SYSTEM PROMPT  |    | REJECTION        |
-  |   (hardened,     |    | RESPONSE         |
-  |    sandwiched)   |    | "I can't help    |
-  |        +         |    |  with that."     |
-  |   SANITIZED      |    +------------------+
-  |   USER INPUT     |
-  +------------------+
-       |
-       v
-  +------------------+
-  |    LLM CORE      |
-  |  (generation)    |
-  +------------------+
-       |
-       v
-  +==========================================+
-  |          OUTPUT RAILS                     |
-  |  +------------------------------------+  |
-  |  | 1. Safety classification           |  |
-  |  |    (LlamaGuard / custom)           |  |
-  |  | 2. PII scanning & redaction        |  |
-  |  | 3. Hallucination check             |  |
-  |  | 4. Schema / format validation      |  |
-  |  | 5. Exfiltration detection          |  |
-  |  | 6. Tool call authorization         |  |
-  |  +------------------------------------+  |
-  +==========================================+
-       |                          |
-       | PASS                     | BLOCK
-       v                          v
-  +------------------+    +------------------+
-  | VALIDATED        |    | FALLBACK         |
-  | RESPONSE         |    | RESPONSE or      |
-  | --> User         |    | HUMAN ESCALATION |
-  +------------------+    +------------------+
+```mermaid
+flowchart TB
+    U[User Request] --> IR["Input Rails<br/>injection / PII / topic /<br/>rate limit / length"]
+    IR -->|Pass| SP[System prompt + sanitized input]
+    IR -->|Block| Reject["Rejection: I can't help with that"]
+    SP --> LLM[LLM Core]
+    LLM --> OR["Output Rails<br/>safety / PII / hallucination /<br/>schema / exfil / tool auth"]
+    OR -->|Pass| V[Validated Response]
+    OR -->|Block| Fallback[Fallback or human escalation]
+    V --> User2[User]
 ```
 
 **Latency tip:** Run input rails in parallel where possible. Run output rails as streaming validators to minimize perceived latency.

@@ -24,6 +24,16 @@ layout: standard
 
 ### The Context Management Stack
 
+```mermaid
+flowchart LR
+    Q[Raw query] --> Understand["1. Query<br/>understanding"]
+    Understand --> Retrieve["2. Multi-stage<br/>retrieval"]
+    Retrieve --> Select["3. Context<br/>selection"]
+    Select --> Order["4. Context<br/>ordering"]
+    Order --> Compress["5. Context<br/>compression"]
+    Compress --> LLM[LLM]
+```
+
 1. **Query understanding** -- transform the raw query into better retrieval signals
 2. **Multi-stage retrieval** -- cast a wide net, then narrow with reranking
 3. **Context selection** -- choose which chunks to include and which to discard

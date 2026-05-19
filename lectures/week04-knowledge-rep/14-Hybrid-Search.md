@@ -8,6 +8,15 @@ layout: two-column
 
 Neither vector search nor keyword search is sufficient alone. Combining them yields **significantly better recall**.
 
+```mermaid
+flowchart LR
+    Q[Query] --> V["Vector search<br/>(semantic)"]
+    Q --> K["BM25 search<br/>(lexical)"]
+    V --> F[Reciprocal rank fusion]
+    K --> F
+    F --> Top[Merged top-k]
+```
+
 ## Vector Search (Semantic)
 
 **Strengths:**

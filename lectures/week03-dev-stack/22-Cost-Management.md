@@ -24,6 +24,18 @@ Prices per million tokens (as of early 2026):
 
 ## Cost Optimization Strategies
 
+```mermaid
+flowchart LR
+    Req[Request] --> Cache{Cache hit?}
+    Cache -- yes --> Resp[Response]
+    Cache -- no --> Cls[Classify difficulty]
+    Cls -- simple --> Cheap["Cheap model<br/>(Haiku, 4o-mini, Flash)"]
+    Cls -- complex --> Expensive["Strong model<br/>(Sonnet, 4o, o3)"]
+    Cheap --> Track[Track tokens + cost]
+    Expensive --> Track
+    Track --> Resp
+```
+
 ### 1. Model Routing
 
 - Route simple queries to cheap models (GPT-4o-mini, Haiku, Gemini Flash)

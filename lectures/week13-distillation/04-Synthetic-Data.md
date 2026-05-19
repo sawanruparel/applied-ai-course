@@ -10,6 +10,15 @@ layout: standard
 
 Instead of manually labeling thousands of examples, use a powerful "teacher" model (GPT-4o, Claude Opus) to generate training data for a smaller "student" model.
 
+```mermaid
+flowchart LR
+    Seed[Seed inputs<br/>topics, schema] --> T[Teacher model<br/>GPT-4o / Claude Opus]
+    T --> D[Synthetic examples<br/>10K+ generated overnight]
+    D --> Filter[Quality filter]
+    Filter --> Train[Train student<br/>Llama 8B / Phi-4]
+    Train --> Deploy[Deploy: cheap, fast]
+```
+
 ## Why synthetic data works
 
 - **Teacher models encode human preferences** -- they were trained on vast human feedback

@@ -10,6 +10,24 @@ layout: standard
 
 **Streaming architecture**
 
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant App as App
+    participant R as Retriever
+    participant L as LLM
+    U->>App: Query
+    par parallel
+      App->>R: Retrieve
+    and
+      App->>L: Stream preamble
+    end
+    R-->>App: Top-k chunks
+    App->>L: Inject grounded context
+    L-->>U: Stream grounded answer
+```
+
 1. **Parallel retrieval + first-token generation** -- Begin generating a preamble ("Let me look into that...") while retrieval executes in parallel. Replace with grounded content once results arrive.
 
 2. **Speculative retrieval** -- Pre-fetch likely-needed context based on conversation trajectory before the user finishes typing. Cache results for immediate use.

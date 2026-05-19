@@ -8,6 +8,15 @@ layout: flow
 
 **Paper** -- Jeong et al., "Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity" (NAACL 2024)
 
+```mermaid
+flowchart TB
+    Q[Incoming query] --> Class[Complexity classifier]
+    Class -->|A: simple factoid| A["Single-step retrieval<br/>+ direct generation"]
+    Class -->|B: moderate| B["Retrieve + rerank<br/>+ verify"]
+    Class -->|C: complex| C["Iterative RAG<br/>+ decomposition"]
+    A & B & C --> Ans[Answer]
+```
+
 ## Classify Query Complexity
 
 A lightweight classifier (trained on silver labels from LLM evaluation) categorizes each incoming query:

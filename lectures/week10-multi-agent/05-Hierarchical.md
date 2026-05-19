@@ -8,35 +8,16 @@ layout: diagram
 
 A manager agent breaks down tasks and delegates to specialized workers.
 
-```
-                      ┌──────────────────┐
-                      │     MANAGER      │
-                      │                  │
-                      │ - Decomposes task│
-                      │ - Assigns work   │
-                      │ - Aggregates     │
-                      │   results        │
-                      └────────┬─────────┘
-                               │
-               ┌───────────────┼───────────────┐
-               │               │               │
-               v               v               v
-        ┌────────────┐  ┌────────────┐  ┌────────────┐
-        │  Worker A   │  │  Worker B   │  │  Worker C   │
-        │  (Coder)    │  │ (Researcher)│  │  (Tester)   │
-        │             │  │             │  │             │
-        │ Tools:      │  │ Tools:      │  │ Tools:      │
-        │ - file_edit │  │ - web_search│  │ - run_tests │
-        │ - terminal  │  │ - read_url  │  │ - lint      │
-        └────────────┘  └────────────┘  └────────────┘
-               │               │               │
-               └───────────────┼───────────────┘
-                               │
-                               v
-                      ┌──────────────────┐
-                      │  MANAGER reviews │
-                      │  and synthesizes │
-                      └──────────────────┘
+```mermaid
+flowchart TB
+    M["Manager<br/>(decompose · delegate · synthesize)"]
+    M -->|sub-task| Wa["Coder<br/>file_edit, terminal"]
+    M -->|sub-task| Wb["Researcher<br/>web_search, read_url"]
+    M -->|sub-task| Wc["Tester<br/>run_tests, lint"]
+    Wa -->|result| M
+    Wb -->|result| M
+    Wc -->|result| M
+    M --> Out[Synthesized output]
 ```
 
 ## Key Design Decisions

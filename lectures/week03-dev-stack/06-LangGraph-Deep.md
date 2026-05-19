@@ -8,36 +8,18 @@ layout: diagram
 
 ## State Machine Architecture
 
-```
-                    ┌──────────────┐
-                    │    START     │
-                    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-                    │   classify   │──── updates state.intent
-                    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-              ┌─────│   router     │─────┐
-              │     └──────────────┘     │
-         intent=qa              intent=action
-              │                         │
-       ┌──────▼───────┐         ┌──────▼───────┐
-       │   retrieve    │         │   plan_steps │
-       └──────┬───────┘         └──────┬───────┘
-              │                         │
-       ┌──────▼───────┐         ┌──────▼───────┐
-       │   generate    │         │   execute    │◄──┐
-       └──────┬───────┘         └──────┬───────┘   │
-              │                         │     not done
-              │                  ┌──────▼───────┐  │
-              │                  │   evaluate    │──┘
-              │                  └──────┬───────┘
-              │                         │ done
-              │                         │
-                    ┌──────▼───────┐
-                    │     END      │
-                    └──────────────┘
+```mermaid
+flowchart TB
+    Start([START]) --> Classify[classify: sets state.intent]
+    Classify --> Router{router}
+    Router -- intent=qa --> Retrieve[retrieve]
+    Router -- intent=action --> Plan[plan_steps]
+    Retrieve --> Generate[generate]
+    Plan --> Execute[execute]
+    Execute --> Evaluate[evaluate]
+    Evaluate -- not done --> Execute
+    Evaluate -- done --> End([END])
+    Generate --> End
 ```
 
 ## Core Concepts

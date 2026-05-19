@@ -8,26 +8,14 @@ layout: diagram
 
 Every AI application has these layers, whether you make them explicit or not.
 
-```
-┌─────────────────────────────────────────────────┐
-│              DEPLOYMENT & INFRA                  │
-│     Docker / K8s / Serverless / Edge             │
-├─────────────────────────────────────────────────┤
-│              OBSERVABILITY                       │
-│     Tracing / Logging / Eval / Cost Tracking     │
-├─────────────────────────────────────────────────┤
-│              ORCHESTRATION                       │
-│     Routing / State / Multi-step / Agents        │
-│     (LangGraph, PydanticAI, custom code)         │
-├─────────────────────────────────────────────────┤
-│              FRAMEWORK / SDK                     │
-│     LLM client, tool calling, structured output  │
-│     (openai SDK, anthropic SDK, litellm)         │
-├─────────────────────────────────────────────────┤
-│              MODEL LAYER                         │
-│     GPT-4o / Claude / Gemini / Llama / Mistral   │
-│     via API or self-hosted                       │
-└─────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    L1["Deployment & Infra<br/>Docker / K8s / Serverless / Edge"]
+    L2["Observability<br/>Tracing / Logging / Eval / Cost"]
+    L3["Orchestration<br/>LangGraph / PydanticAI / custom"]
+    L4["Framework / SDK<br/>openai / anthropic / litellm"]
+    L5["Model layer<br/>GPT-4o / Claude / Gemini / Llama"]
+    L1 --> L2 --> L3 --> L4 --> L5
 ```
 
 **Key insight**: You can swap layers independently. A good architecture keeps each layer replaceable.

@@ -12,11 +12,15 @@ Your first distillation pass will not be perfect. The student will fail on edge 
 
 ## The iterative loop
 
-```
-Round 1: Generate 5K examples -> Train student -> Evaluate -> Find failures
-Round 2: Generate 2K targeted examples for failure modes -> Retrain -> Evaluate
-Round 3: Generate 1K hard examples -> Retrain -> Evaluate
-...until quality target is met
+```mermaid
+flowchart LR
+    R1[Round 1<br/>5K examples] --> Train1[Train student]
+    Train1 --> Eval1[Evaluate]
+    Eval1 --> Fail[Mine failure cases]
+    Fail --> R2[Round 2+<br/>targeted examples<br/>for failure modes]
+    R2 --> Train1
+    Eval1 --> Done{Quality bar met?}
+    Done -->|Yes| Ship[Ship]
 ```
 
 ## Mining failures for targeted data generation

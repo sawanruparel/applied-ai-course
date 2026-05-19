@@ -8,6 +8,16 @@ layout: standard
 
 Yao et al. (2022): Interleave chain-of-thought reasoning with tool use. The model **thinks** about what to do, **acts** using an external tool, **observes** the result, and repeats.
 
+```mermaid
+flowchart LR
+    Q[Question] --> T[Thought]
+    T --> A[Action: tool call]
+    A --> O[Observation]
+    O --> D{Enough info?}
+    D -- no --> T
+    D -- yes --> F[Final answer]
+```
+
 ## Why ReAct?
 
 Pure CoT fails when the model needs **external information** or must **take actions** in the world. ReAct bridges reasoning and grounding.

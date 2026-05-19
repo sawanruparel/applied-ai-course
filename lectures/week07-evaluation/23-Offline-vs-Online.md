@@ -8,6 +8,16 @@ layout: two-column
 
 ## Two complementary strategies for different stages of the development lifecycle.
 
+```mermaid
+flowchart LR
+    Dev[Dev change] --> Offline["Offline eval<br/>golden set + synthetic"]
+    Offline -->|pass regression| Deploy[Deploy]
+    Offline -->|fail| Dev
+    Deploy --> Online["Online eval<br/>sample prod traces"]
+    Online -->|new failures| Golden[Add to golden set]
+    Golden --> Offline
+```
+
 ## Offline (Pre-Deployment)
 
 **When**: Before shipping changes.

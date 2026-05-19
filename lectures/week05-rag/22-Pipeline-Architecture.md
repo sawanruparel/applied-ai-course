@@ -6,40 +6,22 @@ layout: diagram
 
 # Production RAG Pipeline Architecture
 
-```
- +-----------+     +------------+     +-----------+     +----------+
- |  Client   |---->|  API       |---->|  Query    |---->| Retrieval|
- |  Request  |     |  Gateway   |     |  Processor|     | Router   |
- +-----------+     +------------+     +-----------+     +-----+----+
-                        |                                     |
-                   +----v-----+              +----------------+--------+
-                   | Auth &   |              |                |        |
-                   | Rate     |        +-----v----+    +------v--+ +---v---+
-                   | Limiting |        | Vector   |    | BM25    | | SQL / |
-                   +----------+        | Store    |    | Index   | | API   |
-                                       +-----+----+    +----+----+ +---+---+
-                                             |              |           |
-                                             +-------+------+-----------+
-                                                     |
-                                              +------v------+
-                                              | Rank Fusion |
-                                              | + Reranker  |
-                                              +------+------+
-                                                     |
-                   +----------+               +------v------+
-                   | Response |<--------------| Generator   |
-                   | Cache    |               | (LLM)       |
-                   +----+-----+               +------+------+
-                        |                            |
-                   +----v-----+               +------v------+
-                   | Grounding|               | Self-Eval   |
-                   | Check    |               | (CRAG loop) |
-                   +----+-----+               +-------------+
-                        |
-                   +----v-----+     +------------+
-                   | Response |---->| Monitoring |
-                   | to Client|     | & Logging  |
-                   +----------+     +------------+
+```mermaid
+flowchart TB
+    Client[Client request] --> Gateway[API gateway<br/>auth + rate limit]
+    Gateway --> QP[Query processor]
+    QP --> Router[Retrieval router]
+    Router --> V[Vector store]
+    Router --> K[BM25 index]
+    Router --> S[SQL / API]
+    V & K & S --> Fuse[Rank fusion + reranker]
+    Fuse --> Gen[Generator LLM]
+    Gen --> Eval{Self-eval<br/>CRAG loop}
+    Eval -->|low quality| Router
+    Eval -->|ok| Ground[Grounding check]
+    Ground --> Cache[Response cache]
+    Cache --> Out[Response to client]
+    Out --> Mon[Monitoring & logging]
 ```
 
 **Key architectural decisions**

@@ -24,6 +24,19 @@ layout: two-column
 - Reasoning as a learnable skill (via RL)
 - Cost scales with problem difficulty
 
+```mermaid
+flowchart LR
+    subgraph Old["Old paradigm (2020-2023)"]
+      D1[More data] --> L1[Larger model] --> P1[One forward pass] --> A1[Answer]
+    end
+    subgraph New["New paradigm (2024-2026)"]
+      Q2[Query] --> L2[Smaller-or-equal model]
+      L2 --> R[Reasoning loop]
+      R --> R
+      R --> A2[Answer]
+    end
+```
+
 > The frontier moved from "how big is your model?" to "how well does your model think?"
 
 ## Sources

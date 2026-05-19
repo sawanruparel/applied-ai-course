@@ -8,28 +8,14 @@ layout: diagram
 
 The model cannot perform complex computation in a single forward pass. Each generated token is one "compute step." CoT converts serial reasoning into sequential token generation.
 
-```
-WITHOUT CoT — Single forward pass must solve everything at once:
-
-  ┌─────────────────────────────────────┐
-  │         "What is 27 x 34?"          │
-  │                                     │
-  │    [ SINGLE FORWARD PASS ]          │
-  │    P(answer | question)             │
-  │                                     │
-  │         → "918" ← (CORRECT?)        │
-  │    No intermediate verification     │
-  └─────────────────────────────────────┘
-
-
-WITH CoT — Each step feeds into the next, creating a reasoning chain:
-
-  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────┐
-  │  "27 x 34"   │───▶│  "27 x 30    │───▶│  "27 x 4     │───▶│  "810 +  │
-  │  Decompose   │    │   = 810"     │    │   = 108"     │    │   108 =  │
-  │  the problem │    │  Step 1      │    │  Step 2      │    │   918"   │
-  └──────────────┘    └──────────────┘    └──────────────┘    └──────────┘
-       PLAN             COMPUTE            COMPUTE             COMBINE
+```mermaid
+flowchart LR
+    subgraph NoCoT["Without CoT (single pass)"]
+      Q1["27 x 34"] --> P1["P(answer | question)"] --> A1["918 ?"]
+    end
+    subgraph WithCoT["With CoT (chain of reasoning steps)"]
+      Q2["27 x 34"] --> S1["27 x 30 = 810"] --> S2["27 x 4 = 108"] --> S3["810 + 108 = 918"]
+    end
 ```
 
 ## The Mechanism

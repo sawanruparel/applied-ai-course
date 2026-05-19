@@ -6,47 +6,24 @@ layout: diagram
 
 # End-to-End RAG Evaluation Pipeline
 
-```
- EVALUATION DATASET
- +------------------------------------------+
- | question | ground_truth | reference_docs  |
- +------------------------------------------+
-        |
-        v
- +----------------------------------------------+
- |           YOUR RAG PIPELINE                   |
- |                                               |
- |  question --> [Retriever] --> retrieved_chunks |
- |                    |                          |
- |             retrieved_chunks + question       |
- |                    |                          |
- |                    v                          |
- |              [Generator] --> answer            |
- +----------------------------------------------+
-        |
-        | (question, answer, retrieved_chunks, ground_truth)
-        v
- +----------------------------------------------+
- |           RAGAS EVALUATION                    |
- |                                               |
- |  No Ground Truth Needed:                      |
- |    [Faithfulness]      answer vs chunks        |
- |    [Answer Relevancy]  answer vs question      |
- |                                               |
- |  Ground Truth Required:                       |
- |    [Context Recall]    chunks vs ground_truth  |
- |    [Context Precision] chunks vs ground_truth  |
- |    [Answer Correctness] answer vs ground_truth |
- +----------------------------------------------+
-        |
-        v
- +----------------------------------------------+
- |           RESULTS & DIAGNOSTICS               |
- |                                               |
- |  Per-sample scores --> find failure cases      |
- |  Aggregate scores  --> track over time         |
- |  Component scores  --> retrieval vs generation |
- +----------------------------------------------+
+```mermaid
+flowchart TB
+    DS["Eval dataset<br/>(question, ground_truth, ref_docs)"] --> Pipe
+    subgraph "Your RAG pipeline"
+      Pipe[Retriever] --> Chunks[Retrieved chunks]
+      Chunks --> Gen[Generator]
+      Gen --> Ans[Answer]
+    end
+    Ans --> Ragas
+    Chunks --> Ragas
+    DS --> Ragas
+    subgraph "RAGAS evaluation"
+      Ragas{Has ground truth?}
+      Ragas -->|no| NoGT["Faithfulness<br/>Answer relevancy"]
+      Ragas -->|yes| GT["Context recall/precision<br/>Answer correctness"]
+    end
+    NoGT --> Results["Results & diagnostics<br/>(per-sample + aggregate)"]
+    GT --> Results
 ```
 
 **Key point**: You need four columns of data -- question, answer, contexts, and (optionally) ground_truth -- to run the full RAGAS evaluation suite.

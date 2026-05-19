@@ -6,60 +6,28 @@ layout: diagram
 
 # CRAG Execution Flow
 
-```
-+-------------+
-|  User Query |
-+------+------+
-       |
-       v
-+------+------+
-|  Retrieve   |
-|  Top-K Docs |
-+------+------+
-       |
-       v
-+------+--------+
-|  Retrieval    |       +---------+
-|  Evaluator    +------>| Score   |
-|  (T5-Large)   |       | each doc|
-+------+--------+       +----+----+
-       |                      |
-       v                      v
-+------+------+        +------+------+
-| Confidence  |        | Per-doc     |
-| Assessment  |        | Relevance   |
-+------+------+        +-------------+
-       |
-       +------------------+------------------+
-       |                  |                  |
-       v                  v                  v
-  [CORRECT]          [AMBIGUOUS]       [INCORRECT]
-       |                  |                  |
-       v                  v                  v
-  +----+----+      +------+------+    +------+------+
-  | Refine  |      | Refine docs |    | Discard all |
-  | docs    |      | + Web Search|    | retrieved   |
-  | (strip) |      | (supplement)|    | docs        |
-  +----+----+      +------+------+    +------+------+
-       |                  |                  |
-       |                  |                  v
-       |                  |           +------+------+
-       |                  |           | Web Search  |
-       |                  |           | (fallback)  |
-       |                  |           +------+------+
-       |                  |                  |
-       +------------------+------------------+
-                          |
-                   +------v------+
-                   |  Generate   |
-                   |  Answer     |
-                   +-------------+
+```mermaid
+flowchart TB
+    Q[User query] --> Retrieve[Retrieve top-K docs]
+    Retrieve --> Eval["Retrieval evaluator<br/>(T5-Large)"]
+    Eval --> Conf{Confidence?}
+    Conf -->|Correct| Refine[Refine docs<br/>strip irrelevant sentences]
+    Conf -->|Ambiguous| Both[Refine + web search<br/>supplement]
+    Conf -->|Incorrect| Discard[Discard all retrieved]
+    Discard --> Web[Web search fallback]
+    Refine --> Gen[Generate answer]
+    Both --> Gen
+    Web --> Gen
 ```
 
 **Knowledge refinement (strip-level filtering)**
 
-```
-Document --> Split into sentences --> Score each sentence --> Keep relevant --> Concat
+```mermaid
+flowchart LR
+    Doc[Document] --> Split[Split into sentences]
+    Split --> Score[Score each sentence]
+    Score --> Keep[Keep relevant only]
+    Keep --> Concat[Concatenate]
 ```
 
 Each sentence is independently evaluated for relevance to the original query. Irrelevant sentences within otherwise-relevant documents are discarded before generation.

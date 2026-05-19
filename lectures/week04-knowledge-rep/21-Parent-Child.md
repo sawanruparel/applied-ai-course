@@ -8,36 +8,23 @@ layout: diagram
 
 **Core insight**: small chunks are better for matching, but large chunks are better for answering.
 
-```
-  Document
-  ========================================================
-  |  Section 1: Introduction                              |
-  |  +-----------+ +-----------+ +-----------+            |
-  |  | Child 1.1 | | Child 1.2 | | Child 1.3 |  <-- small|
-  |  | (128 tok) | | (128 tok) | | (128 tok) |    chunks |
-  |  +-----------+ +-----------+ +-----------+    for     |
-  |                                                search |
-  |  Parent Chunk 1 (full section, ~1024 tokens)   <---+  |
-  |                                                    |  |
-  |  Section 2: Architecture                           |  |
-  |  +-----------+ +-----------+ +-----------+         |  |
-  |  | Child 2.1 | | Child 2.2 | | Child 2.3 |        |  |
-  |  +-----------+ +-----------+ +-----------+         |  |
-  |                                                    |  |
-  |  Parent Chunk 2 (full section, ~1024 tokens)       |  |
-  ========================================================
-                                                       |
-  Query: "How does the failover mechanism work?"       |
-         |                                             |
-         v                                             |
-  Embed + search against CHILD chunks                  |
-         |                                             |
-         v                                             |
-  Match: Child 2.2 (score: 0.89)                       |
-         |                                             |
-         v                                             |
-  Return PARENT chunk 2 to the LLM  <-----------------+
-  (full section with surrounding context)
+```mermaid
+flowchart LR
+    subgraph "Indexed structure"
+      P1["Parent 1<br/>(~1024 tok)"]
+      P2["Parent 2<br/>(~1024 tok)"]
+      C11["Child 1.1<br/>(128 tok)"] --> P1
+      C12["Child 1.2"] --> P1
+      C13["Child 1.3"] --> P1
+      C21["Child 2.1"] --> P2
+      C22["Child 2.2"] --> P2
+      C23["Child 2.3"] --> P2
+    end
+    Q["Query:<br/>How does failover work?"] --> Search[Embed + search<br/>against CHILD chunks]
+    C11 & C12 & C13 & C21 & C22 & C23 --> Search
+    Search --> Match["Match: Child 2.2<br/>(score 0.89)"]
+    Match --> Return["Return PARENT 2<br/>to the LLM"]
+    P2 -.-> Return
 ```
 
 ### How It Works

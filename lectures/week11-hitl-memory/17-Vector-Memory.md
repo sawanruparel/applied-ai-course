@@ -8,40 +8,20 @@ layout: diagram
 
 Embed past experiences and retrieve by semantic similarity.
 
-```
-  STORAGE FLOW                          RETRIEVAL FLOW
-
-  ┌────────────┐                       ┌────────────────┐
-  │ Interaction │                       │ Current Query  │
-  │ or Fact     │                       │ or Context     │
-  └──────┬─────┘                       └───────┬────────┘
-         │                                      │
-         ▼                                      ▼
-  ┌────────────┐                       ┌────────────────┐
-  │  Extract   │                       │   Embed Query  │
-  │  Memory    │                       │                │
-  │  Chunks    │                       └───────┬────────┘
-  └──────┬─────┘                               │
-         │                                      ▼
-         ▼                              ┌───────────────┐
-  ┌────────────┐                       │  Similarity    │
-  │  Embed     │                       │  Search        │
-  │  (OpenAI,  │                       │  (cosine, k=5) │
-  │  Cohere)   │                       └───────┬────────┘
-  └──────┬─────┘                               │
-         │                                      ▼
-         ▼                              ┌───────────────┐
-  ┌────────────┐                       │  Re-rank &     │
-  │  Store in  │──────────────────────▶│  Filter        │
-  │  Vector DB │   (Chroma, Pinecone,  │  (recency,     │
-  │  + Metadata│    Weaviate, pgvector)│   relevance)   │
-  └────────────┘                       └───────┬────────┘
-                                                │
-                                                ▼
-                                       ┌───────────────┐
-                                       │  Inject into  │
-                                       │  Context      │
-                                       └───────────────┘
+```mermaid
+flowchart LR
+    subgraph Store[Storage flow]
+      I[Interaction / fact] --> Ext[Extract memory chunks]
+      Ext --> E1[Embed]
+      E1 --> VDB[(Vector DB<br/>+ metadata)]
+    end
+    subgraph Retrieve[Retrieval flow]
+      Q[Current query] --> E2[Embed query]
+      E2 --> Sim["Similarity search<br/>(cosine, k=5)"]
+      Sim --> RR["Re-rank<br/>recency · relevance"]
+      RR --> Ctx[Inject into context]
+    end
+    VDB --> Sim
 ```
 
 ## Implementation

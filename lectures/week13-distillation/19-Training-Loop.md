@@ -6,6 +6,16 @@ layout: flow
 
 # The Training Loop: Setup, Train, Evaluate, Iterate
 
+```mermaid
+flowchart LR
+    S1[1. Setup<br/>quantize + LoRA] --> S2[2. Train<br/>SFTTrainer]
+    S2 --> S3[3. Evaluate<br/>vs baseline]
+    S3 --> D{Pass?}
+    D -->|No| S4[4. Iterate<br/>more data, tune HP]
+    S4 --> S2
+    D -->|Yes| Deploy[Deploy]
+```
+
 ## Step 1: Setup
 
 Load base model with quantization. Add LoRA adapters. Prepare tokenizer.

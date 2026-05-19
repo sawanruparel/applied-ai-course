@@ -6,6 +6,13 @@ layout: two-column
 
 # Why Distill: Frontier Quality at Small-Model Cost
 
+```mermaid
+flowchart LR
+    T["Teacher<br/>GPT-4o / Claude Opus<br/>$10-60 / M tokens<br/>500-2000ms"] -->|generates training data| Train[Distillation training]
+    Train --> S["Student<br/>Llama 8B / Phi-4<br/>$0.10-0.50 / M tokens<br/>20-100ms"]
+    S -->|specialized, 10-100x cheaper| Prod[Production]
+```
+
 ## Teacher (Frontier Model)
 
 - **GPT-4o, Claude Opus, Gemini Ultra**

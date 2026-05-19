@@ -6,6 +6,17 @@ layout: flow
 
 # Migration Strategy: Frontier to Small Models Safely
 
+```mermaid
+flowchart LR
+    S1[1. Instrument] --> S2[2. Identify candidates]
+    S2 --> S3[3. Build eval pipeline]
+    S3 --> S4[4. Test offline]
+    S4 --> S5[5. Shadow deploy]
+    S5 --> S6[6. Gradual rollout]
+    S6 -->|Quality drop| Rollback[Auto-rollback]
+    S6 -->|Success| Next[Repeat for next feature]
+```
+
 ## Step 1: Instrument Your Current System
 - Add logging for every LLM call: input, output, model, latency, cost
 - Tag requests by feature, user segment, and complexity

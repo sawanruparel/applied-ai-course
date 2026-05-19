@@ -14,6 +14,18 @@ layout: standard
 4. **Self-verification** -- model checks consistency, re-derives results
 5. **Final answer produced** -- only after deliberation is complete
 
+```mermaid
+flowchart LR
+    P[Problem] --> A[Assess difficulty]
+    A --> R[Generate reasoning tokens]
+    R --> S{Path looks good?}
+    S -- no --> R
+    S -- yes --> V[Self-verify]
+    V --> D{Consistent?}
+    D -- no --> R
+    D -- yes --> F[Final answer]
+```
+
 ### Concrete numbers:
 
 - Simple factual question: ~50 reasoning tokens, ~0.5s

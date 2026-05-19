@@ -6,23 +6,13 @@ layout: diagram
 
 # Cross-Encoder Reranking: Second-Pass Precision
 
-```
-  First Pass (Fast, Broad)              Second Pass (Slow, Precise)
-  ========================              ===========================
-
-  Query ──> Bi-Encoder ──> Top 100      Query + Doc_i ──> Cross-Encoder ──> Score
-                                         (jointly encoded)
-
-  +-----------+                         +-----------+
-  | Query [Q] |──embed──> q_vec         | Query [Q] |
-  +-----------+                         | [SEP]     |
-                                        | Doc [D_i] |──full attention──> relevance
-  +-----------+                         +-----------+
-  | Doc [D]   |──embed──> d_vec
-  +-----------+                         Applied to top 20-100 candidates
-                                        from first pass only
-  score = cosine(q_vec, d_vec)
-  ~1ms per 1M docs (ANN index)          ~50ms per (query, doc) pair
+```mermaid
+flowchart LR
+    Q[Query] --> Bi["Bi-encoder<br/>(independent embed)"]
+    D[(Doc corpus)] --> Bi
+    Bi --> Top100["Top 100 candidates<br/>cosine, ~1ms per 1M"]
+    Top100 --> Cross["Cross-encoder<br/>(query + doc, joint attention)<br/>~50ms per pair"]
+    Cross --> Top5[Top 5 reranked]
 ```
 
 **Why two passes?**

@@ -12,16 +12,10 @@ layout: standard
 
 Instead of writing heuristic scoring functions or hiring human annotators, use a capable LLM to read an output and score it against defined criteria.
 
-```
-Input:  (question, answer, [context], [reference], rubric)
-          |
-          v
-    +-----------+
-    | Judge LLM |  (e.g., GPT-4o, Claude 3.5 Sonnet)
-    +-----------+
-          |
-          v
-Output: score (1-5) + reasoning
+```mermaid
+flowchart LR
+    In["question + answer<br/>+ context + rubric"] --> Judge["Judge LLM<br/>(GPT-4o, Claude)"]
+    Judge --> Out["score (1-5)<br/>+ reasoning"]
 ```
 
 ## Why This Works

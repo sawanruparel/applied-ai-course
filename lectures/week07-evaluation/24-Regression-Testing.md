@@ -12,6 +12,16 @@ layout: standard
 
 You improve your prompt for one type of question. Three other question types silently degrade. Without regression testing, you won't know until users complain.
 
+```mermaid
+flowchart LR
+    PR[Pull request] --> CI[CI runs eval]
+    CI --> Golden[Golden set + new test cases]
+    Golden --> Score[Score with metrics]
+    Score --> Gate{Above thresholds?}
+    Gate -->|yes| Merge[Merge]
+    Gate -->|no| Block[Block PR]
+```
+
 ## Setting Up Regression Tests
 
 ```python

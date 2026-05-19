@@ -36,6 +36,16 @@ Revise the prompt to fix this failure mode. Return only the
 revised prompt.
 ```
 
+```mermaid
+flowchart LR
+    Task[Task description] --> MetaLLM[Meta-prompt to LLM]
+    MetaLLM --> P[Generated prompt]
+    P --> Eval[Run on eval set]
+    Eval --> Score[Score + failures]
+    Score --> MetaLLM
+    Score --> Final[Best prompt for production]
+```
+
 ## Key Techniques
 
 - **APE** (Automatic Prompt Engineer, Zhou et al. 2022): generate prompt candidates, score on a dev set, select the best

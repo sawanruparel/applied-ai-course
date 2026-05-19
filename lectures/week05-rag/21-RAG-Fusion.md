@@ -8,50 +8,18 @@ layout: diagram
 
 **Paper** -- Rackauckas (2023), inspired by Reciprocal Rank Fusion research
 
-```
-                    +-------------+
-                    | User Query  |
-                    +------+------+
-                           |
-                    +------v------+
-                    |   LLM       |
-                    |  Generate   |
-                    |  N query    |
-                    |  variants   |
-                    +------+------+
-                           |
-          +----------------+----------------+
-          |                |                |
-    +-----v-----+   +-----v-----+   +------v----+
-    | Variant 1  |   | Variant 2  |   | Variant 3 |
-    | "original  |   | "technical |   | "broader  |
-    |  phrasing" |   |  rewrite"  |   |  context" |
-    +-----+-----+   +-----+-----+   +-----+-----+
-          |                |                |
-    +-----v-----+   +-----v-----+   +------v----+
-    | Retrieve   |   | Retrieve   |   | Retrieve  |
-    | top-k      |   | top-k      |   | top-k     |
-    +-----+-----+   +-----+-----+   +-----+-----+
-          |                |                |
-          +----------------+----------------+
-                           |
-                    +------v------+
-                    | Reciprocal  |
-                    | Rank Fusion |
-                    | across all  |
-                    | result sets |
-                    +------+------+
-                           |
-                    +------v------+
-                    | Re-ranked   |
-                    | merged      |
-                    | results     |
-                    +------+------+
-                           |
-                    +------v------+
-                    | Generate    |
-                    | answer      |
-                    +-------------+
+```mermaid
+flowchart TB
+    Q[User query] --> LLM[LLM: generate N variants]
+    LLM --> V1["Variant 1<br/>(original phrasing)"]
+    LLM --> V2["Variant 2<br/>(technical rewrite)"]
+    LLM --> V3["Variant 3<br/>(broader context)"]
+    V1 --> R1[Retrieve top-k]
+    V2 --> R2[Retrieve top-k]
+    V3 --> R3[Retrieve top-k]
+    R1 & R2 & R3 --> RRF[Reciprocal rank fusion<br/>across result sets]
+    RRF --> Merged[Re-ranked merged results]
+    Merged --> Gen[Generate answer]
 ```
 
 **Why it works** -- Different phrasings of the same question activate different regions of the embedding space and match different keyword patterns. Merging via RRF surfaces documents that are consistently relevant across multiple query interpretations.

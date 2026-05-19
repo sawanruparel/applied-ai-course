@@ -8,26 +8,16 @@ layout: diagram
 
 Each agent connects to its own set of MCP servers, giving it access to domain-specific tools.
 
-```
-┌────────────────────────────────────────────────────────────────┐
-│                     ORCHESTRATOR                                │
-│                                                                │
-│  ┌──────────────┐   ┌──────────────┐   ┌──────────────┐       │
-│  │  Research     │   │  Coding      │   │  DevOps      │       │
-│  │  Agent        │   │  Agent       │   │  Agent       │       │
-│  └──────┬───────┘   └──────┬───────┘   └──────┬───────┘       │
-│         │                   │                   │               │
-└─────────┼───────────────────┼───────────────────┼───────────────┘
-          │                   │                   │
-          v                   v                   v
-   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-   │ MCP Servers  │    │ MCP Servers  │    │ MCP Servers  │
-   │             │    │             │    │             │
-   │ - Brave     │    │ - GitHub    │    │ - AWS       │
-   │   Search    │    │ - Filesystem│    │ - Docker    │
-   │ - Arxiv     │    │ - Terminal  │    │ - Kubernetes│
-   │ - Wikipedia │    │ - LSP       │    │ - Monitoring│
-   └─────────────┘    └─────────────┘    └─────────────┘
+```mermaid
+flowchart TB
+    subgraph Orch[Orchestrator]
+      R[Research agent]
+      C[Coding agent]
+      D[DevOps agent]
+    end
+    R --> RM["Brave · Arxiv · Wikipedia"]
+    C --> CM["GitHub · Filesystem · LSP"]
+    D --> DM["AWS · Docker · Kubernetes"]
 ```
 
 ## Why MCP Fits Multi-Agent Naturally

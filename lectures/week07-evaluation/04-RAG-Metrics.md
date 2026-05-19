@@ -8,6 +8,15 @@ layout: two-column
 
 RAG evaluation requires measuring TWO distinct stages independently.
 
+```mermaid
+flowchart LR
+    Q[Query] --> Ret[Retriever]
+    Ret -.->|measure| RM["Retrieval metrics<br/>precision, recall, MRR, NDCG"]
+    Ret --> Gen[Generator]
+    Gen -.->|measure| GM["Generation metrics<br/>faithfulness, relevancy,<br/>correctness"]
+    Gen --> Ans[Answer]
+```
+
 ## Retrieval Quality
 
 **Did we find the right documents?**

@@ -6,6 +6,24 @@ layout: standard
 
 # Streaming Responses
 
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as Browser
+    participant S as Server
+    participant L as LLM
+    U->>S: GET /chat?query=...
+    S->>L: stream_text(query)
+    L-->>S: token 1
+    S-->>U: SSE: token 1
+    L-->>S: token 2
+    S-->>U: SSE: token 2
+    L-->>S: ...
+    S-->>U: SSE: ...
+    L-->>S: end of stream
+    S-->>U: SSE: [DONE]
+```
+
 ## Why Streaming Matters
 
 - LLM responses take 2-30 seconds to fully generate

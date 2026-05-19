@@ -12,6 +12,16 @@ Manual red-teaming is essential but slow. Automated red-teaming uses **adversari
 
 ## The Attacker-Defender Loop
 
+```mermaid
+flowchart LR
+    Att[Attacker LLM<br/>generates adversarial prompt] --> Target[Target model]
+    Target --> Judge[Safety judge LLM]
+    Judge -->|verdict + reasoning| Mut[Mutate / evolve attack]
+    Mut --> Att
+    Judge -->|metrics| Report[Attack Success Rate report]
+```
+
+
 ```python
 async def automated_red_team(
     target_model,

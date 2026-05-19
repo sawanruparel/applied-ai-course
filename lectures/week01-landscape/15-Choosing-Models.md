@@ -6,6 +6,20 @@ layout: flow
 
 # Decision Framework: Choosing the Right Model
 
+```mermaid
+flowchart TB
+    T[Define task] --> C{Complexity?}
+    C -- simple --> Fast["Fast model<br/>(GPT-4o, Sonnet, Flash)"]
+    C -- multi-step --> Reason["Reasoning model<br/>(o3, R1, ext. thinking)"]
+    C -- huge context --> Long["Long-context<br/>(Gemini 2M, Claude 200K)"]
+    Fast --> Con{Constraints?}
+    Reason --> Con
+    Long --> Con
+    Con -- privacy --> Open[Open-weight self-host]
+    Con -- ok --> Proto[Prototype + evaluate]
+    Open --> Proto
+```
+
 ## Step 1: Define the Task
 
 - Classification, generation, reasoning, code, multimodal?

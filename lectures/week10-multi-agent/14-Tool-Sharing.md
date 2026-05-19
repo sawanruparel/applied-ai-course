@@ -14,17 +14,11 @@ layout: two-column
 - Example: Both researcher and fact-checker share the `web_search` tool
 
 **Shared tool architecture:**
-```
-┌──────────┐  ┌──────────┐
-│ Agent A   │  │ Agent B   │
-└─────┬────┘  └─────┬────┘
-      │              │
-      └──────┬───────┘
-             v
-      ┌─────────────┐
-      │ Shared Tool  │
-      │ (web_search) │
-      └─────────────┘
+
+```mermaid
+flowchart TB
+    A[Agent A] --> T[Shared tool: web_search]
+    B[Agent B] --> T
 ```
 
 ## Isolate Tools When...
@@ -35,16 +29,11 @@ layout: two-column
 - Example: Only the coder agent gets `file_write`; the reviewer only gets `file_read`
 
 **Isolated tool architecture:**
-```
-┌──────────┐       ┌──────────┐
-│ Agent A   │       │ Agent B   │
-└─────┬────┘       └─────┬────┘
-      │                   │
-      v                   v
-┌───────────┐       ┌───────────┐
-│ file_write │       │ file_read  │
-│ terminal   │       │ lint       │
-└───────────┘       └───────────┘
+
+```mermaid
+flowchart TB
+    A[Agent A — coder] --> AT["file_write<br/>terminal"]
+    B[Agent B — reviewer] --> BT["file_read<br/>lint"]
 ```
 
 ---
