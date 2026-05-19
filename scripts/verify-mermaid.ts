@@ -19,7 +19,7 @@ async function main() {
       if (msg.type() === "error") console.error("[browser console error]", msg.text());
     });
 
-    const url = `http://localhost:4173/week01-landscape.html?slide=${slideCount}`;
+    const url = `http://localhost:4173/pages/week01-landscape.html?slide=${slideCount}`;
     console.log(`Navigating to ${url}`);
     await page.goto(url, { waitUntil: "networkidle" });
 
