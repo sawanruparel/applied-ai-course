@@ -19,10 +19,11 @@ layout: standard
 - Matches or beats Llama 2 70B while using 6x less compute per token
 - Proved MoE is practical for production deployment
 
-## Mistral Small / Nemo (2024–2025)
+## Mistral Small / Nemo (2024–2026)
 
 - **Mistral Nemo 12B**: collaboration with NVIDIA, strong general-purpose model
 - **Mistral Small 3.1 24B**: optimized for fast API-served inference
+- **Mistral Small 4 (March 16, 2026)**: a hybrid model that unifies instruct, reasoning, multimodal, and coding capabilities in a single checkpoint
 - Function calling and JSON mode built in
 - Tekken tokenizer: more efficient for multilingual and code
 
@@ -41,3 +42,4 @@ layout: standard
 - [Mixtral of Experts — arXiv:2401.04088 (Jiang et al., 2024)](https://arxiv.org/abs/2401.04088)
 - [Mistral NeMo (Mistral AI & NVIDIA, 2024)](https://mistral.ai/news/mistral-nemo)
 - [Mistral Small 3.1 (Mistral AI, 2025)](https://mistral.ai/news/mistral-small-3-1)
+- [Mistral Small (latest) Model Stats (LLM-Stats)](https://llm-stats.com/models/mistral-small-latest)

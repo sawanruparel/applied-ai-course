@@ -39,3 +39,15 @@ flowchart TB
 **Fine-tuning ROI = (cost_per_api_call - cost_per_finetuned_call) x daily_volume x 30 - training_cost**
 
 If positive within one month, fine-tuning is worth it.
+
+## Fine-tune vs RAG vs distill (2026 consensus)
+
+These techniques are complementary, not competing -- match the method to the problem:
+
+- **RAG first** for *dynamic knowledge* -- facts that change often or are too large to bake into weights.
+- **Fine-tune** for *style, format, and domain vocabulary* that RAG cannot inject through context alone.
+- **Distill** when *deploying to constrained edge hardware* where you need the behavior in a small, self-contained model.
+
+## Sources
+
+- [Fine-Tuning LLMs: When RAG Isn't Enough (BigDataBoutique)](https://bigdataboutique.com/blog/fine-tuning-llms-when-rag-isnt-enough)

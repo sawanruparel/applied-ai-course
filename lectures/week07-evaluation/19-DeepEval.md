@@ -69,11 +69,15 @@ correctness = GEval(
 ## Key Features
 
 - **Confident AI dashboard**: Free hosted platform to track eval results over time
-- **14+ built-in metrics**: Faithfulness, hallucination, bias, toxicity, summarization, and more
+- **50+ research-backed metrics**: deterministic and LLM-as-Judge -- faithfulness, hallucination, bias, toxicity, summarization, and more
+- **CI integration**: pass/fail gates that run on every code change, like a unit-test suite
 - **Synthesizer**: Generate test datasets from documents (similar to RAGAS TestsetGenerator)
 - **Conversational metrics**: Evaluate multi-turn conversations, not just single QA pairs
+
+> Together with **RAGAS** and **TruLens**, DeepEval forms the standard open-source evaluation triad recommended for production teams.
 
 ## Sources
 
 - [DeepEval GitHub Repository](https://github.com/confident-ai/deepeval)
 - [G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment (Liu et al., 2023)](https://arxiv.org/abs/2303.16634)
+- [LLM Evaluation Frameworks Compared — DeepEval, RAGAS, TruLens (Atlan)](https://atlan.com/know/llm-evaluation-frameworks-compared/)

@@ -22,6 +22,8 @@ flowchart LR
 - Cross-encoders are 100-1000x slower but significantly more accurate
 - Typical pipeline: retrieve 100 with bi-encoder, rerank top 20 with cross-encoder
 
+> **Now a near-mandatory production stage.** A cross-encoder reranker after retrieval and before generation is standard in 2026 RAG. Hosted options like Pinecone Inference and Cohere Rerank fold reranking into the retrieval service, removing the need to self-host a reranker.
+
 **Production rerankers**
 
 | Model | Parameters | NDCG@10 (BEIR) | Latency (20 docs) |
@@ -37,3 +39,4 @@ flowchart LR
 - [BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of IR Models (Thakur et al., NeurIPS 2021)](https://arxiv.org/abs/2104.08663)
 - [Cohere Rerank Documentation](https://docs.cohere.com/docs/rerank-2)
 - [BGE Reranker Models (BAAI)](https://huggingface.co/BAAI/bge-reranker-v2-m3)
+- [Top Vector Databases for LLM Applications — Reranking as a Standard Stage (Second Talent)](https://www.secondtalent.com/resources/top-vector-databases-for-llm-applications/)

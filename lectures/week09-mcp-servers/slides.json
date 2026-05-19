@@ -24,6 +24,10 @@
     "file": "lectures/week09-mcp-servers/21-Composing-Servers.md",
     "label": "21 Composing Servers"
   },
+  {
+    "file": "lectures/week09-mcp-servers/21a-Prebuilt-Connectors.md",
+    "label": "21a Prebuilt Connectors"
+  },
   { "file": "lectures/week09-mcp-servers/22-Remote-Servers.md", "label": "22 Remote Servers" },
   { "file": "lectures/week09-mcp-servers/23-Security.md", "label": "23 Security" },
   { "file": "lectures/week09-mcp-servers/24-Observability.md", "label": "24 Observability" },

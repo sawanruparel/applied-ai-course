@@ -5,6 +5,10 @@
     "label": "01 Autonomy Spectrum"
   },
   { "file": "lectures/week11-hitl-memory/02-Why-HITL.md", "label": "02 Why HITL" },
+  {
+    "file": "lectures/week11-hitl-memory/02b-HOTL-vs-HITL.md",
+    "label": "02b HITL vs HOTL"
+  },
   { "file": "lectures/week11-hitl-memory/03-Why-Memory.md", "label": "03 Why Memory" },
   { "file": "lectures/week11-hitl-memory/04-Approval-Gates.md", "label": "04 Approval Gates" },
   {

@@ -11,6 +11,7 @@ layout: standard
 - Nodes are agents or functions; edges define transitions
 - **Conditional edges** let you route based on state (if/else at graph level)
 - Built-in support for cycles (agent loops), checkpointing, and human-in-the-loop
+- As of **v0.4 (April 2026)**, HITL checkpoints surface automatically in `.invoke()` responses and state persists durably in Postgres/Redis, giving graph-based audit trails out of the box
 - Best for: complex workflows with branching logic and loops
 
 ```python
@@ -48,4 +49,5 @@ graph.set_entry_point("researcher")
 ## Sources
 
 - [LangGraph Documentation (LangChain)](https://langchain-ai.github.io/langgraph/)
+- [LangGraph v0.4: HITL checkpoints & state persistence — AI Tech Connect](https://aitechconnect.in/news/langgraph-v04-hitl-checkpoints-state-persistence)
 - [Claude Agent SDK (Anthropic)](https://github.com/anthropics/claude-agent-sdk-python)

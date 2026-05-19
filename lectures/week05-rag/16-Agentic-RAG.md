@@ -8,6 +8,8 @@ layout: standard
 
 **Concept** -- Instead of a fixed retrieval pipeline, an LLM agent dynamically plans and executes retrieval strategies based on the query, intermediate results, and available tools.
 
+**2026 production baseline** -- Multi-agent RAG -- specialized agents for query decomposition, retrieval, validation, and synthesis running in parallel -- is now the dominant enterprise pattern, superseding naive single-retriever pipelines as the default for new builds.
+
 ```mermaid
 flowchart TB
     Q[Query] --> Agent[LLM agent]
@@ -51,3 +53,4 @@ tools = [
 
 - [LangChain / LangGraph Documentation](https://docs.langchain.com)
 - [LlamaIndex Documentation](https://docs.llamaindex.ai)
+- [Agentic Retrieval-Augmented Generation: A Survey (Singh et al., 2025)](https://arxiv.org/html/2501.09136v4)

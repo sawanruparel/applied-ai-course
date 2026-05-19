@@ -20,11 +20,12 @@ layout: standard
 - Qwen 2.5 Coder 32B matches GPT-4o on code generation tasks
 - Supports 90+ programming languages
 
-## Qwen 3 (2025)
+## Qwen 3 / 3.6 (2025–2026)
 
 - Hybrid thinking models: can toggle between "thinking" and "non-thinking" modes
 - Sizes from **0.6B to 235B** (MoE with 22B active)
 - Qwen 3 8B matches Qwen 2.5 72B on reasoning benchmarks
+- **Qwen 3.6 27B (May 2026)** hits **77.2% on SWE-bench**, a new high-water mark for an open small model
 - 128K context with YaRN-based extension to 1M tokens
 - Apache 2.0 license across all sizes
 
@@ -41,3 +42,4 @@ layout: standard
 - [Qwen2.5-Coder Technical Report — arXiv:2409.12186 (Qwen Team, 2024)](https://arxiv.org/abs/2409.12186)
 - [Qwen3: Think Deeper, Act Faster (Alibaba, 2025)](https://qwenlm.github.io/blog/qwen3/)
 - [Qwen3 Technical Report — arXiv:2505.09388 (Qwen Team, 2025)](https://arxiv.org/abs/2505.09388)
+- [New Open-Source LLM Releases, April 2026 (Fazm AI)](https://fazm.ai/blog/new-open-source-llm-releases-april-2026)

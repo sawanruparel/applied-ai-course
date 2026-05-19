@@ -23,6 +23,11 @@ layout: standard
 - Computer use GA: autonomous browser and desktop interaction
 - 200K context window standard
 
+### Claude Opus 4.7 (April 16, 2026)
+- **Leads SWE-Bench Verified at 80.8%** -- the strongest real-world coding model on the benchmark
+- Positioned for **long-horizon reasoning** tasks: deep multi-step analysis and agentic coding
+- Continues the extended-thinking lineage with developer-controllable reasoning budgets
+
 ### Distinctive strengths:
 - Careful instruction following and nuanced safety behavior
 - Strong at long-document analysis and structured outputs
@@ -33,4 +38,5 @@ layout: standard
 - [Introducing Claude 3 Family (Anthropic, Mar 2024)](https://www.anthropic.com/news/claude-3-family)
 - [Introducing Claude 3.5 Sonnet (Anthropic, Jun 2024)](https://www.anthropic.com/news/claude-3-5-sonnet)
 - [Introducing Claude 4 (Anthropic, 2025)](https://www.anthropic.com/news/claude-4)
+- [GPT-5.5 Review: Claude Opus 4.7 and Gemini 3.1 Pro Comparison (MindStudio, 2026)](https://www.mindstudio.ai/blog/gpt-5-5-review-developers-builders)
 - [Anthropic API Pricing](https://platform.claude.com/docs/en/about-claude/pricing)

@@ -31,10 +31,15 @@ Research consistently shows strong agreement between LLM judges and human evalua
 
 ## The Practical Tradeoff
 
-- LLM judges are **not perfect** -- they agree with humans ~80-85% of the time
+- LLM judges are **not perfect** -- they reach 80-90% agreement with humans at 500-5000x lower cost
 - But human annotators only agree with EACH OTHER ~80-85% of the time (inter-annotator agreement)
 - LLM judges are **consistent** -- same input always gets similar scores (no bad days, no fatigue)
 - Use human eval to calibrate and validate your LLM judge, then scale with the LLM
+
+## 2026 Best Practice
+
+- Prefer an **ensemble of judge models** over a single judge -- it averages out individual model biases (see Multi-Judge Panels)
+- **Calibrate judges against human ratings** on a held-out set before trusting them in production; report the agreement number, don't assume it
 
 ## Sources
 
@@ -43,3 +48,4 @@ Research consistently shows strong agreement between LLM judges and human evalua
 - [RAGAS: Automated Evaluation of Retrieval Augmented Generation (Es et al., 2023)](https://arxiv.org/abs/2309.15217)
 - [Prometheus: Inducing Fine-Grained Evaluation Capability in Language Models (Kim et al., 2023)](https://arxiv.org/abs/2310.08491)
 - [Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators (Dubois et al., 2024)](https://arxiv.org/abs/2404.04475)
+- [LLM Evaluation in 2026: Judge Ensembles & Human Calibration (Meta-Intelligence)](https://www.meta-intelligence.tech/en/insight-llm-evaluation)

@@ -10,7 +10,7 @@ layout: flow
 flowchart LR
     S1["Stage 1<br/>Naive RAG<br/>(2023)"] --> S2["Stage 2<br/>Advanced RAG<br/>(2023-24)"]
     S2 --> S3["Stage 3<br/>Modular RAG<br/>(2024)"]
-    S3 --> S4["Stage 4<br/>Agentic RAG<br/>(2024-25)"]
+    S3 --> S4["Stage 4<br/>Agentic RAG<br/>(2024-26)"]
 ```
 
 ## Stage 1: Naive RAG (2023)
@@ -34,12 +34,13 @@ flowchart LR
 - Pluggable retrievers, generators, and evaluators
 - Enables experimentation and A/B testing
 
-## Stage 4: Agentic RAG (2024-2025)
+## Stage 4: Agentic RAG (2024-2026)
 
 - LLM-as-orchestrator decides retrieval strategy at runtime
 - Self-correcting loops: evaluate, retry, decompose
 - Multi-source retrieval with tool use
 - Adaptive behavior based on query complexity and retrieval confidence
+- By 2026, **multi-agent RAG** -- specialized agents for decomposition, retrieval, validation, and synthesis in parallel -- is the dominant enterprise production baseline
 
 ## Sources
 

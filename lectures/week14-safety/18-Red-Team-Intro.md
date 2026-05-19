@@ -14,7 +14,7 @@ Red-teaming is the practice of **systematically attempting to make an AI system 
 
 - **Alignment is not perfection** -- Even well-aligned models have failure modes
 - **Adversaries are creative** -- Attacks you don't test for will be found by others
-- **Regulations are coming** -- EU AI Act, NIST AI RMF, White House executive orders all require adversarial testing
+- **Regulations are here** -- Under the EU AI Act, conformity assessments for high-risk AI systems are due by **August 2, 2026**, and adversarial testing is now a **legal requirement** for high-risk categories (employment, credit scoring, healthcare, critical infrastructure). NIST AI RMF and executive orders push the same direction.
 - **Trust requires evidence** -- Stakeholders need proof the system is safe, not just promises
 
 ## Red-Teaming vs. Traditional Testing
@@ -41,4 +41,5 @@ Red-teaming is the practice of **systematically attempting to make an AI system 
 ## Sources
 
 - [EU AI Act](https://artificialintelligenceact.eu/)
+- [AI Regulations 2026: The EU AI Act (Sombra)](https://sombrainc.com/blog/ai-regulations-2026-eu-ai-act)
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)

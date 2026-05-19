@@ -31,6 +31,16 @@ Model: "poem poem poem poem ... [begins outputting memorized data]"
 
 **ChatGPT plugins (2023)** -- Malicious content in retrieved documents could instruct ChatGPT to call plugins in unauthorized ways, including exfiltrating conversation data.
 
+## Obfuscation Attacks: Rephrasing Beats Filters
+
+A Nov 2025 study showed that *how* you phrase a malicious request matters more than the request itself:
+
+- **Adversarial poetry** -- rephrasing a malicious request as rhyming stanzas raised attack success to **62%**
+- **Roleplay framing** -- wrapping the request in a fictional persona achieved **89.6%** bypass
+- **Character-flip obfuscation** -- reordering or substituting characters to slip past pattern matchers
+
+These vectors defeat naive keyword filters because the malicious *intent* is preserved while the surface form changes.
+
 ## Jailbreak-as-a-Service
 
 - Dedicated communities maintain **up-to-date jailbreak prompts** for every major model
@@ -44,3 +54,4 @@ Model: "poem poem poem poem ... [begins outputting memorized data]"
 
 - [Scalable Extraction of Training Data from Production Language Models (Carlini et al., 2023)](https://arxiv.org/abs/2311.17035)
 - [Not What You've Signed Up For: Indirect Prompt Injection (Greshake et al., 2023)](https://arxiv.org/abs/2302.12173)
+- [Red-Teaming Vulnerability: Prompt Poetry Breaks AI Guardrails (AI CERTs)](https://www.aicerts.ai/news/red-teaming-vulnerability-prompt-poetry-breaks-ai-guardrails/)

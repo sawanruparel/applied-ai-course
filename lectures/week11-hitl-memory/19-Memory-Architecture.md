@@ -59,3 +59,16 @@ class AgentMemoryManager:
 ```
 
 **Design principle:** Each memory type answers a different question — "What did we just discuss?", "What do I know about X?", "What happened last time I tried this?"
+
+## The dual-layer production standard
+
+The 2026 production pattern splits memory across two paths, coordinated by a dedicated **Memory Node** in the agent graph:
+
+- **Hot Path (in-session)** — Low-latency retrieval that blends vector search, BM25 keyword matching, and entity lookup to assemble working context on every turn.
+- **Cold Path (cross-session)** — Asynchronous consolidation that merges facts, resolves conflicts, and prunes stale entries so long-term memory does not bloat or drift.
+
+The Memory Node owns the contract between them: the Hot Path serves the current request while the Cold Path runs out of band to keep the store coherent over time.
+
+## Sources
+
+- [State of AI Agent Memory 2026 (Mem0)](https://mem0.ai/blog/state-of-ai-agent-memory-2026)

@@ -1,6 +1,10 @@
 [
   { "file": "lectures/week14-safety/00-Intro.md", "label": "00 Intro" },
   { "file": "lectures/week14-safety/01-Threat-Landscape.md", "label": "01 Threat Landscape" },
+  {
+    "file": "lectures/week14-safety/01b-OWASP-Agentic.md",
+    "label": "01b OWASP Agentic 2026"
+  },
   { "file": "lectures/week14-safety/02-Attack-Surface.md", "label": "02 Attack Surface" },
   { "file": "lectures/week14-safety/03-Defense-In-Depth.md", "label": "03 Defense In Depth" },
   { "file": "lectures/week14-safety/04-Injection-Intro.md", "label": "04 Injection Intro" },

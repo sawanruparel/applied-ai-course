@@ -8,7 +8,7 @@ layout: standard
 
 **Paper** -- Yan et al., "Corrective Retrieval Augmented Generation" (ICLR 2024)
 
-**Core idea** -- Before generating an answer, evaluate the quality of retrieved documents. If retrieval quality is poor, trigger corrective actions rather than generating from bad context.
+**Core idea** -- Embed self-evaluation of retrieved documents *before* generation. If the evidence is weak, re-query or fall back to web search rather than generating from bad context. This is a 2026 default for high-stakes domains where hallucinations are unacceptable.
 
 **Three retrieval confidence levels**
 
@@ -33,3 +33,4 @@ flowchart LR
 ## Sources
 
 - [Corrective Retrieval Augmented Generation (Yan et al., ICLR 2024)](https://arxiv.org/abs/2401.15884)
+- [RAG in 2026: A Practical Blueprint for Retrieval-Augmented Generation (dev.to)](https://dev.to/suraj_khaitan_f893c243958/-rag-in-2026-a-practical-blueprint-for-retrieval-augmented-generation-16pp)

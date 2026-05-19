@@ -18,7 +18,8 @@ LangGraph treats memory as persistent graph state, managed through checkpointers
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import StateGraph, MessagesState
 
-# In-memory checkpointer (dev) or Postgres (prod)
+# MemorySaver is development-only — state is lost when the process dies.
+# Use AsyncPostgresSaver as the recommended production checkpointer (see below).
 checkpointer = MemorySaver()
 
 graph = StateGraph(MessagesState)
@@ -64,6 +65,8 @@ def agent_node(state, config, store):
 
 ## Production setup:
 
+`AsyncPostgresSaver` is the recommended production checkpointer — durable, async, and survives process restarts (unlike the development-only `MemorySaver`).
+
 ```python
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 
@@ -76,4 +79,6 @@ async with AsyncPostgresSaver.from_conn_string(DATABASE_URL) as checkpointer:
 
 - [LangGraph Memory Documentation (LangChain)](https://langchain-ai.github.io/langgraph/concepts/memory/)
 - [LangGraph Persistence Documentation (LangChain)](https://langchain-ai.github.io/langgraph/concepts/persistence/)
+- [LangGraph Persistence (LangChain Docs, OSS Python)](https://docs.langchain.com/oss/python/langgraph/persistence)
+- [LangGraph v0.4: HITL, Checkpoints & State Persistence (AITechConnect)](https://aitechconnect.in/news/langgraph-v04-hitl-checkpoints-state-persistence)
 - [LangGraph Library (LangChain)](https://langchain-ai.github.io/langgraph/)

@@ -6,6 +6,20 @@ layout: cards-title
 
 # Defending Against Prompt Injection
 
+## No Single Filter Is Enough
+
+There is no reliable single-filter defense against indirect prompt injection. The 2026 production standard is a **seven-layer model** -- layer these together rather than betting on any one:
+
+1. **Input handling** -- sanitize, classify, and normalize untrusted input
+2. **Output filtering** -- validate model output before acting on it or showing it
+3. **Capability sandboxing** -- isolate tool execution so a hijacked step cannot reach the host
+4. **Privilege separation** -- least-privilege scoping of every tool and credential
+5. **Canary tokens** -- planted secrets that trip an alert if exfiltrated
+6. **Policy engines** -- deterministic rules that gate sensitive actions
+7. **Continuous red teaming** -- ongoing adversarial testing, not a one-time audit
+
+The techniques below implement several of these layers.
+
 ## Input Sanitization
 
 Strip or escape potentially dangerous patterns before they reach the model:
@@ -93,3 +107,7 @@ async def dual_llm_check(user_input: str) -> bool:
     )
     return verdict.startswith("SAFE")
 ```
+
+## Sources
+
+- [Prompt Injection Defense for Production Agents 2026 (RapidClaw)](https://rapidclaw.dev/blog/prompt-injection-defense-production-agents-2026)

@@ -32,7 +32,12 @@ Building MCP servers introduces new attack surfaces. Know the threats:
 - A server changes its tool behavior after gaining trust
 - **Mitigation:** Pin server versions. Code review MCP server updates.
 
+## Regulated-industry deployments
+
+In regulated industries, enterprises route every tool invocation through a **governed control plane** rather than letting agents connect to servers directly. Bifrost-style MCP gateways are deployed for this, with **on-prem and air-gapped** support so credentials and data never leave the trust boundary. The gateway becomes the single place to enforce policy, rotate secrets, and capture audit logs.
+
 ## Sources
 
 - [MCP Specification](https://modelcontextprotocol.io)
 - [Anthropic MCP Announcement](https://www.anthropic.com/news/model-context-protocol)
+- [Implementing MCP in enterprise environments — CData](https://www.cdata.com/blog/implementing-mcp-enterprise-environments)

@@ -52,6 +52,14 @@ flowchart LR
 - **DSPy**: programmatic framework that compiles high-level signatures into optimized prompts through bootstrapped few-shot selection
 - **OPRO** (Yang et al. 2023): use the LLM as an optimizer — feed it past prompts and their scores, ask for a better one
 
+## The 2026 Practical Path: DSPy 2.x
+
+By 2026, DSPy's modern optimizers are the default route to automated prompt optimization:
+
+- **MIPROv2**: jointly optimizes instructions and few-shot demonstrations via Bayesian search over the prompt program
+- **GEPA** (July 2025): uses **LLM reflection over trajectory traces** to propose improvements, outperforming RL-based tuning on several benchmarks; works with LangChain, LlamaIndex, or standalone
+- **SIMBA**: uses stochastic mini-batch sampling to surface challenging, high-variability examples, then has the LLM propose self-reflective improvement *rules* — complements MIPROv2 when evaluation is noisy
+
 ## When to Use
 
 - You have an eval suite but the prompt is underperforming
@@ -62,4 +70,6 @@ flowchart LR
 
 - [Large Language Models Are Human-Level Prompt Engineers (Zhou et al., 2022)](https://arxiv.org/abs/2211.01910)
 - [DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines (Khattab et al., 2023)](https://arxiv.org/abs/2310.03714)
+- [DSPy (MIPROv2, GEPA) — Stanford NLP](https://github.com/stanfordnlp/dspy)
+- [DSPy Optimizers: MIPROv2, SIMBA, GEPA](https://dspy.ai/learn/optimization/optimizers/)
 - [Large Language Models as Optimizers (Yang et al., 2023)](https://arxiv.org/abs/2309.03409)

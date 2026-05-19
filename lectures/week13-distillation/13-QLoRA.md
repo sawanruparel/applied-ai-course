@@ -64,8 +64,13 @@ model.print_trainable_parameters()
 
 QLoRA matches full fine-tuning quality on most tasks, with <1% degradation on benchmarks. The original paper showed this across 1,000+ experiments.
 
+## What this costs in practice
+
+Using **Unsloth + QLoRA**, a single **A100 80GB** fine-tunes **Llama 3 8B in ~6 hours on 50k examples for ~$12**. Unsloth's extended-context GRPO pushes this further: up to **110K context on an 80GB H100** -- about **7x longer** than vanilla training at the same memory budget.
+
 ## Sources
 
 - [QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023)](https://arxiv.org/abs/2305.14314)
 - [LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2021)](https://arxiv.org/abs/2106.09685)
+- [Unsloth vs Traditional Fine-Tuning: Faster GRPO Training Explained (YottaLabs)](https://www.yottalabs.ai/post/unsloth-vs-traditional-fine-tuning-faster-grpo-training-explained)
 - [Hugging Face PEFT](https://github.com/huggingface/peft)

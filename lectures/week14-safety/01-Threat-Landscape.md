@@ -29,4 +29,5 @@ layout: standard
 ## Sources
 
 - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [OWASP Top 10 for Agentic Applications for 2026 (OWASP GenAI)](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/)
 - [Not What You've Signed Up For: Indirect Prompt Injection (Greshake et al., 2023)](https://arxiv.org/abs/2302.12173)
