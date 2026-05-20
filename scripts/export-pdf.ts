@@ -101,7 +101,8 @@ async function main(): Promise<void> {
     const before = slugs.length;
     slugs = slugs.filter((s) => !fs.existsSync(path.join(OUT_DIR, `${s}.pdf`)));
     const skipped = before - slugs.length;
-    if (skipped) console.log(`Skipping ${skipped} already-exported lecture(s) (use --force to redo)`);
+    if (skipped)
+      console.log(`Skipping ${skipped} already-exported lecture(s) (use --force to redo)`);
   }
 
   if (slugs.length === 0) {
