@@ -5,6 +5,10 @@
     "file": "lectures/week14-safety/01b-OWASP-Agentic.md",
     "label": "01b OWASP Agentic 2026"
   },
+  {
+    "file": "lectures/week14-safety/01c-Agentic-Controls.md",
+    "label": "01c Agentic Controls"
+  },
   { "file": "lectures/week14-safety/02-Attack-Surface.md", "label": "02 Attack Surface" },
   { "file": "lectures/week14-safety/03-Defense-In-Depth.md", "label": "03 Defense In Depth" },
   { "file": "lectures/week14-safety/04-Injection-Intro.md", "label": "04 Injection Intro" },
