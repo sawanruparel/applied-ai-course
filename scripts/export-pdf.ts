@@ -38,20 +38,38 @@ function slideCount(slug: string): number {
   return manifest.length;
 }
 
+async function captureSlide(page: Page, url: string): Promise<Buffer> {
+  // SPA route navigations can race under `networkidle` (one goto interrupted by
+  // the next). Use `domcontentloaded` + an explicit content wait, and retry.
+  let lastErr: unknown;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      await page.goto(url, { waitUntil: "domcontentloaded" });
+      // Wait for any rendered slide content. A direct-child selector matches
+      // every block type (h1, p, ul, ol, blockquote, pre, table, .mermaid,
+      // .card-grid) — narrower selectors miss list-only or quote-only slides.
+      await page.waitForSelector("#slide > *", { timeout: 8000 });
+      // Give mermaid a chance to render; not all slides have a diagram.
+      await page.waitForSelector(".mermaid[data-processed]", { timeout: 4000 }).catch(() => {});
+      await page.waitForTimeout(250);
+      return await page.screenshot({ type: "png" });
+    } catch (err) {
+      lastErr = err;
+      await page.waitForTimeout(400);
+    }
+  }
+  throw lastErr;
+}
+
 async function exportLecture(page: Page, slug: string): Promise<void> {
   const n = slideCount(slug);
   const pdf = await PDFDocument.create();
+  const w = VIEWPORT.width * SCALE;
+  const h = VIEWPORT.height * SCALE;
 
   for (let i = 0; i < n; i++) {
-    await page.goto(`${BASE}/pages/${slug}.html?slide=${i}`, { waitUntil: "networkidle" });
-    // Give mermaid a chance to render; not all slides have a diagram.
-    await page.waitForSelector(".mermaid[data-processed]", { timeout: 4000 }).catch(() => {});
-    await page.waitForTimeout(250);
-
-    const png = await page.screenshot({ type: "png" });
+    const png = await captureSlide(page, `${BASE}/pages/${slug}.html?slide=${i}`);
     const img = await pdf.embedPng(png);
-    const w = VIEWPORT.width * SCALE;
-    const h = VIEWPORT.height * SCALE;
     const p = pdf.addPage([w, h]);
     p.drawImage(img, { x: 0, y: 0, width: w, height: h });
   }
@@ -62,14 +80,34 @@ async function exportLecture(page: Page, slug: string): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  const only = process.argv[2];
-  const slugs = only ? [only] : lectureSlugs();
-  if (only && !fs.existsSync(`lectures/${only}/slides.json`)) {
-    console.error(`Unknown lecture: ${only}`);
-    process.exit(1);
+  // Args: optional lecture slugs to export, plus --force to redo existing PDFs.
+  const args = process.argv.slice(2);
+  const force = args.includes("--force");
+  const named = args.filter((a) => !a.startsWith("--"));
+  let slugs = named.length ? named : lectureSlugs();
+
+  for (const s of named) {
+    if (!fs.existsSync(`lectures/${s}/slides.json`)) {
+      console.error(`Unknown lecture: ${s}`);
+      process.exit(1);
+    }
   }
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
+
+  // Resume by default: skip lectures whose PDF already exists (written
+  // atomically, so an existing file means a complete export). --force redoes.
+  if (!force) {
+    const before = slugs.length;
+    slugs = slugs.filter((s) => !fs.existsSync(path.join(OUT_DIR, `${s}.pdf`)));
+    const skipped = before - slugs.length;
+    if (skipped) console.log(`Skipping ${skipped} already-exported lecture(s) (use --force to redo)`);
+  }
+
+  if (slugs.length === 0) {
+    console.log("Nothing to export.");
+    return;
+  }
 
   // Fail fast if the server isn't up.
   try {
@@ -80,16 +118,27 @@ async function main(): Promise<void> {
   }
 
   const browser = await chromium.launch({ channel: "chrome" });
+  const failed: string[] = [];
   try {
     const page = await browser.newContext({ viewport: VIEWPORT }).then((c) => c.newPage());
     console.log(`Exporting ${slugs.length} lecture(s) to ${OUT_DIR}/`);
     for (const slug of slugs) {
-      await exportLecture(page, slug);
+      try {
+        await exportLecture(page, slug);
+      } catch (err) {
+        failed.push(slug);
+        console.error(`  ${slug}: FAILED — ${err instanceof Error ? err.message : String(err)}`);
+      }
     }
-    console.log("Done.");
   } finally {
     await browser.close();
   }
+
+  if (failed.length) {
+    console.error(`\n${failed.length} lecture(s) failed: ${failed.join(", ")}. Re-run to retry.`);
+    process.exit(1);
+  }
+  console.log("Done.");
 }
 
 main().catch((e) => {
