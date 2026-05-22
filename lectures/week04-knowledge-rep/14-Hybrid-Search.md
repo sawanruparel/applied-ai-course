@@ -1,66 +1,22 @@
 ---
-title: "Hybrid Search"
+title: "Sparse & Hybrid Representations"
 section: Vector Databases
-layout: two-column
+layout: standard
 ---
 
-# Hybrid Search: Vector + Keyword
+# Beyond Dense Vectors: Sparse & Hybrid
 
-Neither vector search nor keyword search is sufficient alone. Combining them yields **significantly better recall**.
+Dense embeddings capture meaning but miss exact terms -- product IDs, error codes, proper nouns. Two representation strategies bridge the gap:
 
-```mermaid
-flowchart LR
-    Q[Query] --> V["Vector search<br/>(semantic)"]
-    Q --> K["BM25 search<br/>(lexical)"]
-    V --> F[Reciprocal rank fusion]
-    K --> F
-    F --> Top[Merged top-k]
-```
+- **Keyword / sparse (BM25):** exact lexical matching -- perfect for codes and names, no embedding model needed. "Error E-4021" always matches "Error E-4021"; "automobile" never matches "car"
+- **Learned-sparse embeddings (SPLADE, BGE-M3):** trained like embedding models but emit *sparse* vectors that carry both lexical and semantic signal -- stored and searched like a keyword index. Increasingly first-class in Pinecone, Qdrant, and Weaviate
 
-## Vector Search (Semantic)
+Combining dense + sparse signals ("hybrid search") consistently beats either alone -- dense for meaning, sparse for exact matches.
 
-**Strengths:**
-- Understands meaning, synonyms, paraphrases
-- "How to fix authentication errors" matches "login troubleshooting guide"
-- Works across languages (with multilingual embeddings)
-
-**Weaknesses:**
-- Struggles with exact terms: product IDs, error codes, proper nouns
-- "Error E-4021" may not match "Error E-4021" if the embedding model hasn't seen it
-- Can return semantically similar but factually wrong results
-
-## Keyword Search (BM25 / Sparse)
-
-**Strengths:**
-- Exact lexical matching -- perfect for IDs, codes, names
-- Well-understood relevance scoring (TF-IDF based)
-- No embedding model needed, works out of the box
-- "Error E-4021" always matches "Error E-4021"
-
-**Weaknesses:**
-- No understanding of meaning or intent
-- "automobile" won't match "car"
-- Sensitive to vocabulary mismatch between query and document
-
-### Fusion Strategies
-
-| Method | How It Works | Typical Use |
-|--------|-------------|-------------|
-| **Reciprocal Rank Fusion (RRF)** | Score = sum(1 / (k + rank_i)) across result lists | Simple, no tuning needed |
-| **Linear combination** | score = alpha * vector_score + (1 - alpha) * bm25_score | Tunable, requires normalized scores |
-| **Learned fusion** | Train a model to combine scores | Highest quality, requires training data |
-
-> **RRF** is the most common starting point. It requires no score normalization and is surprisingly effective. Typical k=60.
-
-### Sparse Embeddings: Best of Both Worlds
-
-- **SPLADE** and **BGE-M3** produce learned sparse vectors that capture both lexical and semantic signals
-- Stored and searched like keyword indexes but trained like embedding models
-- Increasingly supported: Pinecone, Qdrant, Weaviate all support sparse vectors
+> This slide is about how knowledge is **represented**. The retrieval-side mechanics -- fusion (Reciprocal Rank Fusion), tuning, and the production hybrid pipeline -- are covered in **Week 5 (RAG 2.0)**.
 
 ## Sources
 
-- [Okapi BM25 (Wikipedia)](https://en.wikipedia.org/wiki/Okapi_BM25)
-- [Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods (Cormack et al., 2009)](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 - [SPLADE: Sparse Lexical and Expansion Model for First Stage Ranking (Formal et al., 2021)](https://arxiv.org/abs/2107.05720)
 - [BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity (Chen et al., 2024)](https://arxiv.org/abs/2402.03216)
+- [Okapi BM25 (Wikipedia)](https://en.wikipedia.org/wiki/Okapi_BM25)
